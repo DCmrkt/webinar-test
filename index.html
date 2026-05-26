@@ -9,22 +9,19 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #ebebeb;
-      --surface: #f5f5f5;
+      --bg: #f3f3f3;
+      --surface: #fafafa;
       --surface-light: #ffffff;
       --text: #2a2a2a;
-      --muted: #6e6e6e;
-      --line: #d0d0d0;
-      --hero-bg: #3a3a3a;
-      --hero-text: #f0f0f0;
-      --hero-muted: #a8a8a8;
+      --muted: #757575;
+      --line: #e0e0e0;
       --accent: #d71920;
       --accent-hover: #b8141a;
-      --accent-soft: rgba(215, 25, 32, 0.15);
+      --accent-soft: rgba(215, 25, 32, 0.1);
       --success: #166534;
       --error: #991b1b;
       --radius: 20px;
-      --shadow: 0 24px 80px rgba(42, 42, 42, 0.08);
+      --shadow: 0 20px 60px rgba(42, 42, 42, 0.06);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -38,7 +35,9 @@
       font-size: 16px;
       line-height: 1.5;
       color: var(--text);
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -50,44 +49,56 @@
 
     /* ── Hero ── */
     .hero {
-      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: clamp(32px, 5vw, 64px);
-      overflow: hidden;
-      background: var(--hero-bg);
-      color: var(--hero-text);
+      gap: 28px;
+      padding: clamp(28px, 4vw, 48px);
+      background: rgba(255, 255, 255, 0.72);
+      border-right: 1px solid var(--line);
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 15% 15%, rgba(215, 25, 32, 0.22), transparent 45%),
-        radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.04), transparent 40%);
-      pointer-events: none;
-    }
-
-    .hero > * { position: relative; z-index: 1; }
 
     .brand {
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--hero-muted);
+      color: var(--muted);
     }
 
     .brand span {
       color: var(--accent);
     }
 
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      background: #ececec;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(42, 42, 42, 0.12) 100%);
+      pointer-events: none;
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
     .hero-main {
       max-width: 520px;
-      margin: auto 0;
-      padding: 48px 0;
     }
 
     .pill {
@@ -97,11 +108,11 @@
       padding: 8px 14px;
       margin-bottom: 28px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--surface-light);
+      border: 1px solid var(--line);
       font-size: 0.8125rem;
       font-weight: 500;
-      color: var(--hero-text);
+      color: var(--text);
     }
 
     .pill-dot {
@@ -129,7 +140,7 @@
       margin: 0 0 36px;
       max-width: 440px;
       font-size: 1.0625rem;
-      color: var(--hero-muted);
+      color: var(--muted);
       line-height: 1.65;
     }
 
@@ -144,7 +155,7 @@
       align-items: baseline;
       gap: 16px;
       padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--line);
     }
 
     .meta-label {
@@ -159,7 +170,7 @@
     .meta-value {
       font-size: 0.9375rem;
       font-weight: 500;
-      color: var(--hero-text);
+      color: var(--text);
     }
 
     .topics {
@@ -171,15 +182,15 @@
     .topic {
       padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--surface-light);
+      border: 1px solid var(--line);
       font-size: 0.8125rem;
-      color: var(--hero-muted);
+      color: var(--muted);
     }
 
     .hero-foot {
       font-size: 0.8125rem;
-      color: var(--hero-muted);
+      color: var(--muted);
     }
 
     /* ── Form panel ── */
@@ -188,8 +199,7 @@
       align-items: center;
       justify-content: center;
       padding: clamp(24px, 4vw, 48px);
-      background: var(--bg);
-      border-left: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.45);
     }
 
     .form-wrap {
@@ -403,14 +413,11 @@
       .hero {
         min-height: auto;
         padding-bottom: 24px;
-      }
-
-      .hero-main {
-        padding: 32px 0 16px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
       }
 
       .panel {
-        border-left: 0;
         border-top: 1px solid var(--line);
         align-items: flex-start;
       }
@@ -426,6 +433,20 @@
   <div class="page">
     <section class="hero">
       <div class="brand"><span>Direct Channel</span> · Webinar</div>
+
+      <figure class="hero-visual">
+        <img
+          src="assets/hero.jpg"
+          srcset="assets/hero.jpg 1600w"
+          sizes="(max-width: 900px) 100vw, 50vw"
+          width="1600"
+          height="1000"
+          alt="Team in riunione agile — webinar Il mondo agile"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </figure>
 
       <div class="hero-main">
         <div class="pill">
