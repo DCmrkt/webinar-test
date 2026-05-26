@@ -35,9 +35,7 @@
       font-size: 16px;
       line-height: 1.5;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 55%),
-        linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+      background: var(--surface-light);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -49,13 +47,31 @@
 
     /* ── Hero ── */
     .hero {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 28px;
+      min-height: 100vh;
       padding: clamp(28px, 4vw, 48px);
-      background: rgba(255, 255, 255, 0.72);
-      border-right: 1px solid var(--line);
+      color: #f3f3f3;
+      background: url("assets/hero-online.jpg") center center / cover no-repeat;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.78) 55%, rgba(215, 25, 32, 0.42) 100%);
+      pointer-events: none;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .brand {
@@ -63,42 +79,16 @@
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.65);
     }
 
     .brand span {
-      color: var(--accent);
-    }
-
-    .hero-visual {
-      position: relative;
-      width: 100%;
-      border-radius: calc(var(--radius) + 4px);
-      overflow: hidden;
-      background: #ececec;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-    }
-
-    .hero-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(42, 42, 42, 0.12) 100%);
-      pointer-events: none;
-    }
-
-    .hero-visual img {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      object-position: center 30%;
+      color: #ff6b6b;
     }
 
     .hero-main {
       max-width: 520px;
+      margin: auto 0;
     }
 
     .pill {
@@ -108,11 +98,12 @@
       padding: 8px 14px;
       margin-bottom: 28px;
       border-radius: 999px;
-      background: var(--surface-light);
-      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       font-size: 0.8125rem;
       font-weight: 500;
-      color: var(--text);
+      color: #fff;
+      backdrop-filter: blur(8px);
     }
 
     .pill-dot {
@@ -133,14 +124,14 @@
 
     h1 em {
       font-style: normal;
-      color: var(--accent);
+      color: #ff5555;
     }
 
     .hero-lead {
       margin: 0 0 36px;
       max-width: 440px;
       font-size: 1.0625rem;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.78);
       line-height: 1.65;
     }
 
@@ -155,7 +146,7 @@
       align-items: baseline;
       gap: 16px;
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .meta-label {
@@ -164,13 +155,13 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #ff6b6b;
     }
 
     .meta-value {
       font-size: 0.9375rem;
       font-weight: 500;
-      color: var(--text);
+      color: #f3f3f3;
     }
 
     .topics {
@@ -182,15 +173,16 @@
     .topic {
       padding: 7px 12px;
       border-radius: 999px;
-      background: var(--surface-light);
-      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       font-size: 0.8125rem;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(6px);
     }
 
     .hero-foot {
       font-size: 0.8125rem;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.55);
     }
 
     /* ── Form panel ── */
@@ -199,7 +191,7 @@
       align-items: center;
       justify-content: center;
       padding: clamp(24px, 4vw, 48px);
-      background: rgba(255, 255, 255, 0.45);
+      background: var(--surface-light);
     }
 
     .form-wrap {
@@ -433,20 +425,6 @@
   <div class="page">
     <section class="hero">
       <div class="brand"><span>Direct Channel</span> · Webinar</div>
-
-      <figure class="hero-visual">
-        <img
-          src="assets/hero.jpg"
-          srcset="assets/hero.jpg 1600w"
-          sizes="(max-width: 900px) 100vw, 50vw"
-          width="1600"
-          height="1000"
-          alt="Team in riunione agile — webinar Il mondo agile"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </figure>
 
       <div class="hero-main">
         <div class="pill">
