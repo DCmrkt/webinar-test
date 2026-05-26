@@ -9,556 +9,417 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f3f3f3;
-      --surface: #fafafa;
-      --surface-light: #ffffff;
-      --text: #2a2a2a;
-      --muted: #757575;
-      --line: #e0e0e0;
-      --accent: #d71920;
-      --accent-hover: #b8141a;
-      --accent-soft: rgba(215, 25, 32, 0.1);
+      --red: #d71920;
+      --red-dark: #b8141a;
+      --red-soft: rgba(215, 25, 32, 0.1);
+      --ink: #1a1a1a;
+      --ink-soft: #444;
+      --muted: #737373;
+      --line: #e4e4e4;
+      --bg: #f5f5f5;
+      --white: #fff;
       --success: #166534;
       --error: #991b1b;
-      --radius: 20px;
-      --shadow: 0 20px 60px rgba(42, 42, 42, 0.06);
+      --radius: 10px;
+      --radius-lg: 16px;
+      --shadow: 0 16px 48px rgba(0, 0, 0, 0.06);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-      height: 100%;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      min-height: 100vh;
-      min-height: 100dvh;
       font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 55%),
-        linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--bg);
       -webkit-font-smoothing: antialiased;
     }
 
-    .page {
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
       min-height: 100vh;
       min-height: 100dvh;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      align-items: stretch;
     }
 
-    /* ── Hero ── */
-    .hero {
+    .content {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      gap: 16px;
-      min-height: 0;
-      padding: clamp(20px, 2.5vw, 32px);
-      background: rgba(255, 255, 255, 0.72);
+      padding: clamp(28px, 4vw, 48px);
+      background: var(--white);
       border-right: 1px solid var(--line);
     }
 
     .brand {
-      font-size: 0.75rem;
+      margin-bottom: clamp(20px, 3vh, 32px);
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    .brand span {
-      color: var(--accent);
-    }
+    .brand strong { color: var(--red); }
 
-    .hero-visual {
-      position: relative;
-      width: 100%;
-      border-radius: calc(var(--radius) + 4px);
+    .hero-card {
+      margin: 0 0 clamp(20px, 3vh, 28px);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      background: #ececec;
+      border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      aspect-ratio: 16 / 9;
+      max-height: min(36vh, 300px);
+      background: #eee;
     }
 
-    .hero-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(42, 42, 42, 0.12) 100%);
-      pointer-events: none;
-    }
-
-    .hero-visual img {
+    .hero-card img {
       display: block;
       width: 100%;
       height: 100%;
-      max-height: 34vh;
-      aspect-ratio: 16 / 9;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: center 35%;
     }
 
-    .hero-main {
-      max-width: 520px;
-      flex: 1;
-      min-height: 0;
-    }
+    .intro { flex: 1; }
 
-    .pill {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 14px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      padding: 6px 12px;
       border-radius: 999px;
-      background: var(--surface-light);
-      border: 1px solid var(--line);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--text);
+      background: var(--red-soft);
+      border: 1px solid rgba(215, 25, 32, 0.15);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--red);
     }
 
-    .pill-dot {
-      width: 7px;
-      height: 7px;
+    .badge-dot {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-soft);
+      background: var(--red);
     }
 
     h1 {
       margin: 0 0 12px;
-      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-size: clamp(2rem, 4vw, 3.25rem);
       font-weight: 700;
-      line-height: 1.02;
-      letter-spacing: -0.04em;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
     }
 
     h1 em {
       font-style: normal;
-      color: var(--accent);
+      color: var(--red);
     }
 
-    .hero-lead {
-      margin: 0 0 16px;
-      max-width: 440px;
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.65;
+    .lead {
+      margin: 0 0 24px;
+      max-width: 480px;
+      font-size: 1rem;
+      color: var(--ink-soft);
     }
 
-    .meta-grid {
+    .meta-row {
       display: grid;
-      gap: 12px;
-      margin-bottom: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
-    .meta-item {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
+    .meta-box {
+      padding: 14px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      border: 1px solid var(--line);
     }
 
-    .meta-label {
-      min-width: 72px;
-      font-size: 0.6875rem;
-      font-weight: 600;
+    .meta-box-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.625rem;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--red);
     }
 
-    .meta-value {
-      font-size: 0.9375rem;
+    .meta-box-value {
+      display: block;
+      font-size: 0.8125rem;
       font-weight: 500;
-      color: var(--text);
+      line-height: 1.4;
+      color: var(--ink);
     }
 
-    .topics {
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .topic {
-      padding: 7px 12px;
+    .tag {
+      padding: 5px 11px;
       border-radius: 999px;
-      background: var(--surface-light);
+      background: var(--white);
       border: 1px solid var(--line);
-      font-size: 0.8125rem;
+      font-size: 0.75rem;
+      font-weight: 500;
       color: var(--muted);
     }
 
-    .hero-foot {
-      font-size: 0.8125rem;
+    .content-foot {
+      margin-top: clamp(24px, 4vh, 40px);
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 0.6875rem;
       color: var(--muted);
     }
 
-    /* ── Form panel ── */
-    .panel {
+    .sidebar {
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      min-height: 0;
-      padding: clamp(16px, 2.5vw, 28px);
-      background: rgba(255, 255, 255, 0.45);
+      padding: clamp(24px, 4vw, 40px);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      align-self: start;
+      min-height: 100vh;
+      min-height: 100dvh;
     }
 
-    .form-wrap {
+    .form-card {
       width: 100%;
       max-width: 420px;
-      padding: clamp(22px, 2.5vw, 28px);
-      background: var(--surface-light);
-      border-radius: var(--radius);
+      padding: clamp(28px, 3vw, 36px);
+      background: var(--white);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      animation: rise 0.7s ease both;
     }
 
-    .form-head h2 {
-      color: var(--text);
+    .form-card-head {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
     }
 
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .form-head {
-      margin-bottom: 20px;
-    }
-
-    .form-head h2 {
-      margin: 0 0 8px;
+    .form-card-head h2 {
+      margin: 0 0 6px;
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.03em;
     }
 
-    .form-head p {
+    .form-card-head p {
       margin: 0;
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       color: var(--muted);
     }
 
-    .field {
-      margin-bottom: 14px;
-    }
+    .field { margin-bottom: 16px; }
 
     .field-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 12px;
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--ink-soft);
     }
 
-    .required { color: var(--accent); }
+    .req { color: var(--red); }
 
     input[type="text"],
     input[type="email"],
     textarea {
       width: 100%;
-      padding: 14px 0 12px;
-      border: 0;
-      border-bottom: 1px solid var(--line);
-      border-radius: 0;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       font: inherit;
       font-size: 0.9375rem;
-      color: var(--text);
-      background: transparent;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      color: var(--ink);
+      background: #fafafa;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
     }
 
-    input::placeholder,
-    textarea::placeholder {
-      color: #b0b0b0;
-    }
+    input:hover, textarea:hover { border-color: #ccc; }
 
-    input:focus,
-    textarea:focus {
+    input:focus, textarea:focus {
       outline: none;
-      border-bottom-color: var(--accent);
-      box-shadow: 0 1px 0 0 var(--accent);
+      border-color: var(--red);
+      background: var(--white);
+      box-shadow: 0 0 0 3px var(--red-soft);
     }
 
     textarea {
-      min-height: 64px;
+      min-height: 72px;
       resize: vertical;
-      line-height: 1.5;
     }
 
-    .newsletter-block {
-      margin-top: 8px;
-      padding: 18px;
-      border-radius: 14px;
-      background: var(--surface);
+    .opt-in {
+      padding: 14px;
+      border-radius: var(--radius);
+      background: #fafafa;
       border: 1px solid var(--line);
-      border-left: 3px solid var(--accent);
     }
 
-    .newsletter-title {
-      margin: 0 0 6px;
+    .opt-in-title {
+      margin: 0 0 4px;
       font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: 0;
-      text-transform: none;
+      font-weight: 700;
     }
 
-    .newsletter-desc {
-      margin: 0 0 14px;
-      font-size: 0.8125rem;
-      line-height: 1.55;
+    .opt-in-desc {
+      margin: 0 0 12px;
+      font-size: 0.75rem;
+      line-height: 1.5;
       color: var(--muted);
     }
 
-    .checkbox-field {
+    .check-row {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: flex-start;
     }
 
-    .checkbox-field input {
-      width: 18px;
-      height: 18px;
-      margin-top: 1px;
-      accent-color: var(--accent);
-      cursor: pointer;
+    .check-row input {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: var(--red);
+      flex-shrink: 0;
     }
 
-    .checkbox-field label {
+    .check-row label {
       margin: 0;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       font-weight: 500;
       letter-spacing: 0;
       text-transform: none;
-      color: var(--text);
+      color: var(--ink-soft);
       cursor: pointer;
       line-height: 1.45;
     }
 
-    .submit-btn {
+    .btn {
       width: 100%;
-      margin-top: 8px;
-      padding: 16px 24px;
+      margin-top: 4px;
+      padding: 14px 20px;
       border: 0;
-      border-radius: 999px;
+      border-radius: var(--radius);
       font: inherit;
       font-size: 0.9375rem;
       font-weight: 600;
-      letter-spacing: -0.01em;
       color: #fff;
-      background: var(--accent);
+      background: var(--red);
       cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+      transition: background 0.15s;
     }
 
-    .submit-btn:hover:not(:disabled) {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    .submit-btn:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .submit-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .btn:hover:not(:disabled) { background: var(--red-dark); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
     .status {
-      margin-top: 18px;
-      padding: 14px 16px;
-      border-radius: 12px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
       font-size: 0.875rem;
-      line-height: 1.5;
       display: none;
     }
 
     .status.show { display: block; }
-
-    .status.success {
-      background: #ecfdf5;
-      color: var(--success);
-      border: 1px solid #99f6e4;
-    }
-
-    .status.error {
-      background: #fef2f2;
-      color: var(--error);
-      border: 1px solid #fecaca;
-    }
+    .status.ok { background: #ecfdf5; color: var(--success); border: 1px solid #99f6e4; }
+    .status.err { background: #fef2f2; color: var(--error); border: 1px solid #fecaca; }
 
     .form-foot {
-      margin-top: 20px;
-      font-size: 0.75rem;
+      margin-top: 16px;
+      font-size: 0.6875rem;
+      line-height: 1.5;
       color: var(--muted);
       text-align: center;
     }
 
-    /* ── Mobile ── */
-    @media (min-width: 901px) {
-      html,
-      body {
-        height: 100%;
-        overflow: hidden;
-      }
-
-      .page {
-        height: 100vh;
-        height: 100dvh;
-        max-height: 100dvh;
-        overflow: hidden;
-      }
-
-      .hero {
-        height: 100%;
-        max-height: 100dvh;
-        overflow-y: auto;
-      }
-
-      .hero-visual img {
-        max-height: min(34vh, 280px);
-      }
-
-      .panel {
-        height: 100%;
-        max-height: 100dvh;
-        overflow-y: auto;
-      }
-
-      .form-wrap {
-        margin: auto 0;
-      }
-
-      .hero-foot {
-        margin-top: auto;
-        padding-top: 8px;
-      }
-    }
-
-    @media (max-width: 900px) {
-      html,
-      body {
-        overflow: auto;
-      }
-
-      .page {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-bottom: 24px;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .hero-visual img {
-        max-height: none;
-      }
-
-      .panel {
-        border-top: 1px solid var(--line);
-        align-items: flex-start;
-      }
-
-      .field-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      .content { border-right: 0; border-bottom: 1px solid var(--line); }
+      .hero-card { max-height: 220px; }
+      .meta-row { grid-template-columns: 1fr; }
+      .sidebar { align-items: flex-start; }
+      .field-row { grid-template-columns: 1fr; gap: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <section class="hero">
-      <div class="brand"><span>Direct Channel</span> · Webinar</div>
+  <div class="layout">
+    <main class="content">
+      <div class="brand"><strong>Direct Channel</strong> · Webinar</div>
 
-      <figure class="hero-visual">
-        <img
-          src="../assets/hero.jpg"
-          srcset="../assets/hero.jpg 1600w"
-          sizes="(max-width: 900px) 100vw, 50vw"
-          width="1600"
-          height="1000"
-          alt="Team in riunione agile — webinar Il mondo agile"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
+      <figure class="hero-card">
+        <img src="../assets/hero.jpg" alt="Team in riunione — webinar Il mondo agile" width="800" height="450" loading="eager" />
       </figure>
 
-      <div class="hero-main">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Iscrizione gratuita
-        </div>
-
-        <h1>Il mondo<br /><em>agile</em></h1>
-
-        <p class="hero-lead">
-          Impara cos'è la metodologia Agile, i framework Scrum e Kanban,
-          e come applicarli nel lavoro quotidiano — con esempi concreti.
+      <div class="intro">
+        <div class="badge"><span class="badge-dot"></span> Iscrizione gratuita</div>
+        <h1>Il mondo <em>agile</em></h1>
+        <p class="lead">
+          Scopri metodologia Agile, framework Scrum e Kanban, con esempi concreti
+          per il mondo enterprise.
         </p>
 
-        <div class="meta-grid">
-          <div class="meta-item">
-            <span class="meta-label">Quando</span>
-            <span class="meta-value">Martedì 28 Aprile · 11:30 – 12:30</span>
+        <div class="meta-row">
+          <div class="meta-box">
+            <span class="meta-box-label">Quando</span>
+            <span class="meta-box-value">28 Aprile<br />11:30 – 12:30</span>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Speaker</span>
-            <span class="meta-value">Lorenzo Monti · Agile Coach</span>
+          <div class="meta-box">
+            <span class="meta-box-label">Speaker</span>
+            <span class="meta-box-value">Lorenzo Monti<br />Agile Coach</span>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Accesso</span>
-            <span class="meta-value">Link inviato il giorno prima</span>
+          <div class="meta-box">
+            <span class="meta-box-label">Accesso</span>
+            <span class="meta-box-value">Link inviato<br />il giorno prima</span>
           </div>
         </div>
 
-        <div class="topics">
-          <span class="topic">Agile</span>
-          <span class="topic">Scrum</span>
-          <span class="topic">Kanban</span>
-          <span class="topic">Team work</span>
+        <div class="tags">
+          <span class="tag">Agile</span>
+          <span class="tag">Scrum</span>
+          <span class="tag">Kanban</span>
+          <span class="tag">Team work</span>
         </div>
       </div>
 
-      <p class="hero-foot">© Direct Channel · Mondadori Group</p>
-    </section>
+      <p class="content-foot">© Direct Channel · Mondadori Group</p>
+    </main>
 
-    <aside class="panel">
-      <div class="form-wrap">
-        <div class="form-head">
-          <h2>Iscriviti</h2>
+    <aside class="sidebar">
+      <div class="form-card">
+        <div class="form-card-head">
+          <h2>Iscriviti al webinar</h2>
           <p>Compila il form per riservare il tuo posto.</p>
         </div>
-
         <form id="contactForm" novalidate></form>
-
         <div id="status" class="status" role="status" aria-live="polite"></div>
-        <p class="form-foot">Campi con * obbligatori · I tuoi dati sono trattati nel rispetto del GDPR</p>
+        <p class="form-foot">Campi con * obbligatori · Dati trattati nel rispetto del GDPR</p>
       </div>
     </aside>
   </div>
@@ -568,62 +429,13 @@
   <script>
     var CONFIG = {
       googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScCsH0PqSwHkilZIjnj96qfnxSB4bW1ND3KAHJKrOPkpbMdug/viewform',
-
       fields: [
-        {
-          id: 'nome',
-          label: 'Nome e cognome',
-          entryId: 'entry.2092238618',
-          type: 'text',
-          required: true,
-          autocomplete: 'name',
-          placeholder: 'Mario Rossi'
-        },
-        {
-          id: 'email',
-          label: 'Email',
-          entryId: 'entry.1556369182',
-          type: 'email',
-          required: true,
-          autocomplete: 'email',
-          placeholder: 'nome@azienda.it'
-        },
-        {
-          id: 'organizzazione',
-          label: 'Organizzazione',
-          entryId: 'entry.479301265',
-          type: 'text',
-          required: true,
-          autocomplete: 'organization',
-          placeholder: 'Nome azienda',
-          row: 'company'
-        },
-        {
-          id: 'ruolo',
-          label: 'Ruolo',
-          entryId: 'entry.2104822976',
-          type: 'text',
-          required: true,
-          autocomplete: 'organization-title',
-          placeholder: 'Es. Project Manager',
-          row: 'company'
-        },
-        {
-          id: 'domanda',
-          label: 'Hai qualche domanda?',
-          entryId: 'entry.1933339847',
-          type: 'textarea',
-          required: false,
-          placeholder: 'Facoltativo'
-        },
-        {
-          id: 'newsletter',
-          label: 'Sì, voglio iscrivermi alla newsletter',
-          entryId: 'entry.1618047083',
-          type: 'checkbox',
-          checkboxValue: 'Sì, voglio iscrivermi alla newsletter',
-          required: false
-        }
+        { id: 'nome', label: 'Nome e cognome', entryId: 'entry.2092238618', type: 'text', required: true, autocomplete: 'name', placeholder: 'Mario Rossi' },
+        { id: 'email', label: 'Email', entryId: 'entry.1556369182', type: 'email', required: true, autocomplete: 'email', placeholder: 'nome@azienda.it' },
+        { id: 'organizzazione', label: 'Organizzazione', entryId: 'entry.479301265', type: 'text', required: true, autocomplete: 'organization', placeholder: 'Nome azienda', row: 'company' },
+        { id: 'ruolo', label: 'Ruolo', entryId: 'entry.2104822976', type: 'text', required: true, autocomplete: 'organization-title', placeholder: 'Es. Project Manager', row: 'company' },
+        { id: 'domanda', label: 'Hai qualche domanda?', entryId: 'entry.1933339847', type: 'textarea', required: false, placeholder: 'Facoltativo' },
+        { id: 'newsletter', label: 'Sì, voglio iscrivermi alla newsletter', entryId: 'entry.1618047083', type: 'checkbox', checkboxValue: 'Sì, voglio iscrivermi alla newsletter', required: false }
       ]
     };
 
@@ -637,7 +449,7 @@
     }
 
     function showStatus(type, message) {
-      statusEl.className = 'status show ' + type;
+      statusEl.className = 'status show ' + (type === 'success' ? 'ok' : 'err');
       statusEl.textContent = message;
     }
 
@@ -646,123 +458,96 @@
       statusEl.textContent = '';
     }
 
-    function getOrCreateRow(rowKey) {
-      if (!rowContainers[rowKey]) {
+    function getOrCreateRow(key) {
+      if (!rowContainers[key]) {
         var row = document.createElement('div');
         row.className = 'field-row';
         formEl.appendChild(row);
-        rowContainers[rowKey] = row;
+        rowContainers[key] = row;
       }
-      return rowContainers[rowKey];
+      return rowContainers[key];
     }
 
     function buildField(field) {
-      var wrapper = document.createElement('div');
-      wrapper.className = 'field';
+      var wrap = document.createElement('div');
+      wrap.className = 'field';
 
       if (field.type === 'checkbox') {
-        wrapper.className = 'field newsletter-block';
-
-        var title = document.createElement('p');
-        title.className = 'newsletter-title';
-        title.textContent = 'Resta aggiornato';
-        wrapper.appendChild(title);
-
-        var desc = document.createElement('p');
-        desc.className = 'newsletter-desc';
-        desc.textContent = 'Ricevi novità su webinar, prodotti ed eventi Direct Channel. Potrai disiscriverti in qualsiasi momento.';
-        wrapper.appendChild(desc);
-
+        wrap.className = 'field opt-in';
+        var t = document.createElement('p');
+        t.className = 'opt-in-title';
+        t.textContent = 'Resta aggiornato';
+        wrap.appendChild(t);
+        var d = document.createElement('p');
+        d.className = 'opt-in-desc';
+        d.textContent = 'Novità su webinar, prodotti ed eventi Direct Channel.';
+        wrap.appendChild(d);
         var row = document.createElement('div');
-        row.className = 'checkbox-field';
-
+        row.className = 'check-row';
         var input = document.createElement('input');
         input.type = 'checkbox';
         input.id = field.id;
         input.name = field.entryId;
         input.value = field.checkboxValue;
-
         var label = document.createElement('label');
         label.setAttribute('for', field.id);
         label.textContent = field.label;
-
         row.appendChild(input);
         row.appendChild(label);
-        wrapper.appendChild(row);
-        return wrapper;
+        wrap.appendChild(row);
+        return wrap;
       }
 
-      var labelEl = document.createElement('label');
-      labelEl.setAttribute('for', field.id);
-      labelEl.innerHTML = field.label + (field.required ? ' <span class="required">*</span>' : '');
-      wrapper.appendChild(labelEl);
+      var lbl = document.createElement('label');
+      lbl.setAttribute('for', field.id);
+      lbl.innerHTML = field.label + (field.required ? ' <span class="req">*</span>' : '');
+      wrap.appendChild(lbl);
 
-      var inputEl;
-      if (field.type === 'textarea') {
-        inputEl = document.createElement('textarea');
-      } else {
-        inputEl = document.createElement('input');
-        inputEl.type = field.type || 'text';
-        if (field.autocomplete) {
-          inputEl.setAttribute('autocomplete', field.autocomplete);
-        }
-      }
-
-      inputEl.id = field.id;
-      inputEl.name = field.entryId;
-      if (field.placeholder) {
-        inputEl.placeholder = field.placeholder;
-      }
-      if (field.required) {
-        inputEl.required = true;
-      }
-      wrapper.appendChild(inputEl);
-
-      return wrapper;
+      var el = field.type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
+      if (field.type !== 'textarea') el.type = field.type || 'text';
+      if (field.autocomplete) el.setAttribute('autocomplete', field.autocomplete);
+      el.id = field.id;
+      el.name = field.entryId;
+      if (field.placeholder) el.placeholder = field.placeholder;
+      if (field.required) el.required = true;
+      wrap.appendChild(el);
+      return wrap;
     }
 
-    function buildFormFields() {
-      formEl.setAttribute('action', getFormActionUrl());
-      formEl.setAttribute('method', 'POST');
-      formEl.setAttribute('target', 'googleFormTarget');
+    function buildForm() {
+      formEl.action = getFormActionUrl();
+      formEl.method = 'POST';
+      formEl.target = 'googleFormTarget';
 
-      CONFIG.fields.forEach(function (field) {
-        var el = buildField(field);
-
-        if (field.row) {
-          getOrCreateRow(field.row).appendChild(el);
-        } else {
-          formEl.appendChild(el);
-        }
+      CONFIG.fields.forEach(function (f) {
+        var el = buildField(f);
+        if (f.row) getOrCreateRow(f.row).appendChild(el);
+        else formEl.appendChild(el);
       });
 
       var actions = document.createElement('div');
       actions.className = 'field';
-
-      var button = document.createElement('button');
-      button.type = 'submit';
-      button.id = 'submitBtn';
-      button.className = 'submit-btn';
-      button.textContent = 'Conferma iscrizione';
-      actions.appendChild(button);
+      var btn = document.createElement('button');
+      btn.type = 'submit';
+      btn.id = 'submitBtn';
+      btn.className = 'btn';
+      btn.textContent = 'Conferma iscrizione';
+      actions.appendChild(btn);
       formEl.appendChild(actions);
     }
 
-    function validateForm() {
+    function validate() {
       for (var i = 0; i < CONFIG.fields.length; i++) {
-        var field = CONFIG.fields[i];
-        if (field.type === 'checkbox') continue;
-
-        var el = document.getElementById(field.id);
-        var value = (el.value || '').trim();
-
-        if (field.required && !value) {
+        var f = CONFIG.fields[i];
+        if (f.type === 'checkbox') continue;
+        var el = document.getElementById(f.id);
+        var val = (el.value || '').trim();
+        if (f.required && !val) {
           el.focus();
-          showStatus('error', 'Il campo "' + field.label + '" è obbligatorio.');
+          showStatus('error', 'Il campo "' + f.label + '" è obbligatorio.');
           return false;
         }
-
-        if (field.type === 'email' && value && value.indexOf('@') === -1) {
+        if (f.type === 'email' && val && val.indexOf('@') === -1) {
           el.focus();
           showStatus('error', 'Inserisci un indirizzo email valido.');
           return false;
@@ -771,32 +556,24 @@
       return true;
     }
 
-    formEl.addEventListener('submit', function (event) {
-      event.preventDefault();
+    formEl.addEventListener('submit', function (e) {
+      e.preventDefault();
       clearStatus();
-
-      if (!validateForm()) return;
-
-      var submitBtn = document.getElementById('submitBtn');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Invio in corso...';
-
+      if (!validate()) return;
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Invio in corso...';
       if (submitTimeoutId) clearTimeout(submitTimeoutId);
-
       formEl.submit();
-
       submitTimeoutId = setTimeout(function () {
         formEl.reset();
-        showStatus(
-          'success',
-          'Iscrizione confermata. Riceverai il link di accesso il giorno prima del webinar.'
-        );
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Conferma iscrizione';
+        showStatus('success', 'Iscrizione confermata. Riceverai il link di accesso il giorno prima del webinar.');
+        btn.disabled = false;
+        btn.textContent = 'Conferma iscrizione';
       }, 1200);
     });
 
-    buildFormFields();
+    buildForm();
   </script>
 </body>
 </html>
