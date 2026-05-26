@@ -76,25 +76,20 @@
 
     .hero > * { position: relative; z-index: 1; }
 
-    .brand {
+        .brand {
       display: inline-flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 8px;
-    }
-
-    .brand-logo {
-      display: block;
-      height: 36px;
-      width: auto;
-    }
-
-    .brand-tag {
       font-size: 0.6875rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--hero-muted);
+    }
+
+    .brand strong {
+      color: var(--accent);
     }
 
     .hero-main {
@@ -434,13 +429,12 @@
       }
     }
   </style>
+  <!-- build: v2-enterprise -->
 </head>
 <body>
   <div class="page">
     <section class="hero">
-      <div class="brand">
-          <img src="../assets/logo-icon.png" alt="Direct Channel" class="brand-logo" />
-        </div>
+            <div class="brand"><strong>Direct Channel</strong> · Webinar</div>
 
       <div class="hero-main">
         <div class="pill">

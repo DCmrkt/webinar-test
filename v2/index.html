@@ -58,25 +58,17 @@
       border-right: 1px solid var(--line);
     }
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
+        .brand {
       margin-bottom: clamp(20px, 3vh, 32px);
-    }
-
-    .brand-logo {
-      display: block;
-      height: 36px;
-      width: auto;
-    }
-
-    .brand-tag {
       font-size: 0.6875rem;
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
+    }
+
+    .brand strong {
+      color: var(--red);
     }
 
     .hero-card {
@@ -381,13 +373,12 @@
       .field-row { grid-template-columns: 1fr; gap: 0; }
     }
   </style>
+  <!-- build: v2-enterprise -->
 </head>
 <body>
   <div class="layout">
     <main class="content">
-      <div class="brand">
-          <img src="../assets/logo-icon.png" alt="Direct Channel" class="brand-logo" />
-        </div>
+            <div class="brand"><strong>Direct Channel</strong> · Webinar</div>
 
       <figure class="hero-card">
         <img src="../assets/hero.jpg" alt="Team in riunione — webinar Il mondo agile" width="800" height="450" loading="eager" />
