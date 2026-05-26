@@ -398,8 +398,21 @@
     .form-foot {
       margin-top: 20px;
       font-size: 0.75rem;
+      line-height: 1.6;
       color: var(--muted);
       text-align: center;
+    }
+
+    .hero-foot a,
+    .form-foot a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .hero-foot a:hover,
+    .form-foot a:hover {
+      color: var(--accent);
     }
 
     /* ── Mobile ── */
@@ -430,6 +443,27 @@
     }
   </style>
   <!-- build: v2-enterprise -->
+  <link rel="stylesheet" href="https://digital.mondadori.it/cookie-policy/custom_banner.css" media="all" />
+  <script type="text/javascript">
+    var _iub = _iub || [];
+    _iub.csConfiguration = {
+      askConsentAtCookiePolicyUpdate: true,
+      countryDetection: true,
+      enableFadp: true,
+      enableLgpd: true,
+      enableTcf: true,
+      enableUsps: true,
+      floatingPreferencesButtonDisplay: "bottom-right",
+      gdprAppliesGlobally: true,
+      lang: "it",
+      perPurposeConsent: true,
+      siteId: 8187956,
+      whitelabel: false,
+      cookiePolicyId: 8187956
+    };
+  </script>
+  <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/8187956.js"></script>
+  <script type="text/javascript" src="https://cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
 </head>
 <body>
   <div class="page">
@@ -472,7 +506,12 @@
         </div>
       </div>
 
-      <p class="hero-foot">© Direct Channel · Mondadori Group</p>
+      <p class="hero-foot">
+        © Direct Channel · Gruppo Mondadori ·
+        <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Privacy policy</a>
+        ·
+        <a href="https://www.iubenda.com/privacy-policy/8187956/cookie-policy" target="_blank" rel="noopener noreferrer">Cookie policy</a>
+      </p>
     </section>
 
     <aside class="panel">
@@ -485,7 +524,12 @@
         <form id="contactForm" novalidate></form>
 
         <div id="status" class="status" role="status" aria-live="polite"></div>
-        <p class="form-foot">Campi con * obbligatori · I tuoi dati sono trattati nel rispetto del GDPR</p>
+        <p class="form-foot">
+          Campi con * obbligatori. I dati sono trattati da Direct Channel S.p.A., società del Gruppo Mondadori, nel rispetto del GDPR.
+          <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Informativa privacy</a>
+          ·
+          <a href="https://www.iubenda.com/privacy-policy/8187956/cookie-policy" target="_blank" rel="noopener noreferrer">Cookie policy</a>
+        </p>
       </div>
     </aside>
   </div>
@@ -513,7 +557,7 @@
           type: 'email',
           required: true,
           autocomplete: 'email',
-          placeholder: 'nome@azienda.it'
+          placeholder: 'nome@organizzazione.it'
         },
         {
           id: 'organizzazione',
@@ -522,7 +566,7 @@
           type: 'text',
           required: true,
           autocomplete: 'organization',
-          placeholder: 'Nome azienda',
+          placeholder: 'Gruppo Mondadori',
           row: 'company'
         },
         {
