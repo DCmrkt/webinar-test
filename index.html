@@ -72,7 +72,7 @@
     }
 
     .hero-card {
-      margin: 0 0 clamp(20px, 3vh, 28px);
+      margin: 0 0 clamp(16px, 2.5vh, 20px);
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--line);
@@ -96,7 +96,6 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 16px;
       padding: 6px 12px;
       border-radius: 999px;
       background: var(--red-soft);
@@ -106,6 +105,7 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--red);
+      white-space: nowrap;
     }
 
     .badge-dot {
@@ -116,11 +116,28 @@
     }
 
     h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 4vw, 3.25rem);
+      margin: 0;
+      font-size: clamp(1.625rem, 3vw, 2.375rem);
       font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.035em;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .title-row h1 {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .title-row .badge {
+      flex-shrink: 0;
     }
 
     h1 em {
@@ -131,7 +148,7 @@
     .lead {
       margin: 0 0 16px;
       max-width: 520px;
-      font-size: 1rem;
+      font-size: 1.1875rem;
       line-height: 1.65;
       color: var(--ink-soft);
     }
@@ -161,7 +178,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: clamp(20px, 3vh, 28px);
     }
 
     .meta-box {
@@ -404,6 +421,11 @@
       .content { border-right: 0; border-bottom: 1px solid var(--line); }
       .hero-card { max-height: 220px; }
       .meta-row { grid-template-columns: 1fr; }
+      .title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
       .sidebar { align-items: flex-start; }
       .field-row { grid-template-columns: 1fr; gap: 0; }
     }
@@ -440,9 +462,26 @@
         <img src="assets/hero.jpg" alt="Team in riunione — webinar Il mondo agile" width="800" height="450" loading="eager" />
       </figure>
 
+      <div class="meta-row">
+        <div class="meta-box">
+          <span class="meta-box-label">Quando</span>
+          <span class="meta-box-value">28 Aprile<br />11:30 – 12:30</span>
+        </div>
+        <div class="meta-box">
+          <span class="meta-box-label">Speaker</span>
+          <span class="meta-box-value">Lorenzo Monti<br />Agile Coach</span>
+        </div>
+        <div class="meta-box">
+          <span class="meta-box-label">Accesso</span>
+          <span class="meta-box-value">Link inviato<br />il giorno prima</span>
+        </div>
+      </div>
+
       <div class="intro">
-        <div class="badge"><span class="badge-dot"></span> Iscrizione gratuita</div>
-        <h1>Il mondo <em>agile</em></h1>
+        <div class="title-row">
+          <h1>Il mondo <em>agile</em></h1>
+          <div class="badge"><span class="badge-dot"></span> Iscrizione gratuita</div>
+        </div>
         <p class="lead">
           Parleremo di come sviluppare campagne e processi in modo più chiaro, collaborativo e flessibile, imparando ad adattarsi ai cambiamenti senza perdere di vista gli obiettivi.
         </p>
@@ -452,21 +491,6 @@
           <li>i principali framework Agile, come Scrum e Kanban</li>
           <li>come applicare l’agilità nel lavoro quotidiano attraverso esempi concreti e casi pratici</li>
         </ul>
-
-        <div class="meta-row">
-          <div class="meta-box">
-            <span class="meta-box-label">Quando</span>
-            <span class="meta-box-value">28 Aprile<br />11:30 – 12:30</span>
-          </div>
-          <div class="meta-box">
-            <span class="meta-box-label">Speaker</span>
-            <span class="meta-box-value">Lorenzo Monti<br />Agile Coach</span>
-          </div>
-          <div class="meta-box">
-            <span class="meta-box-label">Accesso</span>
-            <span class="meta-box-value">Link inviato<br />il giorno prima</span>
-          </div>
-        </div>
 
         <div class="tags">
           <span class="tag">Agile</span>
