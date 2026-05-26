@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Webinar — Il mondo agile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f3f3f3;
+      --surface: #fafafa;
+      --surface-light: #ffffff;
+      --text: #2a2a2a;
+      --muted: #757575;
+      --line: #e0e0e0;
+      --accent: #d71920;
+      --accent-hover: #b8141a;
+      --accent-soft: rgba(215, 25, 32, 0.1);
+      --success: #166534;
+      --error: #991b1b;
+      --radius: 20px;
+      --shadow: 0 20px 60px rgba(42, 42, 42, 0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+      padding: clamp(28px, 4vw, 48px);
+      background: rgba(255, 255, 255, 0.72);
+      border-right: 1px solid var(--line);
+    }
+
+    .brand {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      background: #ececec;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(42, 42, 42, 0.12) 100%);
+      pointer-events: none;
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .hero-main {
+      max-width: 520px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      margin-bottom: 28px;
+      border-radius: 999px;
+      background: var(--surface-light);
+      border: 1px solid var(--line);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      margin: 0 0 36px;
+      max-width: 440px;
+      font-size: 1.0625rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .meta-grid {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .meta-label {
+      min-width: 72px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .meta-value {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .topic {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--surface-light);
+      border: 1px solid var(--line);
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .hero-foot {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* ── Form panel ── */
+    .panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(24px, 4vw, 48px);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .form-wrap {
+      width: 100%;
+      max-width: 420px;
+      padding: clamp(28px, 4vw, 40px);
+      background: var(--surface-light);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      animation: rise 0.7s ease both;
+    }
+
+    .form-head h2 {
+      color: var(--text);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-head {
+      margin-bottom: 32px;
+    }
+
+    .form-head h2 {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .form-head p {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .field {
+      margin-bottom: 22px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .required { color: var(--accent); }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 14px 0 12px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      font: inherit;
+      font-size: 0.9375rem;
+      color: var(--text);
+      background: transparent;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #b0b0b0;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-bottom-color: var(--accent);
+      box-shadow: 0 1px 0 0 var(--accent);
+    }
+
+    textarea {
+      min-height: 88px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .newsletter-block {
+      margin-top: 8px;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+    }
+
+    .newsletter-title {
+      margin: 0 0 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .newsletter-desc {
+      margin: 0 0 14px;
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .checkbox-field {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .checkbox-field input {
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .checkbox-field label {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--text);
+      cursor: pointer;
+      line-height: 1.45;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 16px 24px;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .status.show { display: block; }
+
+    .status.success {
+      background: #ecfdf5;
+      color: var(--success);
+      border: 1px solid #99f6e4;
+    }
+
+    .status.error {
+      background: #fef2f2;
+      color: var(--error);
+      border: 1px solid #fecaca;
+    }
+
+    .form-foot {
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-bottom: 24px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .panel {
+        border-top: 1px solid var(--line);
+        align-items: flex-start;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="brand"><span>Direct Channel</span> · Webinar</div>
+
+      <figure class="hero-visual">
+        <img
+          src="../assets/hero.jpg"
+          srcset="../assets/hero.jpg 1600w"
+          sizes="(max-width: 900px) 100vw, 50vw"
+          width="1600"
+          height="1000"
+          alt="Team in riunione agile — webinar Il mondo agile"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </figure>
+
+      <div class="hero-main">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Iscrizione gratuita
+        </div>
+
+        <h1>Il mondo<br /><em>agile</em></h1>
+
+        <p class="hero-lead">
+          Impara cos'è la metodologia Agile, i framework Scrum e Kanban,
+          e come applicarli nel lavoro quotidiano — con esempi concreti.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Quando</span>
+            <span class="meta-value">Martedì 28 Aprile · 11:30 – 12:30</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Speaker</span>
+            <span class="meta-value">Lorenzo Monti · Agile Coach</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Accesso</span>
+            <span class="meta-value">Link inviato il giorno prima</span>
+          </div>
+        </div>
+
+        <div class="topics">
+          <span class="topic">Agile</span>
+          <span class="topic">Scrum</span>
+          <span class="topic">Kanban</span>
+          <span class="topic">Team work</span>
+        </div>
+      </div>
+
+      <p class="hero-foot">© Direct Channel · Mondadori Group</p>
+    </section>
+
+    <aside class="panel">
+      <div class="form-wrap">
+        <div class="form-head">
+          <h2>Iscriviti</h2>
+          <p>Compila il form per riservare il tuo posto.</p>
+        </div>
+
+        <form id="contactForm" novalidate></form>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+        <p class="form-foot">Campi con * obbligatori · I tuoi dati sono trattati nel rispetto del GDPR</p>
+      </div>
+    </aside>
+  </div>
+
+  <iframe name="googleFormTarget" id="googleFormTarget" style="display:none;" title="Form submit target"></iframe>
+
+  <script>
+    var CONFIG = {
+      googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScCsH0PqSwHkilZIjnj96qfnxSB4bW1ND3KAHJKrOPkpbMdug/viewform',
+
+      fields: [
+        {
+          id: 'nome',
+          label: 'Nome e cognome',
+          entryId: 'entry.2092238618',
+          type: 'text',
+          required: true,
+          autocomplete: 'name',
+          placeholder: 'Mario Rossi'
+        },
+        {
+          id: 'email',
+          label: 'Email',
+          entryId: 'entry.1556369182',
+          type: 'email',
+          required: true,
+          autocomplete: 'email',
+          placeholder: 'nome@azienda.it'
+        },
+        {
+          id: 'organizzazione',
+          label: 'Organizzazione',
+          entryId: 'entry.479301265',
+          type: 'text',
+          required: true,
+          autocomplete: 'organization',
+          placeholder: 'Nome azienda',
+          row: 'company'
+        },
+        {
+          id: 'ruolo',
+          label: 'Ruolo',
+          entryId: 'entry.2104822976',
+          type: 'text',
+          required: true,
+          autocomplete: 'organization-title',
+          placeholder: 'Es. Project Manager',
+          row: 'company'
+        },
+        {
+          id: 'domanda',
+          label: 'Hai qualche domanda?',
+          entryId: 'entry.1933339847',
+          type: 'textarea',
+          required: false,
+          placeholder: 'Facoltativo'
+        },
+        {
+          id: 'newsletter',
+          label: 'Sì, voglio iscrivermi alla newsletter',
+          entryId: 'entry.1618047083',
+          type: 'checkbox',
+          checkboxValue: 'Sì, voglio iscrivermi alla newsletter',
+          required: false
+        }
+      ]
+    };
+
+    var formEl = document.getElementById('contactForm');
+    var statusEl = document.getElementById('status');
+    var submitTimeoutId = null;
+    var rowContainers = {};
+
+    function getFormActionUrl() {
+      return CONFIG.googleFormUrl.replace(/\/viewform(\?.*)?$/i, '/formResponse');
+    }
+
+    function showStatus(type, message) {
+      statusEl.className = 'status show ' + type;
+      statusEl.textContent = message;
+    }
+
+    function clearStatus() {
+      statusEl.className = 'status';
+      statusEl.textContent = '';
+    }
+
+    function getOrCreateRow(rowKey) {
+      if (!rowContainers[rowKey]) {
+        var row = document.createElement('div');
+        row.className = 'field-row';
+        formEl.appendChild(row);
+        rowContainers[rowKey] = row;
+      }
+      return rowContainers[rowKey];
+    }
+
+    function buildField(field) {
+      var wrapper = document.createElement('div');
+      wrapper.className = 'field';
+
+      if (field.type === 'checkbox') {
+        wrapper.className = 'field newsletter-block';
+
+        var title = document.createElement('p');
+        title.className = 'newsletter-title';
+        title.textContent = 'Resta aggiornato';
+        wrapper.appendChild(title);
+
+        var desc = document.createElement('p');
+        desc.className = 'newsletter-desc';
+        desc.textContent = 'Ricevi novità su webinar, prodotti ed eventi Direct Channel. Potrai disiscriverti in qualsiasi momento.';
+        wrapper.appendChild(desc);
+
+        var row = document.createElement('div');
+        row.className = 'checkbox-field';
+
+        var input = document.createElement('input');
+        input.type = 'checkbox';
+        input.id = field.id;
+        input.name = field.entryId;
+        input.value = field.checkboxValue;
+
+        var label = document.createElement('label');
+        label.setAttribute('for', field.id);
+        label.textContent = field.label;
+
+        row.appendChild(input);
+        row.appendChild(label);
+        wrapper.appendChild(row);
+        return wrapper;
+      }
+
+      var labelEl = document.createElement('label');
+      labelEl.setAttribute('for', field.id);
+      labelEl.innerHTML = field.label + (field.required ? ' <span class="required">*</span>' : '');
+      wrapper.appendChild(labelEl);
+
+      var inputEl;
+      if (field.type === 'textarea') {
+        inputEl = document.createElement('textarea');
+      } else {
+        inputEl = document.createElement('input');
+        inputEl.type = field.type || 'text';
+        if (field.autocomplete) {
+          inputEl.setAttribute('autocomplete', field.autocomplete);
+        }
+      }
+
+      inputEl.id = field.id;
+      inputEl.name = field.entryId;
+      if (field.placeholder) {
+        inputEl.placeholder = field.placeholder;
+      }
+      if (field.required) {
+        inputEl.required = true;
+      }
+      wrapper.appendChild(inputEl);
+
+      return wrapper;
+    }
+
+    function buildFormFields() {
+      formEl.setAttribute('action', getFormActionUrl());
+      formEl.setAttribute('method', 'POST');
+      formEl.setAttribute('target', 'googleFormTarget');
+
+      CONFIG.fields.forEach(function (field) {
+        var el = buildField(field);
+
+        if (field.row) {
+          getOrCreateRow(field.row).appendChild(el);
+        } else {
+          formEl.appendChild(el);
+        }
+      });
+
+      var actions = document.createElement('div');
+      actions.className = 'field';
+
+      var button = document.createElement('button');
+      button.type = 'submit';
+      button.id = 'submitBtn';
+      button.className = 'submit-btn';
+      button.textContent = 'Conferma iscrizione';
+      actions.appendChild(button);
+      formEl.appendChild(actions);
+    }
+
+    function validateForm() {
+      for (var i = 0; i < CONFIG.fields.length; i++) {
+        var field = CONFIG.fields[i];
+        if (field.type === 'checkbox') continue;
+
+        var el = document.getElementById(field.id);
+        var value = (el.value || '').trim();
+
+        if (field.required && !value) {
+          el.focus();
+          showStatus('error', 'Il campo "' + field.label + '" è obbligatorio.');
+          return false;
+        }
+
+        if (field.type === 'email' && value && value.indexOf('@') === -1) {
+          el.focus();
+          showStatus('error', 'Inserisci un indirizzo email valido.');
+          return false;
+        }
+      }
+      return true;
+    }
+
+    formEl.addEventListener('submit', function (event) {
+      event.preventDefault();
+      clearStatus();
+
+      if (!validateForm()) return;
+
+      var submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Invio in corso...';
+
+      if (submitTimeoutId) clearTimeout(submitTimeoutId);
+
+      formEl.submit();
+
+      submitTimeoutId = setTimeout(function () {
+        formEl.reset();
+        showStatus(
+          'success',
+          'Iscrizione confermata. Riceverai il link di accesso il giorno prima del webinar.'
+        );
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Conferma iscrizione';
+      }, 1200);
+    });
+
+    buildFormFields();
+  </script>
+</body>
+</html>
