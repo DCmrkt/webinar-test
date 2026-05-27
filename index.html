@@ -225,7 +225,7 @@
 
     .info-row {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 12px;
       margin-top: clamp(28px, 4vh, 36px);
     }
@@ -286,6 +286,26 @@
     .info-box-links a::after {
       content: "→";
       font-weight: 400;
+    }
+
+    .info-box-cta {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 16px;
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      font: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--red);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .info-box-cta:hover {
+      background: var(--red-dark);
+      color: #fff;
     }
 
     .content-foot {
@@ -487,7 +507,6 @@
       .content { border-right: 0; border-bottom: 1px solid var(--line); }
       .hero-card { max-height: 220px; }
       .meta-row { grid-template-columns: 1fr; }
-      .info-row { grid-template-columns: 1fr; }
       .title-row {
         flex-direction: column;
         align-items: flex-start;
@@ -526,7 +545,7 @@
       <div class="brand"><strong>Direct Channel</strong> · Webinar</div>
 
       <figure class="hero-card">
-        <img src="assets/hero.jpg" alt="Team in riunione — webinar Il mondo agile" width="800" height="450" loading="eager" />
+        <img src="assets/hero.webp" alt="Webinar Il mondo agile — Direct Channel" width="800" height="450" loading="eager" />
       </figure>
 
       <div class="meta-row">
@@ -587,6 +606,7 @@
             <p>I webinar non finiscono con la diretta.</p>
             <p>Entra nella community per confrontarti con altri partecipanti, condividere idee, fare domande e approfondire i temi trattati durante gli incontri.</p>
             <p>Uno spazio pensato per restare aggiornato, creare connessioni e continuare a crescere insieme, anche dopo il webinar.</p>
+            <a class="info-box-cta" href="https://supporto.directchannel.it/portal/it/community/direct-channel-community" target="_blank" rel="noopener noreferrer">Entra nella community</a>
           </article>
         </div>
       </div>
