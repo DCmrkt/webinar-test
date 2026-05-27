@@ -258,7 +258,7 @@
     }
 
     .info-box-links {
-      margin: 14px 0 0;
+      margin: 0 0 14px;
       padding: 0;
       list-style: none;
     }
@@ -274,38 +274,18 @@
       font-size: 0.9375rem;
       font-weight: 600;
       color: var(--red);
-      text-decoration: none;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .info-box-links a:hover {
       color: var(--red-dark);
-      text-decoration: underline;
-      text-underline-offset: 2px;
     }
 
     .info-box-links a::after {
       content: "→";
       font-weight: 400;
-    }
-
-    .info-box-cta {
-      display: inline-flex;
-      align-items: center;
-      margin-top: 16px;
-      padding: 12px 18px;
-      border-radius: var(--radius);
-      font: inherit;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      color: #fff;
-      background: var(--red);
       text-decoration: none;
-      transition: background 0.15s;
-    }
-
-    .info-box-cta:hover {
-      background: var(--red-dark);
-      color: #fff;
     }
 
     .content-foot {
@@ -588,9 +568,6 @@
         <div class="info-row">
           <article class="info-box">
             <h2 class="info-box-title">Gli ultimi webinar che abbiamo realizzato</h2>
-            <p>Se ti sei perso uno degli ultimi appuntamenti o vuoi riguardare i contenuti con più calma, puoi accedere all’archivio completo dei webinar.</p>
-            <p>Troverai approfondimenti, casi pratici e spunti utili da rivedere quando vuoi, in totale libertà.</p>
-            <p>Tutti i contenuti saranno sempre disponibili per aiutarti a restare aggiornato e non perdere nessun insight importante.</p>
             <ul class="info-box-links">
               <li>
                 <a href="https://supporto.directchannel.it/portal/it/kb/articles/metodologia-agile-e-nonprofit" target="_blank" rel="noopener noreferrer">Metodologia Agile e nonprofit</a>
@@ -599,14 +576,21 @@
                 <a href="https://supporto.directchannel.it/portal/it/kb/articles/campagna-upgrade-multicanale-con" target="_blank" rel="noopener noreferrer">Campagna upgrade multicanale</a>
               </li>
             </ul>
+            <p>Se ti sei perso uno degli ultimi appuntamenti o vuoi riguardare i contenuti con più calma, puoi accedere all’archivio completo dei webinar.</p>
+            <p>Troverai approfondimenti, casi pratici e spunti utili da rivedere quando vuoi, in totale libertà.</p>
+            <p>Tutti i contenuti saranno sempre disponibili per aiutarti a restare aggiornato e non perdere nessun insight importante.</p>
           </article>
 
           <article class="info-box">
             <h2 class="info-box-title">Continua la conversazione nella community</h2>
+            <ul class="info-box-links">
+              <li>
+                <a href="https://supporto.directchannel.it/portal/it/community/direct-channel-community" target="_blank" rel="noopener noreferrer">Entra nella community</a>
+              </li>
+            </ul>
             <p>I webinar non finiscono con la diretta.</p>
             <p>Entra nella community per confrontarti con altri partecipanti, condividere idee, fare domande e approfondire i temi trattati durante gli incontri.</p>
             <p>Uno spazio pensato per restare aggiornato, creare connessioni e continuare a crescere insieme, anche dopo il webinar.</p>
-            <a class="info-box-cta" href="https://supporto.directchannel.it/portal/it/community/direct-channel-community" target="_blank" rel="noopener noreferrer">Entra nella community</a>
           </article>
         </div>
       </div>
