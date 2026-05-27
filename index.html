@@ -223,6 +223,71 @@
       color: var(--muted);
     }
 
+    .info-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: clamp(28px, 4vh, 36px);
+    }
+
+    .info-box {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: var(--bg);
+      border: 1px solid var(--line);
+    }
+
+    .info-box-title {
+      margin: 0 0 12px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .info-box p {
+      margin: 0;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+
+    .info-box p + p {
+      margin-top: 10px;
+    }
+
+    .info-box-links {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .info-box-links li + li {
+      margin-top: 8px;
+    }
+
+    .info-box-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    .info-box-links a:hover {
+      color: var(--red-dark);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .info-box-links a::after {
+      content: "→";
+      font-weight: 400;
+    }
+
     .content-foot {
       margin-top: clamp(24px, 4vh, 40px);
       padding-top: 16px;
@@ -422,6 +487,7 @@
       .content { border-right: 0; border-bottom: 1px solid var(--line); }
       .hero-card { max-height: 220px; }
       .meta-row { grid-template-columns: 1fr; }
+      .info-row { grid-template-columns: 1fr; }
       .title-row {
         flex-direction: column;
         align-items: flex-start;
@@ -498,6 +564,30 @@
           <span class="tag">Scrum</span>
           <span class="tag">Kanban</span>
           <span class="tag">Team work</span>
+        </div>
+
+        <div class="info-row">
+          <article class="info-box">
+            <h2 class="info-box-title">Gli ultimi webinar che abbiamo realizzato</h2>
+            <p>Se ti sei perso uno degli ultimi appuntamenti o vuoi riguardare i contenuti con più calma, puoi accedere all’archivio completo dei webinar.</p>
+            <p>Troverai approfondimenti, casi pratici e spunti utili da rivedere quando vuoi, in totale libertà.</p>
+            <p>Tutti i contenuti saranno sempre disponibili per aiutarti a restare aggiornato e non perdere nessun insight importante.</p>
+            <ul class="info-box-links">
+              <li>
+                <a href="https://supporto.directchannel.it/portal/it/kb/articles/metodologia-agile-e-nonprofit" target="_blank" rel="noopener noreferrer">Metodologia Agile e nonprofit</a>
+              </li>
+              <li>
+                <a href="https://supporto.directchannel.it/portal/it/kb/articles/campagna-upgrade-multicanale-con" target="_blank" rel="noopener noreferrer">Campagna upgrade multicanale</a>
+              </li>
+            </ul>
+          </article>
+
+          <article class="info-box">
+            <h2 class="info-box-title">Continua la conversazione nella community</h2>
+            <p>I webinar non finiscono con la diretta.</p>
+            <p>Entra nella community per confrontarti con altri partecipanti, condividere idee, fare domande e approfondire i temi trattati durante gli incontri.</p>
+            <p>Uno spazio pensato per restare aggiornato, creare connessioni e continuare a crescere insieme, anche dopo il webinar.</p>
+          </article>
         </div>
       </div>
 
