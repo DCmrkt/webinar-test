@@ -483,8 +483,23 @@
     }
 
     @media (max-width: 960px) {
-      .layout { grid-template-columns: 1fr; }
-      .content { border-right: 0; border-bottom: 1px solid var(--line); }
+      .layout {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        order: -1;
+        align-items: flex-start;
+        position: static;
+        min-height: auto;
+        padding-bottom: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .content {
+        border-right: 0;
+        border-bottom: 0;
+      }
       .hero-card { max-height: 220px; }
       .meta-row { grid-template-columns: 1fr; }
       .title-row {
@@ -492,7 +507,6 @@
         align-items: flex-start;
         gap: 12px;
       }
-      .sidebar { align-items: flex-start; }
       .field-row { grid-template-columns: 1fr; gap: 0; }
     }
   </style>
@@ -607,7 +621,7 @@
       <div class="form-card">
         <div class="form-card-head">
           <h2>Iscriviti al webinar</h2>
-          <p>Compila il form per riservare il tuo posto.</p>
+          <p>Compila il form per riservare il tuo posto</p>
         </div>
         <form id="contactForm" novalidate></form>
         <div id="status" class="status" role="status" aria-live="polite"></div>
@@ -677,7 +691,7 @@
         wrap.appendChild(t);
         var d = document.createElement('p');
         d.className = 'opt-in-desc';
-        d.textContent = 'Novità su webinar, prodotti ed eventi Direct Channel.';
+        d.textContent = 'Novità su webinar, prodotti ed eventi Direct Channel';
         wrap.appendChild(d);
         var row = document.createElement('div');
         row.className = 'check-row';
