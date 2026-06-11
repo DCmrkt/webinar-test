@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webinar — Google Form, Apps Script e Magnews</title>
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --slide: #ffffff;
+      --surface: #fafafa;
+      --ink: #0d0d0d;
+      --muted: #6f6f6f;
+      --line: #e7e7e4;
+      --line-strong: #d9d9d4;
+      --ok: #1a7f5a;
+      --ok-bg: #ecf7f1;
+      --warn: #9a6700;
+      --warn-bg: #fdf3e1;
+      --bad: #b3382c;
+      --bad-bg: #fdf0ee;
+      --blue: #245f8f;
+      --blue-bg: #edf5fb;
+      --shadow: 0 1px 2px rgba(13, 13, 13, 0.04), 0 12px 40px rgba(13, 13, 13, 0.07);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .view-toggle-bar {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 12;
+    }
+
+    .view-toggle {
+      display: inline-flex;
+      padding: 3px;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      background: var(--surface);
+      gap: 2px;
+      box-shadow: var(--shadow);
+    }
+
+    .view-toggle a {
+      padding: 8px 18px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .view-toggle a:hover:not(.active) {
+      color: var(--ink);
+      background: var(--slide);
+    }
+
+    .view-toggle a.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 52px 30px 64px;
+    }
+
+    .slide {
+      display: none;
+      width: min(1200px, 100%);
+      height: min(700px, calc(100vh - 110px));
+      padding: 56px 64px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--slide);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.35s ease;
+    }
+
+    .slide.active { display: grid; }
+    .slide.center { place-items: center; text-align: center; }
+    .slide.rows { grid-template-rows: auto 1fr; gap: 30px; align-content: start; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 62px;
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 38px;
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 .grad,
+    h2 .grad { color: #8a8a86; }
+
+    .lead {
+      margin: 18px auto 0;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.55;
+    }
+
+    .lead strong { color: var(--ink); }
+
+    .pillrow {
+      margin-top: 32px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--slide);
+      color: var(--ink);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .ic {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      border-radius: 9px;
+      background: var(--slide);
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+    }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-content: start; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-content: start; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-content: start; }
+
+    .card {
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .card h3,
+    .arch-node h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p,
+    .arch-node p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    .card code {
+      font-size: 13px;
+      background: #efefec;
+      border-radius: 5px;
+      padding: 1px 6px;
+    }
+
+    ul.clean {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    ul.clean li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.5;
+    }
+
+    ul.clean li strong { color: var(--ink); }
+
+    ul.clean li::before {
+      content: "";
+      flex: 0 0 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--ink);
+      margin-top: 8px;
+    }
+
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      justify-content: center;
+    }
+
+    .flow .node {
+      flex: 1;
+      max-width: 220px;
+      padding: 22px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .flow .node .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+
+    .flow .node .icon .ic { width: 20px; height: 20px; }
+    .flow .node h4 { margin: 12px 0 6px; font-size: 15.5px; letter-spacing: -0.01em; }
+    .flow .node p { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+
+    .flow .arrow {
+      align-self: center;
+      padding: 0 12px;
+      color: #b5b5b0;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .vs {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .vs .col {
+      padding: 28px 30px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .vs .col.bad { border-color: #f0d4d0; background: var(--bad-bg); }
+    .vs .col.good { border-color: #cfe7db; background: var(--ok-bg); }
+    .vs .col.info { border-color: #cfe0ee; background: var(--blue-bg); }
+    .vs .col h3 {
+      margin: 0 0 16px;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .vs .col.bad h3 { color: var(--bad); }
+    .vs .col.good h3 { color: var(--ok); }
+    .vs .col.info h3 { color: var(--blue); }
+    .vs .badge-vs {
+      align-self: center;
+      font-weight: 700;
+      font-size: 15px;
+      color: #b5b5b0;
+      letter-spacing: 0.1em;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+
+    .tag.done { background: var(--ok-bg); color: var(--ok); }
+    .tag.wip { background: var(--warn-bg); color: var(--warn); }
+    .tag.todo { background: #f0f0ed; color: var(--muted); }
+    .tag.bad { background: var(--bad-bg); color: var(--bad); }
+    .tag.info { background: var(--blue-bg); color: var(--blue); }
+
+    .architecture {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .lane {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+
+    .lane-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .arch-node {
+      min-height: 118px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--slide);
+    }
+
+    .arch-node.public { border-color: #d7d7d2; }
+    .arch-node.private { border-color: #cfe7db; background: var(--ok-bg); }
+    .arch-node.external { border-color: #cfe0ee; background: var(--blue-bg); }
+
+    .connector {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+      text-align: center;
+    }
+
+    .connector .line {
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    .connector .arrow {
+      color: #9f9f99;
+      font-weight: 700;
+    }
+
+    table.t {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+    }
+
+    table.t th {
+      text-align: left;
+      padding: 10px 14px;
+      color: var(--muted);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    table.t td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    table.t td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .timeline .step {
+      padding: 18px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .timeline .step .num {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .timeline .step.done .num { background: var(--ok); }
+    .timeline .step h4 { margin: 0 0 6px; font-size: 14.5px; letter-spacing: -0.01em; }
+    .timeline .step p { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .browser-frame {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm, 0 1px 3px rgba(13, 13, 13, 0.04));
+      min-height: 0;
+    }
+
+    .browser-top {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--slide);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #c9c9c4;
+    }
+
+    .browser-frame iframe {
+      display: block;
+      width: 100%;
+      height: 455px;
+      border: 0;
+      background: #fff;
+      transform-origin: top left;
+    }
+
+    .template-wall {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .mini-preview {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      overflow: hidden;
+      min-height: 196px;
+    }
+
+    .mini-preview iframe {
+      width: 200%;
+      height: 330px;
+      border: 0;
+      transform: scale(0.5);
+      transform-origin: top left;
+      background: #fff;
+    }
+
+    .mini-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .mini-caption a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .quote {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      text-align: center;
+      padding: 28px;
+    }
+
+    .quote p { margin: 0; font-size: 21px; color: var(--ink); font-weight: 600; letter-spacing: -0.01em; }
+    .quote p .grad { color: #8a8a86; }
+
+    .footer-note {
+      position: absolute;
+      bottom: 22px;
+      left: 64px;
+      right: 64px;
+      display: flex;
+      justify-content: space-between;
+      color: #b5b5b0;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .hud {
+      position: fixed;
+      bottom: 16px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      z-index: 10;
+    }
+
+    .hud button {
+      border: 1px solid var(--line-strong);
+      background: var(--slide);
+      color: var(--ink);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, transform 0.15s;
+    }
+
+    .hud button:hover { background: var(--ink); color: #fff; transform: translateY(-1px); }
+
+    .hud .counter {
+      color: var(--muted);
+      font-size: 13.5px;
+      font-variant-numeric: tabular-nums;
+      min-width: 64px;
+      text-align: center;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--ink);
+      transition: width 0.3s ease;
+      z-index: 11;
+    }
+
+    .kbd-hint {
+      position: fixed;
+      bottom: 22px;
+      right: 26px;
+      color: #b5b5b0;
+      font-size: 12px;
+    }
+
+    body.scroll-deck {
+      overflow: auto;
+      height: auto;
+    }
+
+    body.scroll-deck .deck {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 28px 14px 32px;
+    }
+
+    body.scroll-deck .slide {
+      display: grid !important;
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      padding: 28px 22px 56px;
+      overflow: visible;
+    }
+
+    body.scroll-deck h1 { font-size: clamp(2rem, 9vw, 3rem); }
+    body.scroll-deck h2 { font-size: clamp(1.45rem, 6vw, 2rem); }
+    body.scroll-deck .lead { font-size: 16px; }
+    body.scroll-deck .grid2,
+    body.scroll-deck .grid3,
+    body.scroll-deck .grid4,
+    body.scroll-deck .timeline,
+    body.scroll-deck .vs,
+    body.scroll-deck .preview-grid,
+    body.scroll-deck .template-wall,
+    body.scroll-deck .architecture { grid-template-columns: 1fr; }
+    body.scroll-deck .flow { flex-direction: column; align-items: stretch; }
+    body.scroll-deck .flow .arrow { transform: rotate(90deg); padding: 8px 0; text-align: center; }
+    body.scroll-deck .connector { grid-template-columns: 1fr; }
+    body.scroll-deck .connector .line,
+    body.scroll-deck .connector .arrow { display: none; }
+    body.scroll-deck .footer-note { position: static; margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line); }
+    body.scroll-deck .hud,
+    body.scroll-deck .kbd-hint,
+    body.scroll-deck .progress { display: none !important; }
+
+    @media (max-width: 900px) {
+      html, body { overflow: auto; height: auto; }
+      .deck { padding: 28px 14px 32px; height: auto; display: flex; flex-direction: column; gap: 20px; width: 100%; }
+      .slide {
+        display: grid !important;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 28px 22px 56px;
+        overflow: visible;
+      }
+      h1 { font-size: clamp(2rem, 9vw, 3rem); }
+      h2 { font-size: clamp(1.45rem, 6vw, 2rem); }
+      .lead { font-size: 16px; }
+      .grid2, .grid3, .grid4, .timeline, .vs, .architecture { grid-template-columns: 1fr; }
+      .preview-grid, .template-wall { grid-template-columns: 1fr; }
+      .flow { flex-direction: column; align-items: stretch; }
+      .flow .arrow { transform: rotate(90deg); padding: 8px 0; text-align: center; }
+      .connector { grid-template-columns: 1fr; }
+      .connector .line, .connector .arrow { display: none; }
+      .footer-note { position: static; margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line); left: auto; right: auto; }
+      .hud, .kbd-hint, .progress { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+    <symbol id="i-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+  </svg>
+
+  <div class="view-toggle-bar">
+    <nav class="view-toggle" aria-label="Vista documentazione">
+      <a href="../presentazione/" class="active" aria-current="page">Presentazione</a>
+      <a href="../architettura/">Architettura</a>
+    </nav>
+  </div>
+
+  <div class="progress" id="progress"></div>
+
+  <main class="deck" aria-label="Presentazione progetto webinar">
+    <section class="slide center active">
+      <div>
+        <p class="eyebrow">Proposta progetto webinar</p>
+        <h1>Iscrizioni webinar<br><span class="grad">senza esporre Magnews</span></h1>
+        <p class="lead">Usiamo <strong>Google Form</strong> per dare autonomia al Marketing e <strong>Apps Script</strong> come ponte privato verso Magnews.</p>
+        <div class="pillrow">
+          <span class="pill"><svg class="ic"><use href="#i-edit"/></svg> Marketing modifica i campi</span>
+          <span class="pill"><svg class="ic"><use href="#i-shield"/></svg> Token protetto server-side</span>
+          <span class="pill"><svg class="ic"><use href="#i-globe"/></svg> <a href="../architettura/" style="color:inherit;text-decoration:none;">Schema architettura</a></span>
+          <span class="pill"><svg class="ic"><use href="#i-zap"/></svg> Pilota rapido</span>
+        </div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Proposta tecnica</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Il problema</p>
+        <h2>Serve un form modificabile dal Marketing, ma l'integrazione API deve restare sotto controllo.</h2>
+      </div>
+      <div class="grid3">
+        <div class="card">
+          <h3><span class="icon"><svg class="ic"><use href="#i-edit"/></svg></span> Autonomia</h3>
+          <p>Marketing deve poter cambiare domande, testi, campi obbligatori e consenso senza deploy o ticket tecnici.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon"><svg class="ic"><use href="#i-key"/></svg></span> Segreti API</h3>
+          <p>Il token Magnews non puo' stare nella pagina GitHub Pages o in JavaScript pubblico.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon"><svg class="ic"><use href="#i-users"/></svg></span> Qualita' dati</h3>
+          <p>Ogni invio deve essere validato, tracciato e mandato alla lista corretta in Magnews.</p>
+        </div>
+      </div>
+      <div class="quote"><p>La pagina web raccoglie interesse. <span class="grad">Il backend sicuro gestisce l'integrazione.</span></p></div>
+      <div class="footer-note"><span>Webinar</span><span>Obiettivo</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Cosa evitare</p>
+        <h2>GitHub Pages non deve chiamare Magnews direttamente.</h2>
+      </div>
+      <div class="vs">
+        <div class="col bad">
+          <h3><svg class="ic"><use href="#i-x-circle"/></svg> Form statico diretto</h3>
+          <ul class="clean">
+            <li>Il token API finisce nel browser.</li>
+            <li>Chiunque puo' leggere e riusare la credenziale.</li>
+            <li>Spam, retry e log restano difficili da controllare.</li>
+          </ul>
+        </div>
+        <div class="badge-vs">VS</div>
+        <div class="col good">
+          <h3><svg class="ic"><use href="#i-check"/></svg> Ponte server-side</h3>
+          <ul class="clean">
+            <li>Il token resta in un ambiente privato.</li>
+            <li>La chiamata Magnews parte da codice controllato.</li>
+            <li>Possiamo validare dati, consenso e duplicati.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Rischio principale</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Scelta consigliata</p>
+        <h2>Google Form + Apps Script e' il compromesso migliore per questo caso.</h2>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <h3><span class="icon"><svg class="ic"><use href="#i-edit"/></svg></span> Perche' Google Form</h3>
+          <p>Google fornisce editor visuale, hosting del form, raccolta risposte e collegamento con Google Sheet. Marketing lavora in uno strumento gia' comprensibile.</p>
+        </div>
+        <div class="card">
+          <h3><span class="icon"><svg class="ic"><use href="#i-code"/></svg></span> Perche' Apps Script</h3>
+          <p>Lo script gira lato server su Google, riceve l'evento di invio e chiama Magnews senza pubblicare il token nel sito.</p>
+        </div>
+      </div>
+      <div class="flow">
+        <div class="node"><span class="icon"><svg class="ic"><use href="#i-globe"/></svg></span><h4>Pagina webinar</h4><p>Link o embed del form</p></div>
+        <div class="arrow">-></div>
+        <div class="node"><span class="icon"><svg class="ic"><use href="#i-file"/></svg></span><h4>Google Form</h4><p>Campi gestiti dal Marketing</p></div>
+        <div class="arrow">-></div>
+        <div class="node"><span class="icon"><svg class="ic"><use href="#i-code"/></svg></span><h4>Apps Script</h4><p>Trigger privato on submit</p></div>
+        <div class="arrow">-></div>
+        <div class="node"><span class="icon"><svg class="ic"><use href="#i-send"/></svg></span><h4>Magnews</h4><p>Iscrizione lista webinar</p></div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Soluzione</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Sito webinar</p>
+        <h2>La landing custom resta il volto pubblico del progetto.</h2>
+      </div>
+      <div class="preview-grid">
+        <div class="browser-frame">
+          <div class="browser-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span>index.html · custom landing</span></div>
+          <iframe src="../../index.html" title="Anteprima landing custom"></iframe>
+        </div>
+        <div style="display:grid; gap:14px; align-content:start;">
+          <div class="card">
+            <h3><span class="icon"><svg class="ic"><use href="#i-globe"/></svg></span> Esperienza brandizzata</h3>
+            <p>La pagina webinar mostra contenuto, speaker, agenda e messaggio Direct Channel. Il form puo' essere incorporato o linkato senza sacrificare la presentazione editoriale.</p>
+          </div>
+          <div class="card">
+            <h3><span class="icon"><svg class="ic"><use href="#i-file"/></svg></span> Form separato</h3>
+            <p>La landing non deve contenere token o logica Magnews. Il punto di raccolta resta Google Form, cosi' Marketing modifica i campi in autonomia.</p>
+          </div>
+          <div class="card">
+            <h3><span class="icon"><svg class="ic"><use href="#i-shield"/></svg></span> Confine sicuro</h3>
+            <p>GitHub Pages serve HTML, CSS e immagini. Apps Script gestisce l'invio verso Magnews in un ambiente privato.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Landing custom</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Direzioni visuali</p>
+        <h2>I template locali danno opzioni rapide prima di fissare la versione finale.</h2>
+      </div>
+      <div class="template-wall">
+        <div class="mini-preview">
+          <iframe src="../../template/1/" title="Template Classic Balanced"></iframe>
+          <div class="mini-caption"><span>01 · Classic Balanced</span><a href="../../template/1/">Apri</a></div>
+        </div>
+        <div class="mini-preview">
+          <iframe src="../../template/3/" title="Template Hero Overlay"></iframe>
+          <div class="mini-caption"><span>03 · Hero Overlay</span><a href="../../template/3/">Apri</a></div>
+        </div>
+        <div class="mini-preview">
+          <iframe src="../../template/5/" title="Template Agenda Rail"></iframe>
+          <div class="mini-caption"><span>05 · Agenda Rail</span><a href="../../template/5/">Apri</a></div>
+        </div>
+        <div class="mini-preview">
+          <iframe src="../../template/8/" title="Template Centered Story"></iframe>
+          <div class="mini-caption"><span>08 · Centered Story</span><a href="../../template/8/">Apri</a></div>
+        </div>
+        <div class="mini-preview">
+          <iframe src="../../template/10/" title="Template Photo Cards"></iframe>
+          <div class="mini-caption"><span>10 · Photo Cards</span><a href="../../template/10/">Apri</a></div>
+        </div>
+        <div class="card">
+          <h3><span class="icon"><svg class="ic"><use href="#i-edit"/></svg></span> Uso pratico</h3>
+          <p>Mostriamo al boss la landing corrente e alcune varianti. Una volta scelta la direzione, colleghiamo Google Form e Apps Script senza cambiare l'architettura.</p>
+        </div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Template preview</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Architettura proposta</p>
+        <h2>Separiamo pubblico, controllo interno e sistema esterno.</h2>
+      </div>
+      <div style="display:grid; gap:14px; align-content:start;">
+        <div class="architecture">
+          <div class="lane">
+            <div class="lane-title"><span>Pubblico</span><span class="tag todo">no token</span></div>
+            <div class="arch-node public">
+              <h3><span class="icon"><svg class="ic"><use href="#i-globe"/></svg></span> GitHub Pages</h3>
+              <p>Pagina webinar con iframe/link al Google Form. Nessuna chiave API e nessuna chiamata diretta a Magnews.</p>
+            </div>
+            <div class="arch-node public">
+              <h3><span class="icon"><svg class="ic"><use href="#i-users"/></svg></span> Utente finale</h3>
+              <p>Compila i campi e accetta il consenso. I dati vanno a Google Form, non al frontend custom.</p>
+            </div>
+          </div>
+          <div class="lane">
+            <div class="lane-title"><span>Google Workspace</span><span class="tag done">controllato</span></div>
+            <div class="arch-node private">
+              <h3><span class="icon"><svg class="ic"><use href="#i-file"/></svg></span> Google Form + Sheet</h3>
+              <p>Marketing modifica il form. Le risposte finiscono nel foglio con data, sorgente e consenso.</p>
+            </div>
+            <div class="arch-node private">
+              <h3><span class="icon"><svg class="ic"><use href="#i-code"/></svg></span> Apps Script</h3>
+              <p>Trigger <code>onFormSubmit</code>. Valida i dati, legge il token da PropertiesService e prepara la chiamata API.</p>
+            </div>
+          </div>
+          <div class="lane">
+            <div class="lane-title"><span>Magnews</span><span class="tag info">API</span></div>
+            <div class="arch-node external">
+              <h3><span class="icon"><svg class="ic"><use href="#i-key"/></svg></span> REST API</h3>
+              <p>Autenticazione Bearer token. Utente API dedicato con permessi minimi su contatti e audience.</p>
+            </div>
+            <div class="arch-node external">
+              <h3><span class="icon"><svg class="ic"><use href="#i-database"/></svg></span> Lista iscritti</h3>
+              <p>Contatto creato o aggiornato nella lista corretta, rispettando consenso e stato di disiscrizione.</p>
+            </div>
+          </div>
+        </div>
+        <div class="connector">
+          <span>Embed o link</span><span class="line"></span><span class="arrow">dati form -> trigger privato</span><span class="line"></span><span>POST autenticata a Magnews</span>
+        </div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Schema architetturale</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Sicurezza</p>
+        <h2>Le protezioni minime da mettere nel pilota.</h2>
+      </div>
+      <div class="grid2">
+        <ul class="clean">
+          <li><strong>Token Magnews</strong> in Script Properties, mai nel foglio, nel sito o nel codice pubblico.</li>
+          <li><strong>Permessi separati:</strong> Marketing modifica il form; dev/admin modifica Apps Script e credenziali.</li>
+          <li><strong>API user dedicato</strong> con permessi minimi per contatti e audience.</li>
+          <li><strong>Consenso esplicito</strong> con testo, data, sorgente e finalita' della raccolta.</li>
+        </ul>
+        <ul class="clean">
+          <li><strong>Log sanitizzati:</strong> stato e request id, non token o dati personali completi.</li>
+          <li><strong>Validazione input:</strong> email, campi obbligatori e mapping stabile verso Magnews.</li>
+          <li><strong>Duplicati e disiscritti:</strong> verificare il comportamento Magnews prima del go-live.</li>
+          <li><strong>Retry controllato:</strong> gestione errori 401, 403, 429 e 5xx senza invii infiniti.</li>
+        </ul>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Security baseline</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Governance</p>
+        <h2>Responsabilita' chiare: Marketing controlla il form, IT controlla l'integrazione.</h2>
+      </div>
+      <table class="t">
+        <tr><th>Area</th><th>Owner</th><th>Responsabilita'</th></tr>
+        <tr><td>Domande e testi</td><td>Marketing</td><td>Campi, descrizioni, messaggio consenso, modifiche operative.</td></tr>
+        <tr><td>Risposte</td><td>Marketing / Admin</td><td>Lettura del Google Sheet secondo le regole privacy interne.</td></tr>
+        <tr><td>Apps Script</td><td>Dev / Admin</td><td>Trigger, validazione, mapping campi e chiamata Magnews.</td></tr>
+        <tr><td>Credenziali</td><td>Dev / Admin</td><td>Token Magnews, rotazione, permessi minimi e monitoraggio errori.</td></tr>
+        <tr><td>Lista Magnews</td><td>CRM / Marketing Ops</td><td>Audience corretta, regole di iscrizione, gestione disiscritti.</td></tr>
+      </table>
+      <div class="footer-note"><span>Webinar</span><span>Ruoli</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
+        <p class="eyebrow">Piano di test</p>
+        <h2>Un pilota piccolo, misurabile e reversibile.</h2>
+      </div>
+      <div class="timeline">
+        <div class="step done">
+          <span class="num">1</span>
+          <h4>Form <span class="tag done">rapido</span></h4>
+          <p>Campi minimi: email, nome, consenso, sorgente webinar.</p>
+        </div>
+        <div class="step">
+          <span class="num">2</span>
+          <h4>Script <span class="tag wip">dev</span></h4>
+          <p>Trigger, token protetto, validazione e chiamata Magnews.</p>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <h4>Mapping <span class="tag wip">CRM</span></h4>
+          <p>Database, audience, campi Magnews e regole duplicati.</p>
+        </div>
+        <div class="step">
+          <span class="num">4</span>
+          <h4>Test <span class="tag todo">E2E</span></h4>
+          <p>Invio reale, verifica lista, errore gestito e log pulito.</p>
+        </div>
+        <div class="step">
+          <span class="num">5</span>
+          <h4>Go / No-go <span class="tag todo">boss</span></h4>
+          <p>Decisione su uso pubblico o solo test interno.</p>
+        </div>
+      </div>
+      <div class="quote"><p>Risultato atteso: <span class="grad">Marketing autonomo</span>, integrazione controllata, nessun token esposto.</p></div>
+      <div class="footer-note"><span>Webinar</span><span>Roadmap pilota</span></div>
+    </section>
+
+    <section class="slide center">
+      <div>
+        <p class="eyebrow">Decisione richiesta</p>
+        <h1 style="font-size:50px;">Approvare il pilota<br><span class="grad">Google Form + Apps Script + Magnews</span></h1>
+        <p class="lead">E' la soluzione piu' pragmatica per il test: mantiene l'esperienza semplice per Marketing e sposta la sicurezza dove serve, cioe' nel ponte server-side.</p>
+        <div class="pillrow">
+          <span class="pill"><svg class="ic"><use href="#i-check"/></svg> Tempi rapidi</span>
+          <span class="pill"><svg class="ic"><use href="#i-shield"/></svg> Rischio ridotto</span>
+          <span class="pill"><svg class="ic"><use href="#i-users"/></svg> Owner chiari</span>
+        </div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Grazie</span></div>
+    </section>
+  </main>
+
+  <div class="hud">
+    <button id="prev" aria-label="Slide precedente">&larr;</button>
+    <span class="counter" id="counter">1 / 11</span>
+    <button id="next" aria-label="Slide successiva">&rarr;</button>
+  </div>
+  <div class="kbd-hint">&larr; &rarr; / Spazio / Home / End</div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const counter = document.getElementById("counter");
+    const progress = document.getElementById("progress");
+    const scrollDeckQuery = window.matchMedia("(max-width: 900px)");
+    let index = 0;
+
+    function isScrollDeck() {
+      return scrollDeckQuery.matches;
+    }
+
+    function enableScrollDeck() {
+      document.body.classList.add("scroll-deck");
+      slides.forEach((slide) => slide.classList.add("active"));
+    }
+
+    function disableScrollDeck() {
+      document.body.classList.remove("scroll-deck");
+    }
+
+    function show(i) {
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((slide, n) => slide.classList.toggle("active", n === index));
+      counter.textContent = (index + 1) + " / " + slides.length;
+      progress.style.width = ((index + 1) / slides.length * 100) + "%";
+    }
+
+    function syncDeckMode() {
+      if (isScrollDeck()) {
+        enableScrollDeck();
+        return;
+      }
+
+      disableScrollDeck();
+      show(index);
+    }
+
+    document.getElementById("prev").addEventListener("click", () => {
+      if (!isScrollDeck()) show(index - 1);
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+      if (!isScrollDeck()) show(index + 1);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (isScrollDeck()) return;
+
+      if (event.key === "ArrowRight" || event.key === " " || event.key === "PageDown") {
+        event.preventDefault();
+        show(index + 1);
+      } else if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        show(index - 1);
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        show(0);
+      } else if (event.key === "End") {
+        event.preventDefault();
+        show(slides.length - 1);
+      }
+    });
+
+    let touchX = null;
+    document.addEventListener("touchstart", (event) => {
+      if (isScrollDeck()) return;
+      touchX = event.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener("touchend", (event) => {
+      if (isScrollDeck() || touchX === null) return;
+      const dx = event.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 60) show(index + (dx < 0 ? 1 : -1));
+      touchX = null;
+    }, { passive: true });
+
+    scrollDeckQuery.addEventListener("change", syncDeckMode);
+    syncDeckMode();
+  </script>
+</body>
+</html>
