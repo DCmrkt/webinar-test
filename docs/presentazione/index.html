@@ -940,6 +940,33 @@
 
     <section class="slide rows">
       <div>
+        <p class="eyebrow">Risks</p>
+        <h2>Spam e costi Magnews: limite semplice a 100 iscritti.</h2>
+      </div>
+      <div style="display:grid; gap:16px; align-content:start;">
+        <div class="grid3">
+          <div class="card">
+            <h3><span class="icon"><svg class="ic"><use href="#i-alert"/></svg></span> Rischio</h3>
+            <p>Il webinar storicamente resta sotto 50 persone, ma un form pubblico puo' ricevere spam o iscrizioni automatiche.</p>
+          </div>
+          <div class="card">
+            <h3><span class="icon"><svg class="ic"><use href="#i-shield"/></svg></span> Guardrail</h3>
+            <p>Apps Script invia a Magnews al massimo <strong>100 iscrizioni valide</strong>, proteggendo budget e qualita' lista.</p>
+          </div>
+          <div class="card">
+            <h3><span class="icon"><svg class="ic"><use href="#i-check"/></svg></span> Over limit</h3>
+            <p>Dopo quota 100 salva la risposta nel Google Sheet, segna <code>over_limit</code> e non chiama piu' Magnews.</p>
+          </div>
+        </div>
+        <div class="quote">
+          <p>Se il webinar supera davvero 100 iscritti, <span class="grad">Marketing/Admin aumenta il limite manualmente</span> dopo controllo.</p>
+        </div>
+      </div>
+      <div class="footer-note"><span>Webinar</span><span>Risks</span></div>
+    </section>
+
+    <section class="slide rows">
+      <div>
         <p class="eyebrow">Governance</p>
         <h2>Responsabilita' chiare: Marketing controlla il form, IT controlla l'integrazione.</h2>
       </div>
@@ -1007,7 +1034,7 @@
 
   <div class="hud">
     <button id="prev" aria-label="Slide precedente">&larr;</button>
-    <span class="counter" id="counter">1 / 11</span>
+    <span class="counter" id="counter">1 / 12</span>
     <button id="next" aria-label="Slide successiva">&rarr;</button>
   </div>
   <div class="kbd-hint">&larr; &rarr; / Spazio / Home / End</div>

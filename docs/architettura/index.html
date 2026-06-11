@@ -408,10 +408,11 @@
         <a href="#overview"><span class="num">1</span> Vista generale</a>
         <a href="#flow"><span class="num">2</span> Data flow</a>
         <a href="#security"><span class="num">3</span> Confini sicurezza</a>
-        <a href="#sequence"><span class="num">4</span> Sequenza invio</a>
-        <a href="#roles"><span class="num">5</span> Ruoli</a>
-        <a href="#site"><span class="num">6</span> Sito e template</a>
-        <a href="#rollout"><span class="num">7</span> Rollout pilota</a>
+        <a href="#risks"><span class="num">4</span> Risks</a>
+        <a href="#sequence"><span class="num">5</span> Sequenza invio</a>
+        <a href="#roles"><span class="num">6</span> Ruoli</a>
+        <a href="#site"><span class="num">7</span> Sito e template</a>
+        <a href="#rollout"><span class="num">8</span> Rollout pilota</a>
       </nav>
     </aside>
 
@@ -575,6 +576,53 @@ flowchart LR
               <li><strong>Accesso script:</strong> dev/admin, non tutti gli editor del form</li>
               <li><strong>Magnews user:</strong> permessi minimi, rotazione token</li>
             </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="risks">
+        <div class="section-head">
+          <h2>Risks</h2>
+          <p class="caption">Spam e crescita dei costi Magnews: guardrail semplice per un webinar sotto i 50 partecipanti.</p>
+        </div>
+        <div class="diagram-row">
+          <div class="diagram-col">
+            <div class="panel">
+              <pre class="mermaid">
+flowchart TB
+  START["onFormSubmit(e)"] --> VALID{"Campi validi<br/>+ consenso?"}
+  VALID -->|No| LOG1["Log sanitizzato<br/>no Magnews"]
+  VALID -->|Si| COUNT["Leggi contatore<br/>MAGNEWS_SENT_COUNT"]
+  COUNT --> LIMIT{"Contatore < 100?"}
+  LIMIT -->|Si| SEND["POST Magnews API"]
+  SEND --> OK{"API OK?"}
+  OK -->|Si| INC["Incrementa contatore<br/>+1"]
+  OK -->|No| LOG2["Log errore API<br/>retry controllato"]
+  LIMIT -->|No| HOLD["Salva in Sheet<br/>stato: over_limit"]
+  HOLD --> ALERT["Alert Marketing/Admin"]
+
+  style VALID fill:#fdf3e1,stroke:#f0dfa8
+  style LIMIT fill:#fdf3e1,stroke:#f0dfa8
+  style SEND fill:#edf5fb,stroke:#cfe0ee
+  style INC fill:#ecf7f1,stroke:#cfe7db
+  style HOLD fill:#fdf0ee,stroke:#f0d4d0
+  style ALERT fill:#fdf3e1,stroke:#f0dfa8
+              </pre>
+            </div>
+          </div>
+          <aside class="explain">
+            <h3>Soluzione proposta</h3>
+            <p>Per questo webinar non serve una piattaforma anti-spam complessa: il volume storico è sotto 50 persone. Mettiamo un limite prudenziale a 100 invii verso Magnews.</p>
+            <ul>
+              <li><strong>Cap:</strong> massimo 100 contatti inviati a Magnews</li>
+              <li><strong>Over limit:</strong> la risposta resta nel Google Sheet, ma non viene inviata all'API</li>
+              <li><strong>Alert:</strong> Marketing/Admin riceve avviso quando il limite è raggiunto</li>
+              <li><strong>Controllo manuale:</strong> se il webinar supera davvero 100 iscritti, si aumenta il limite consapevolmente</li>
+            </ul>
+            <div class="highlight">
+              <strong>Effetto</strong>
+              Anche se arriva spam, la fatturazione Magnews e la qualita' della lista restano protette.
+            </div>
           </aside>
         </div>
       </section>
