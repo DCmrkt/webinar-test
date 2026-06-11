@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Registrati al webinar Direct Channel Academy Il mondo agile." />
+  <link rel="icon" href="../assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
+  <title>Direct Channel | Registrazione webinar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #e30613;
+      --red-dark: #ad0610;
+      --red-soft: #fff0f1;
+      --blue: #0077c8;
+      --blue-dark: #005b99;
+      --blue-soft: #eaf5ff;
+      --ink: #171717;
+      --graphite: #2b2d31;
+      --gray: #6f7379;
+      --gray-light: #f3f4f6;
+      --line: #dedfe3;
+      --white: #ffffff;
+      --shadow: 0 18px 42px rgba(23, 23, 23, 0.12);
+      --shadow-soft: 0 10px 28px rgba(23, 23, 23, 0.08);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, var(--blue-soft) 0%, var(--gray-light) 44%, var(--red-soft) 100%);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: absolute;
+      z-index: 5;
+      inset: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 22px 0;
+      color: var(--white);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      width: clamp(106px, 10vw, 150px);
+      min-width: 106px;
+    }
+
+    .brand-text { color: var(--white); font-size: 0.82rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.28));
+    }
+
+    .topbar-link {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .topbar-link:hover {
+      border-color: var(--white);
+      background: var(--white);
+      color: var(--red);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(14, 14, 15, 0.9) 0%, rgba(43, 45, 49, 0.72) 48%, rgba(43, 45, 49, 0.18) 100%),
+        url("../assets/hero-people.png") center / cover no-repeat,
+        var(--graphite);
+    }
+
+    .hero::before {
+      content: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 138px 0 clamp(52px, 9vw, 96px);
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.22);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 0 5px rgba(0, 119, 200, 0.3);
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin-bottom: 22px;
+      font-size: clamp(3.1rem, 9vw, 7.4rem);
+      line-height: 0.94;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    h1 span {
+      color: var(--red);
+      text-shadow: 0 8px 28px rgba(0, 0, 0, 0.26);
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      margin-bottom: 32px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .meta-pill {
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 700;
+      box-shadow: inset 0 -2px 0 rgba(0, 119, 200, 0.38);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: var(--radius);
+      background: var(--red);
+      color: var(--white);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 16px 34px rgba(227, 6, 19, 0.34);
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      background: var(--graphite);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+    }
+
+    .section {
+      padding: clamp(58px, 8vw, 94px) 20px;
+    }
+
+    .wrap {
+      width: min(1060px, 100%);
+      margin: 0 auto;
+    }
+
+    .description {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(280px, 0.42fr);
+      gap: clamp(28px, 6vw, 74px);
+      align-items: start;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      color: var(--red);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .description p,
+    .section-lead {
+      max-width: 760px;
+      color: var(--gray);
+      font-size: 1.08rem;
+    }
+
+    .accent-panel {
+      border-left: 6px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .accent-panel strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .accent-panel p {
+      margin: 0;
+      color: var(--graphite);
+      font-weight: 700;
+    }
+
+    .form-section {
+      padding-top: 0;
+      background:
+        linear-gradient(180deg, transparent 0 42%, rgba(234, 245, 255, 0.82) 42%, rgba(243, 244, 246, 0.96) 100%);
+    }
+
+    .section:first-of-type {
+      background:
+        radial-gradient(circle at 12% 18%, rgba(227, 6, 19, 0.08) 0 150px, transparent 152px),
+        linear-gradient(135deg, var(--blue-soft) 0%, var(--white) 48%, var(--red-soft) 100%);
+    }
+
+    .section-gray {
+      background:
+        linear-gradient(135deg, rgba(43, 45, 49, 0.06), rgba(0, 119, 200, 0.12) 46%, rgba(227, 6, 19, 0.08)),
+        var(--gray-light);
+    }
+
+    .form-card {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      padding: clamp(26px, 5vw, 42px);
+      border: 1px solid rgba(0, 119, 200, 0.16);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(234, 245, 255, 0.9) 48%, rgba(255, 240, 241, 0.92) 100%),
+        var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .form-head {
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .form-head h2 {
+      margin-bottom: 10px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+    }
+
+    .form-head p {
+      margin-bottom: 0;
+      color: var(--gray);
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--graphite);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .req {
+      color: var(--red);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    input {
+      min-height: 52px;
+      padding: 0 15px;
+    }
+
+    textarea {
+      min-height: 118px;
+      padding: 14px 15px;
+      resize: vertical;
+    }
+
+    input:hover,
+    textarea:hover {
+      border-color: rgba(227, 6, 19, 0.42);
+      background: #fffafa;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 4px rgba(0, 119, 200, 0.16);
+    }
+
+    .newsletter-banner {
+      margin: 24px 0 20px;
+      border: 1px solid rgba(0, 119, 200, 0.2);
+      border-left: 6px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(234, 245, 255, 0.96), rgba(255, 240, 241, 0.72)),
+        var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .newsletter-banner p {
+      margin-bottom: 12px;
+      color: var(--graphite);
+      font-size: 0.94rem;
+    }
+
+    .newsletter-banner p:last-of-type {
+      margin-bottom: 18px;
+    }
+
+    .newsletter-banner a {
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .check-row input {
+      width: 18px;
+      min-width: 18px;
+      height: 18px;
+      min-height: 18px;
+      margin-top: 3px;
+      accent-color: var(--red);
+    }
+
+    .check-row label {
+      margin-bottom: 0;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--red);
+      color: var(--white);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+      box-shadow: 0 14px 28px rgba(227, 6, 19, 0.28);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--graphite);
+      box-shadow: 0 14px 28px rgba(43, 45, 49, 0.22);
+    }
+
+    .btn:disabled {
+      cursor: progress;
+      opacity: 0.74;
+      transform: none;
+    }
+
+    .status {
+      display: none;
+      margin-top: 16px;
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      font-weight: 700;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.ok {
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+    }
+
+    .status.err {
+      background: var(--red-soft);
+      color: var(--red-dark);
+    }
+
+    .form-foot {
+      margin: 18px 0 0;
+      color: var(--gray);
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .form-foot a {
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .extra-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .extra-head h2 {
+      margin-bottom: 0;
+    }
+
+    .extra-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .extra-card {
+      position: relative;
+      min-height: 270px;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      border-radius: var(--radius);
+      color: var(--white);
+      text-decoration: none;
+      background: var(--graphite);
+      box-shadow: var(--shadow-soft);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .extra-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .extra-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+      opacity: 0.74;
+      transition: transform 240ms ease, opacity 240ms ease;
+    }
+
+    .extra-card:hover img {
+      transform: scale(1.04);
+      opacity: 0.62;
+    }
+
+    .extra-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.72) 100%),
+        linear-gradient(135deg, rgba(227, 6, 19, 0.78), rgba(0, 119, 200, 0.52), rgba(43, 45, 49, 0.2));
+    }
+
+    .extra-content {
+      position: relative;
+      z-index: 1;
+      padding: 26px;
+    }
+
+    .extra-kicker {
+      display: inline-flex;
+      margin-bottom: 12px;
+      border-radius: var(--radius);
+      padding: 6px 9px;
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .extra-card h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      line-height: 1.05;
+    }
+
+    .extra-card p {
+      max-width: 430px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-weight: 500;
+    }
+
+    .footer {
+      padding: 30px 20px;
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    @media (max-width: 820px) {
+      .topbar {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .topbar-link {
+        display: none;
+      }
+
+      .hero {
+        min-height: 760px;
+      }
+
+      .hero-inner {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .description,
+      .extra-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .extra-head {
+        display: block;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand {
+        width: 116px;
+        min-width: 116px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 16vw, 4.7rem);
+      }
+
+      .hero-meta {
+        display: grid;
+      }
+
+      .hero-cta {
+        width: 100%;
+      }
+
+      .form-card {
+        padding: 24px 18px;
+      }
+
+      .extra-card {
+        min-height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="Intestazione">
+    <a class="brand brand-text" href="#" aria-label="Direct Channel">Direct Channel</a>
+    <a class="topbar-link" href="#registrazione">Registrati</a>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Registrazione webinar Direct Channel">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow">Live webinar &middot; iscrizione gratuita</p>
+          <h1>Il mondo <span>agile</span></h1>
+          <p class="hero-copy">
+            Un incontro Direct Channel Academy per capire come portare metodo, velocita e collaborazione nei progetti digitali, con esempi pratici e strumenti subito applicabili.
+          </p>
+          <div class="hero-meta" aria-label="Dettagli webinar">
+            <span class="meta-pill">Online</span>
+            <span class="meta-pill">60 minuti</span>
+            <span class="meta-pill">Q&amp;A live</span>
+          </div>
+          <a class="hero-cta" href="#registrazione">Registrati al webinar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="programma">
+      <div class="wrap description">
+        <div>
+          <h2>Di cosa parleremo</h2>
+          <p>
+            Vedremo come applicare un approccio agile a campagne, processi e progetti di comunicazione, senza perdere controllo su obiettivi, tempi e risultati. Il webinar unisce visione strategica e casi concreti: dalla definizione delle priorita alla gestione del team, fino alla misurazione dell'impatto.
+          </p>
+          <p>
+            Sara uno spazio chiaro e operativo, pensato per chi vuole lavorare in modo piu fluido, ridurre gli attriti e trasformare le idee in azioni misurabili.
+          </p>
+        </div>
+        <aside class="accent-panel" aria-label="Focus webinar">
+          <strong>Focus</strong>
+          <p>Metodo agile, collaborazione, priorita e strumenti per passare dalla pianificazione all'esecuzione.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section form-section" id="registrazione">
+      <div class="form-card">
+        <div class="form-head">
+          <h2>Registrati ora</h2>
+          <p>Compila il form per riservare il tuo posto al webinar.</p>
+        </div>
+
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="nome">Nome <span class="req">*</span></label>
+            <input id="nome" name="entry.2092238618" type="text" autocomplete="name" placeholder="Mario Rossi" required />
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="entry.1556369182" type="email" autocomplete="email" placeholder="nome@azienda.it" required />
+          </div>
+          <div class="field">
+            <label for="organizzazione">Organizzazione</label>
+            <input id="organizzazione" name="entry.479301265" type="text" autocomplete="organization" placeholder="Nome organizzazione" />
+          </div>
+          <div class="field">
+            <label for="ruolo">Ruolo</label>
+            <input id="ruolo" name="entry.2104822976" type="text" autocomplete="organization-title" placeholder="Es. Project Manager" />
+          </div>
+          <div class="field">
+            <label for="domanda">Hai qualche domanda?</label>
+            <textarea id="domanda" name="entry.1933339847" placeholder="Scrivila qui"></textarea>
+          </div>
+          <div class="newsletter-banner">
+            <p><strong>Vorresti ricevere aggiornamenti su nuovi webinar, prodotti ed eventi?</strong> Iscriviti alla nostra newsletter per non perderti tanti altri webinar come questo e per conoscere le novit&agrave; su prodotti, eventi e altre iniziative targate Direct Channel.</p>
+            <p>I tuoi dati saranno trattati da Direct Channel nel rispetto del Regolamento (UE) 2016/679 (GDPR) esclusivamente per l&rsquo;invio della newsletter. Per maggiori dettagli consulta la nostra <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+            <p>Potrai disiscriverti in qualsiasi momento tramite il link presente in ogni email.</p>
+            <div class="check-row">
+              <input id="newsletter" name="entry.1618047083" type="checkbox" value="S&igrave;, voglio iscrivermi alla newsletter" />
+              <label for="newsletter">S&igrave;, voglio iscrivermi alla newsletter</label>
+            </div>
+          </div>
+          <button class="btn" id="submitBtn" type="submit">Registrati al webinar</button>
+        </form>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+        <p class="form-foot">
+          Campi con * obbligatori. I dati sono trattati da Direct Channel S.p.A. nel rispetto del GDPR.
+          <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Informativa privacy</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-gray" aria-label="Contenuti extra">
+      <div class="wrap">
+        <div class="extra-head">
+          <h2>Continua a esplorare</h2>
+          <p class="section-lead">Risorse, appuntamenti e conversazioni per restare nel mondo Direct Channel anche dopo la diretta.</p>
+        </div>
+
+        <div class="extra-grid">
+          <a class="extra-card" href="https://supporto.directchannel.it/portal/it/kb/articles/metodologia-agile-e-nonprofit" target="_blank" rel="noopener noreferrer">
+            <img src="../assets/hero.jpg" alt="Banner webinar precedenti Direct Channel" loading="lazy" />
+            <div class="extra-content">
+              <span class="extra-kicker">Archivio</span>
+              <h3>Webinar precedenti</h3>
+              <p>Rivedi gli ultimi incontri e recupera insight, casi pratici e contenuti formativi.</p>
+            </div>
+          </a>
+
+          <a class="extra-card" href="https://supporto.directchannel.it/portal/it/community/direct-channel-community" target="_blank" rel="noopener noreferrer">
+            <img src="../assets/hero.png" alt="Banner Community Direct Channel" loading="lazy" />
+            <div class="extra-content">
+              <span class="extra-kicker">Community</span>
+              <h3>Community Direct Channel</h3>
+              <p>Entra nello spazio dedicato al confronto, alle domande e agli aggiornamenti condivisi.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Direct Channel &middot; Gruppo Mondadori &middot;
+    <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Privacy policy</a>
+    &middot;
+    <a href="https://www.iubenda.com/privacy-policy/8187956/cookie-policy" target="_blank" rel="noopener noreferrer">Cookie policy</a>
+  </footer>
+
+  <iframe name="googleFormTarget" id="googleFormTarget" style="display:none;" title="Form submit target"></iframe>
+
+  <script>
+    var googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScCsH0PqSwHkilZIjnj96qfnxSB4bW1ND3KAHJKrOPkpbMdug/formResponse";
+    var formEl = document.getElementById("contactForm");
+    var statusEl = document.getElementById("status");
+    var btn = document.getElementById("submitBtn");
+
+    formEl.action = googleFormUrl;
+    formEl.method = "POST";
+    formEl.target = "googleFormTarget";
+
+    function showStatus(type, message) {
+      statusEl.className = "status show " + (type === "ok" ? "ok" : "err");
+      statusEl.textContent = message;
+    }
+
+    function validate() {
+      var nome = document.getElementById("nome");
+      var email = document.getElementById("email");
+
+      if (!nome.value.trim()) {
+        nome.focus();
+        showStatus("err", "Inserisci il tuo nome.");
+        return false;
+      }
+
+      if (!email.value.trim() || !email.value.includes("@")) {
+        email.focus();
+        showStatus("err", "Inserisci un indirizzo email valido.");
+        return false;
+      }
+
+      return true;
+    }
+
+    formEl.addEventListener("submit", function (event) {
+      event.preventDefault();
+      statusEl.className = "status";
+
+      if (!validate()) return;
+
+      btn.disabled = true;
+      btn.textContent = "Invio in corso...";
+      formEl.submit();
+
+      window.setTimeout(function () {
+        formEl.reset();
+        btn.disabled = false;
+        btn.textContent = "Registrati al webinar";
+        showStatus("ok", "Registrazione ricevuta. Ti invieremo il link di accesso prima del webinar.");
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

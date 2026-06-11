@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-  <title>Webinar — Il mondo agile</title>
+  <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" />
+  <title>Variation 5 - Agenda Rail | Webinar — Il mondo agile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
@@ -607,6 +607,60 @@
       .title-row { flex-direction: column; align-items: flex-start; gap: 12px; }
       .field-row { grid-template-columns: 1fr; gap: 0; }
     }
+
+    .template-switcher {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px clamp(14px, 3vw, 24px);
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(14px);
+      font-family: "DM Sans", system-ui, sans-serif;
+    }
+    .template-switcher a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: #333;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .template-switcher .template-home {
+      width: auto;
+      color: #d71920;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .template-switcher div { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
+    .template-switcher a[aria-current="page"] { background: #1a1a1a; color: white; }
+    @media (max-width: 640px) {
+      .template-switcher { align-items: flex-start; flex-direction: column; }
+      .template-switcher div { justify-content: flex-start; }
+    }
+
+    /* Variation 5: Agenda Rail */
+
+    body.variant-5 { --bg: #eef3f6; --red: #be3b44; --calm-accent: #3f5f76; }
+    @media (min-width: 961px) {
+      body.variant-5 .layout { grid-template-columns: minmax(0, 1fr) 410px; min-height: calc(100dvh - 53px); }
+      body.variant-5 .content { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 24px; align-content: start; }
+      body.variant-5 .brand, body.variant-5 .hero-card, body.variant-5 .intro, body.variant-5 .content-foot { grid-column: 1; }
+      body.variant-5 .meta-row { grid-column: 2; grid-row: 2 / span 2; grid-template-columns: 1fr; margin: 0; align-self: start; position: sticky; top: 82px; }
+      body.variant-5 .hero-card { max-height: 340px; }
+      body.variant-5 .sidebar { top: 53px; min-height: calc(100dvh - 53px); }
+    }
+  
   </style>
   <!-- build: v2-enterprise -->
   <link rel="stylesheet" href="https://digital.mondadori.it/cookie-policy/custom_banner.css" media="all" />
@@ -631,13 +685,17 @@
   <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/8187956.js"></script>
   <script type="text/javascript" src="https://cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
 </head>
-<body>
+<body class="variant variant-5">
+  <nav class="template-switcher" aria-label="Template variations">
+  <a class="template-home" href="../">Templates</a>
+  <div><a href="../1/" data-template="1">1</a><a href="../2/" data-template="2">2</a><a href="../3/" data-template="3">3</a><a href="../4/" data-template="4">4</a><a href="../5/" data-template="5" aria-current="page">5</a><a href="../6/" data-template="6">6</a><a href="../7/" data-template="7">7</a><a href="../8/" data-template="8">8</a><a href="../9/" data-template="9">9</a><a href="../10/" data-template="10">10</a></div>
+</nav>
   <div class="layout">
     <main class="content">
       <div class="brand"><strong>Direct Channel</strong> · Webinar</div>
 
       <figure class="hero-card">
-        <img src="assets/hero-people.png" alt="Persone sorridenti durante un webinar Direct Channel" width="1672" height="941" loading="eager" />
+        <img src="../../assets/hero-people.png" alt="Persone sorridenti durante un webinar Direct Channel" width="1672" height="941" loading="eager" />
       </figure>
 
       <div class="meta-row">
