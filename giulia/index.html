@@ -83,22 +83,6 @@
       filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.28));
     }
 
-    .topbar-link {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      border-radius: var(--radius);
-      padding: 10px 16px;
-      color: var(--white);
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
-    }
-
-    .topbar-link:hover {
-      border-color: var(--white);
-      background: var(--white);
-      color: var(--red);
-    }
 
     .hero {
       position: relative;
@@ -163,8 +147,8 @@
     h1 {
       max-width: 900px;
       margin-bottom: 22px;
-      font-size: clamp(3.1rem, 9vw, 7.4rem);
-      line-height: 0.94;
+      font-size: clamp(2.4rem, 6.2vw, 5.1rem);
+      line-height: 1;
       letter-spacing: 0;
       font-weight: 900;
     }
@@ -181,22 +165,6 @@
       font-size: clamp(1.05rem, 2vw, 1.3rem);
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 34px;
-    }
-
-    .meta-pill {
-      padding: 10px 14px;
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.13);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 700;
-      box-shadow: inset 0 -2px 0 rgba(0, 119, 200, 0.38);
-    }
 
     .hero-cta {
       display: inline-flex;
@@ -215,7 +183,7 @@
 
     .hero-cta:hover {
       transform: translateY(-2px);
-      background: var(--graphite);
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue), var(--red));
       box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
     }
 
@@ -514,25 +482,25 @@
       transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
+    .extra-card:nth-child(1) {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0 24%, transparent 24% 100%),
+        linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 48%, var(--red) 100%);
+    }
+
+    .extra-card:nth-child(2) {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0 22%, transparent 22% 100%),
+        linear-gradient(135deg, var(--red-dark) 0%, var(--red) 44%, var(--blue) 100%);
+    }
+
     .extra-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow);
     }
 
     .extra-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(1);
-      opacity: 0.74;
-      transition: transform 240ms ease, opacity 240ms ease;
-    }
-
-    .extra-card:hover img {
-      transform: scale(1.04);
-      opacity: 0.62;
+      display: none;
     }
 
     .extra-card::after {
@@ -540,8 +508,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.72) 100%),
-        linear-gradient(135deg, rgba(227, 6, 19, 0.78), rgba(0, 119, 200, 0.52), rgba(43, 45, 49, 0.2));
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.34) 100%),
+        repeating-linear-gradient(90deg, transparent 0 42px, rgba(255, 255, 255, 0.1) 42px 43px);
     }
 
     .extra-content {
@@ -555,7 +523,8 @@
       margin-bottom: 12px;
       border-radius: var(--radius);
       padding: 6px 9px;
-      background: linear-gradient(135deg, var(--red), var(--blue));
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       font-size: 0.76rem;
       font-weight: 900;
       letter-spacing: 0.08em;
@@ -593,9 +562,6 @@
         width: min(100% - 28px, 1180px);
       }
 
-      .topbar-link {
-        display: none;
-      }
 
       .hero {
         min-height: 760px;
@@ -622,12 +588,9 @@
       }
 
       h1 {
-        font-size: clamp(3rem, 16vw, 4.7rem);
+        font-size: clamp(2.4rem, 12vw, 3.7rem);
       }
 
-      .hero-meta {
-        display: grid;
-      }
 
       .hero-cta {
         width: 100%;
@@ -646,7 +609,6 @@
 <body>
   <header class="topbar" aria-label="Intestazione">
     <a class="brand brand-text" href="#" aria-label="Direct Channel">Direct Channel</a>
-    <a class="topbar-link" href="#registrazione">Registrati</a>
   </header>
 
   <main>
@@ -658,11 +620,6 @@
           <p class="hero-copy">
             Un incontro Direct Channel Academy per capire come portare metodo, velocita e collaborazione nei progetti digitali, con esempi pratici e strumenti subito applicabili.
           </p>
-          <div class="hero-meta" aria-label="Dettagli webinar">
-            <span class="meta-pill">Online</span>
-            <span class="meta-pill">60 minuti</span>
-            <span class="meta-pill">Q&amp;A live</span>
-          </div>
           <a class="hero-cta" href="#registrazione">Registrati al webinar</a>
         </div>
       </div>
@@ -696,8 +653,13 @@
         <form id="contactForm" novalidate>
           <div class="field">
             <label for="nome">Nome <span class="req">*</span></label>
-            <input id="nome" name="entry.2092238618" type="text" autocomplete="name" placeholder="Mario Rossi" required />
+            <input id="nome" name="nome" type="text" autocomplete="given-name" placeholder="Mario" required />
           </div>
+          <div class="field">
+            <label for="cognome">Cognome <span class="req">*</span></label>
+            <input id="cognome" name="cognome" type="text" autocomplete="family-name" placeholder="Rossi" required />
+          </div>
+          <input id="nomeCompleto" name="entry.2092238618" type="hidden" />
           <div class="field">
             <label for="email">Email <span class="req">*</span></label>
             <input id="email" name="entry.1556369182" type="email" autocomplete="email" placeholder="nome@azienda.it" required />
@@ -737,7 +699,7 @@
     <section class="section section-gray" aria-label="Contenuti extra">
       <div class="wrap">
         <div class="extra-head">
-          <h2>Continua a esplorare</h2>
+          <h2>Non fermarti a questo webinar, scopri di pi&ugrave;!</h2>
           <p class="section-lead">Risorse, appuntamenti e conversazioni per restare nel mondo Direct Channel anche dopo la diretta.</p>
         </div>
 
@@ -746,8 +708,8 @@
             <img src="../assets/hero.jpg" alt="Banner webinar precedenti Direct Channel" loading="lazy" />
             <div class="extra-content">
               <span class="extra-kicker">Archivio</span>
-              <h3>Webinar precedenti</h3>
-              <p>Rivedi gli ultimi incontri e recupera insight, casi pratici e contenuti formativi.</p>
+              <h3>Esplora l&rsquo;Academy</h3>
+              <p>Rivedi gli ultimi webinar e scopri nuovi contenuti per approfondire, imparare e crescere ogni giorno.</p>
             </div>
           </a>
 
@@ -755,8 +717,8 @@
             <img src="../assets/hero.png" alt="Banner Community Direct Channel" loading="lazy" />
             <div class="extra-content">
               <span class="extra-kicker">Community</span>
-              <h3>Community Direct Channel</h3>
-              <p>Entra nello spazio dedicato al confronto, alle domande e agli aggiornamenti condivisi.</p>
+              <h3>Confrontati con la Community</h3>
+              <p>Condividi idee, esperienze e domande nello spazio pensato per te.</p>
             </div>
           </a>
         </div>
@@ -790,11 +752,18 @@
 
     function validate() {
       var nome = document.getElementById("nome");
+      var cognome = document.getElementById("cognome");
       var email = document.getElementById("email");
 
       if (!nome.value.trim()) {
         nome.focus();
         showStatus("err", "Inserisci il tuo nome.");
+        return false;
+      }
+
+      if (!cognome.value.trim()) {
+        cognome.focus();
+        showStatus("err", "Inserisci il tuo cognome.");
         return false;
       }
 
@@ -804,6 +773,7 @@
         return false;
       }
 
+      document.getElementById("nomeCompleto").value = nome.value.trim() + " " + cognome.value.trim();
       return true;
     }
 
