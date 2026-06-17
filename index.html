@@ -2643,6 +2643,19 @@
       }
     }
 
+    function capitalizePrefillText(value) {
+      if (!value) return "";
+
+      return value
+        .trim()
+        .split(/\s+/)
+        .map(function (word) {
+          if (!word) return "";
+          return word.charAt(0).toLocaleUpperCase("it-IT") + word.slice(1).toLocaleLowerCase("it-IT");
+        })
+        .join(" ");
+    }
+
     function parseRegistrationPrefillPayload(payload) {
       if (!payload) return null;
 
@@ -2720,11 +2733,12 @@
       var cognomeField = document.getElementById("cognome");
       var emailField = document.getElementById("email");
       var organizzazioneField = document.getElementById("organizzazione");
+      var ruoloField = document.getElementById("ruolo");
 
       if (!nomeField || !cognomeField || !emailField || !organizzazioneField) return false;
 
       var query = new URLSearchParams(window.location.search);
-      var hasQueryPrefill = query.has("nome") || query.has("cognome") || query.has("email") || query.has("organizzazione");
+      var hasQueryPrefill = query.has("nome") || query.has("cognome") || query.has("email") || query.has("organizzazione") || query.has("ruolo");
       var prefillData = null;
 
       if (hasQueryPrefill) {
@@ -2732,7 +2746,8 @@
           nome: decodePrefillPart(query.get("nome") || ""),
           cognome: decodePrefillPart(query.get("cognome") || ""),
           email: decodePrefillPart(query.get("email") || ""),
-          organizzazione: decodePrefillPart(query.get("organizzazione") || "")
+          organizzazione: decodePrefillPart(query.get("organizzazione") || ""),
+          ruolo: decodePrefillPart(query.get("ruolo") || "")
         };
       } else {
         prefillData = parseRegistrationPrefillPayload(getRegistrationPrefillPayloadFromUrl());
@@ -2740,10 +2755,11 @@
 
       if (!prefillData) return false;
 
-      if (prefillData.nome) nomeField.value = prefillData.nome;
-      if (prefillData.cognome) cognomeField.value = prefillData.cognome;
-      if (prefillData.email) emailField.value = prefillData.email;
-      if (prefillData.organizzazione) organizzazioneField.value = prefillData.organizzazione;
+      if (prefillData.nome) nomeField.value = capitalizePrefillText(prefillData.nome);
+      if (prefillData.cognome) cognomeField.value = capitalizePrefillText(prefillData.cognome);
+      if (prefillData.email) emailField.value = prefillData.email.trim().toLowerCase();
+      if (prefillData.organizzazione) organizzazioneField.value = capitalizePrefillText(prefillData.organizzazione);
+      if (ruoloField && prefillData.ruolo) ruoloField.value = capitalizePrefillText(prefillData.ruolo);
 
       var nomeCompletoField = document.getElementById("nomeCompleto");
       if (nomeCompletoField && nomeField.value.trim() && cognomeField.value.trim()) {
