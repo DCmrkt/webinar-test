@@ -2709,25 +2709,29 @@
 
     function getRegistrationBaseUrl() {
       var path = window.location.pathname.replace(/\/index\.html$/i, "");
-      if (!path.endsWith("/")) {
-        path += "/";
+      var segments = path.split("/").filter(Boolean);
+      var lastSegment = segments[segments.length - 1] || "";
+
+      if (lastSegment.indexOf("&") !== -1 && lastSegment.indexOf("!") !== -1) {
+        segments.pop();
       }
-      return window.location.origin + path;
+
+      var basePath = segments.length ? "/" + segments.join("/") + "/" : "/";
+      return window.location.origin + basePath;
     }
 
     function normalizeRegistrationPrefillUrl() {
       if (!/\/index\.html$/i.test(window.location.pathname)) return;
 
-      var cleanPath = window.location.pathname.replace(/\/index\.html$/i, "");
-      if (!cleanPath.endsWith("/")) {
-        cleanPath += "/";
-      }
-
       window.history.replaceState(
         null,
         "",
-        window.location.origin + cleanPath + window.location.search + window.location.hash
+        getRegistrationBaseUrl() + window.location.search + window.location.hash
       );
+    }
+
+    function cleanRegistrationPrefillUrl() {
+      window.history.replaceState(null, "", getRegistrationBaseUrl());
     }
 
     function buildRegistrationPrefillPayload(nome, cognome, email, organizzazione) {
@@ -2795,6 +2799,8 @@
           registrationAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
         }, 120);
       }
+
+      cleanRegistrationPrefillUrl();
 
       return true;
     }
