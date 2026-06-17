@@ -844,6 +844,7 @@
 
     .registration-form {
       overflow: hidden;
+      scroll-margin-top: max(16px, env(safe-area-inset-top, 0px));
     }
 
     .registration-media {
@@ -1647,7 +1648,7 @@
             Un incontro Direct Channel Academy per trasformare metodo, CRM e dati in un modo di lavorare pi&ugrave; chiaro, collaborativo e misurabile.
           </p>
           <div class="hero-actions-row">
-            <a class="button" href="#registrazione">Registrati al webinar</a>
+            <a class="button" href="#iscrizione">Registrati al webinar</a>
             <a class="button secondary" href="#programma">Scopri di pi&ugrave;</a>
           </div>
           <p class="hero-note">Pensato per team fundraising, comunicazione, servizi e direzione che vogliono far crescere processi e relazioni con semplicit&agrave;.</p>
@@ -1745,7 +1746,7 @@
         </div>
 
         <div id="desktopFormAnchor" hidden></div>
-        <div class="registration-form">
+        <div class="registration-form" id="iscrizione">
           <div class="form-title">
             <p class="kicker">Registrazione</p>
             <h2>Partecipa al webinar</h2>
@@ -1858,13 +1859,44 @@
         }
       }
 
+      function scrollToRegistrationForm(behavior) {
+        registrationForm.scrollIntoView({
+          behavior: behavior || "auto",
+          block: "start"
+        });
+      }
+
+      function handleRegistrationHash(behavior) {
+        var hash = window.location.hash;
+        if (hash === "#registrazione" || hash === "#iscrizione") {
+          scrollToRegistrationForm(behavior);
+        }
+      }
+
       placeRegistrationForm();
+      handleRegistrationHash();
+
+      document.querySelectorAll('a[href="#registrazione"], a[href="#iscrizione"]').forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          if (history.pushState) {
+            history.pushState(null, "", "#iscrizione");
+          } else {
+            window.location.hash = "iscrizione";
+          }
+          scrollToRegistrationForm("smooth");
+        });
+      });
 
       if (typeof mobileQuery.addEventListener === "function") {
         mobileQuery.addEventListener("change", placeRegistrationForm);
       } else {
         mobileQuery.addListener(placeRegistrationForm);
       }
+
+      window.addEventListener("hashchange", function () {
+        handleRegistrationHash("smooth");
+      });
     })();
 
     (function () {
@@ -2002,7 +2034,7 @@
       var successModal = document.getElementById("successModal");
       var confettiCanvas = document.getElementById("confettiCanvas");
       var testButton = document.getElementById("testRegistrationSuccess");
-      var registrationSection = document.getElementById("registrazione");
+      var registrationForm = document.getElementById("iscrizione");
       var calendarButton = document.getElementById("successModalCalendar");
       var confettiParticles = [];
       var confettiFrame = null;
@@ -2142,8 +2174,8 @@
 
       if (testButton) {
         testButton.addEventListener("click", function () {
-          if (registrationSection) {
-            registrationSection.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (registrationForm) {
+            registrationForm.scrollIntoView({ behavior: "smooth", block: "start" });
             window.setTimeout(openRegistrationSuccess, 420);
           } else {
             openRegistrationSuccess();
