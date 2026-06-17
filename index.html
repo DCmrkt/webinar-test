@@ -2707,6 +2707,29 @@
       return null;
     }
 
+    function getRegistrationBaseUrl() {
+      var path = window.location.pathname.replace(/\/index\.html$/i, "");
+      if (!path.endsWith("/")) {
+        path += "/";
+      }
+      return window.location.origin + path;
+    }
+
+    function normalizeRegistrationPrefillUrl() {
+      if (!/\/index\.html$/i.test(window.location.pathname)) return;
+
+      var cleanPath = window.location.pathname.replace(/\/index\.html$/i, "");
+      if (!cleanPath.endsWith("/")) {
+        cleanPath += "/";
+      }
+
+      window.history.replaceState(
+        null,
+        "",
+        window.location.origin + cleanPath + window.location.search + window.location.hash
+      );
+    }
+
     function buildRegistrationPrefillPayload(nome, cognome, email, organizzazione) {
       var payload = encodeURIComponent(nome) + "&" + encodeURIComponent(cognome) + "!" + encodeURIComponent(email);
       if (organizzazione) {
@@ -2718,17 +2741,17 @@
     function buildRegistrationPrefillUrl(nome, cognome, email, organizzazione, options) {
       var opts = options || {};
       var payload = buildRegistrationPrefillPayload(nome, cognome, email, organizzazione);
-      var basePath = window.location.pathname.replace(/\/index\.html$/i, "").replace(/\/[^/]*$/, "");
-      var baseUrl = window.location.origin + (basePath || "") + "/";
+      var baseUrl = getRegistrationBaseUrl();
 
       if (opts.mode === "path") {
         return baseUrl + payload;
       }
 
-      return baseUrl + "index.html#" + payload;
+      return baseUrl + "#" + payload;
     }
 
     function applyRegistrationPrefillFromUrl() {
+      normalizeRegistrationPrefillUrl();
       var nomeField = document.getElementById("nome");
       var cognomeField = document.getElementById("cognome");
       var emailField = document.getElementById("email");

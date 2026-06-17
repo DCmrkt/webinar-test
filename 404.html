@@ -11,11 +11,11 @@
       var base = parts.length > 1 ? "/" + parts.slice(0, -1).join("/") + "/" : "/";
 
       if (!slug || slug === "index.html" || slug.indexOf("!") === -1 || slug.indexOf("&") === -1) {
-        window.location.replace(base + "index.html");
+        window.location.replace(base);
         return;
       }
 
-      window.location.replace(base + "index.html#" + slug);
+      window.location.replace(base + "#" + slug);
     })();
   </script>
 </head>
