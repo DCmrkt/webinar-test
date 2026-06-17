@@ -27,6 +27,8 @@
       --radius: 8px;
       --container-max: 1180px;
       --page-gutter: 20px;
+      --scroll-thumb: #facc15;
+      --scroll-thumb-hover: #eab308;
     }
 
     * {
@@ -35,6 +37,9 @@
 
     html {
       scroll-behavior: smooth;
+      background: var(--cream);
+      scrollbar-color: var(--scroll-thumb) transparent;
+      scrollbar-width: thin;
     }
 
     body {
@@ -46,6 +51,32 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: clip;
+      scrollbar-color: var(--scroll-thumb) transparent;
+      scrollbar-width: thin;
+    }
+
+    *::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: var(--scroll-thumb);
+      border: 2px solid transparent;
+      border-radius: 999px;
+      background-clip: padding-box;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background-color: var(--scroll-thumb-hover);
+    }
+
+    *::-webkit-scrollbar-corner {
+      background: transparent;
     }
 
     main {
@@ -121,6 +152,33 @@
     .doodle-star-yellow {
       transform: translate(var(--star-yellow-x, 0), var(--star-yellow-y, 0)) rotate(var(--star-yellow-r, 0deg)) scale(var(--star-yellow-scale, 1));
       opacity: var(--star-yellow-opacity, 1);
+    }
+
+    .hero-flower {
+      position: absolute;
+      z-index: 0;
+      display: block;
+      width: clamp(48px, 4.6vw, 64px);
+      height: auto;
+      aspect-ratio: 1;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .hero-flower line {
+      vector-effect: non-scaling-stroke;
+    }
+
+    .hero-flower-purple {
+      top: clamp(52px, 10vh, 96px);
+      left: clamp(8px, 1.5vw, 24px);
+      width: clamp(46px, 4.2vw, 58px);
+    }
+
+    .hero-flower-yellow {
+      right: clamp(12px, 2.5vw, 40px);
+      bottom: clamp(56px, 10vh, 128px);
+      width: clamp(50px, 4.8vw, 66px);
     }
 
     .hero-header {
@@ -220,10 +278,24 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(300px, 0.72fr);
-      gap: clamp(28px, 5vw, 62px);
-      align-items: center;
+      grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.72fr);
+      gap: clamp(24px, 4vw, 52px);
+      align-items: start;
+      padding-top: clamp(20px, 4vh, 48px);
       min-height: calc(100svh - 108px);
+    }
+
+    .hero-content {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+      align-self: start;
+    }
+
+    .hero-grid .hero-mascot {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: start;
     }
 
     .brand {
@@ -332,6 +404,12 @@
       animation: highlightUnderlineCycle 6s infinite;
     }
 
+    .rotating-highlight--phase-yellow,
+    .rotating-highlight--phase-yellow::before,
+    .rotating-highlight--phase-yellow::after {
+      animation-delay: -2s;
+    }
+
     @keyframes highlightTextCycle {
       0%,
       33.333% {
@@ -407,9 +485,9 @@
     }
 
     .button {
-      min-height: 36px;
-      padding: 0 15px;
-      font-size: 0.9rem;
+      min-height: 32px;
+      padding: 0 13px;
+      font-size: 0.84rem;
     }
 
     .hero-actions-row {
@@ -462,17 +540,19 @@
 
     .hero-mascot {
       position: relative;
-      align-self: center;
-      min-height: 400px;
+      align-self: start;
+      min-height: clamp(300px, 34vw, 420px);
+      height: auto;
       margin: 0;
       isolation: isolate;
+      transform: translate(-10vw, 10vw);
     }
 
     .hero-mascot::before {
       content: "";
       position: absolute;
       z-index: -1;
-      inset: auto 12% 8% auto;
+      inset: auto 12% 10% auto;
       width: 58%;
       aspect-ratio: 1;
       border-radius: 50%;
@@ -482,7 +562,8 @@
     .hero-mascot img {
       position: absolute;
       right: clamp(8px, 3vw, 34px);
-      bottom: -16px;
+      top: 0;
+      bottom: auto;
       width: min(380px, 32vw);
       max-width: none;
       height: auto;
@@ -495,13 +576,15 @@
     .hero-mascot.is-winter img {
       width: min(450px, 38vw);
       right: clamp(4px, 2vw, 20px);
-      bottom: -6px;
+      top: 0;
+      bottom: auto;
     }
 
     .hero-mascot.is-autumn img {
       width: min(350px, 30vw);
       right: clamp(14px, 3vw, 30px);
-      bottom: 0;
+      top: 4px;
+      bottom: auto;
     }
 
     .form-title {
@@ -623,13 +706,53 @@
       vector-effect: non-scaling-stroke;
     }
 
+    .section-mobile-wave {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      bottom: auto;
+      z-index: 1;
+      width: 100%;
+      height: 72px;
+      pointer-events: none;
+      overflow: visible;
+      transform:
+        translateY(-50%)
+        translate(var(--mobile-wave-x, 0), var(--mobile-wave-y, 0))
+        rotate(var(--mobile-wave-r, 0deg));
+      transform-origin: 50% 58%;
+      will-change: transform;
+    }
+
+    .hero-programma-divider {
+      display: none;
+      position: relative;
+      z-index: 4;
+      height: 34px;
+      margin: 0;
+      pointer-events: none;
+      overflow: visible;
+      line-height: 0;
+    }
+
+    .hero-orange-mobile {
+      display: none;
+      pointer-events: none;
+    }
+
+    .section-mobile-wave path {
+      vector-effect: non-scaling-stroke;
+    }
+
     .section-sketches {
       position: absolute;
       top: -68px;
       right: -42px;
       z-index: 0;
       width: min(580px, 46vw);
-      height: 760px;
+      height: auto;
+      aspect-ratio: 580 / 760;
       pointer-events: none;
       transform:
         translate(var(--section-sketch-x, 0), var(--section-sketch-y, 0))
@@ -668,8 +791,8 @@
     h2.section-title {
       max-width: 760px;
       margin-bottom: 20px;
-      font-size: clamp(2.35rem, 5.2vw, 4.9rem);
-      line-height: 0.98;
+      font-size: clamp(3rem, 6.4vw, 5.9rem);
+      line-height: 1;
       font-weight: 800;
       letter-spacing: 0;
     }
@@ -1428,20 +1551,110 @@
       }
 
       .hero-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(210px, 36vw);
+        grid-template-columns: minmax(0, 0.62fr) minmax(200px, 0.38fr);
         gap: clamp(14px, 3vw, 28px);
-        align-items: center;
+        align-items: start;
         min-height: auto;
         padding-top: 10px;
       }
 
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(10px, 1.8vw, 16px);
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+        max-width: min(100%, 44vw);
+        z-index: 1;
+      }
+
+      .hero-intro,
+      .hero-body {
+        min-width: 0;
+      }
+
+      .hero-body {
+        margin-top: 0;
+      }
+
+      .hero-grid .hero-mascot {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        justify-self: end;
+        width: clamp(210px, 38vw, 400px);
+        height: auto;
+      }
+
       .hero-mascot {
-        min-height: clamp(200px, 28vw, 280px);
+        min-height: clamp(190px, 34vw, 320px);
+      }
+
+      .hero-mascot img {
+        width: 100%;
+        right: 0;
+        top: 0;
+      }
+
+      .hero-mascot.is-summer img,
+      .hero-mascot.is-winter img {
+        width: 108%;
+        right: -4%;
+        top: 0;
+      }
+
+      .hero-mascot.is-autumn img {
+        width: 92%;
+        right: 0;
+        top: 4px;
       }
 
       h1 {
+        max-width: 100%;
+      }
+
+      h1,
+      h2.section-title {
         font-size: clamp(2.1rem, 5.2vw, 3rem);
         margin-bottom: 16px;
+        line-height: 1.02;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+        margin-bottom: 14px;
+        font-size: clamp(0.92rem, 1.8vw, 1.02rem);
+        line-height: 1.45;
+      }
+
+      .hero-note {
+        max-width: 100%;
+        margin-top: 10px;
+        font-size: clamp(0.86rem, 1.45vw, 0.94rem);
+        line-height: 1.45;
+      }
+
+      .button {
+        font-size: 0.84rem;
+        min-height: 32px;
+        padding: 0 14px;
+      }
+
+      .kicker {
+        font-size: 0.74rem;
+      }
+
+      .editorial-copy {
+        font-size: clamp(0.95rem, 1.35vw, 1.05rem);
+      }
+
+      .focus-card h3 {
+        font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+      }
+
+      .focus-card p {
+        font-size: 0.9rem;
       }
 
       .hero-header {
@@ -1458,13 +1671,79 @@
       }
     }
 
+    @media (min-width: 681px) and (max-width: 960px) {
+      .hero {
+        overflow: visible;
+        z-index: 2;
+        padding-bottom: clamp(64px, 12vw, 120px);
+      }
+
+      .hero-mascot {
+        z-index: 3;
+      }
+
+      #programma {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
     @media (max-width: 680px) {
       :root {
         --page-gutter: 16px;
       }
 
+      html {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      main {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
       .hero {
-        padding: max(22px, env(safe-area-inset-top, 0px)) 0 34px;
+        overflow: hidden;
+        z-index: auto;
+        padding: max(22px, env(safe-area-inset-top, 0px)) 0 14px;
+      }
+
+      .hero-mascot {
+        z-index: 1;
+      }
+
+      .hero-programma-divider {
+        display: block;
+        z-index: 4;
+        width: 100%;
+        max-width: 100%;
+        height: 34px;
+        margin: 0;
+        overflow: visible;
+        line-height: 0;
+        background: var(--cream);
+      }
+
+      .hero-programma-divider .section-mobile-wave {
+        display: block;
+        position: relative;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        height: 38px;
+        overflow: visible;
+        transform: translate(var(--mobile-wave-x, 0), var(--mobile-wave-y, 0)) rotate(var(--mobile-wave-r, 0deg));
+        transform-origin: 50% 50%;
       }
 
       .hero-header {
@@ -1492,20 +1771,71 @@
       }
 
       .hero-doodles {
-        width: 168%;
-        left: -34%;
-        opacity: 0.72;
+        display: none;
+      }
+
+      .hero-orange-mobile {
+        display: block;
+        position: absolute;
+        top: clamp(24px, 7vw, 42px);
+        right: -2%;
+        width: min(70vw, 280px);
+        height: auto;
+        z-index: 0;
+        pointer-events: none;
+        overflow: visible;
+      }
+
+      .hero-orange-mobile .doodle-orange-mobile {
+        transform-box: fill-box;
+        transform-origin: 72% 18%;
+        transform: translate(var(--orange-x, 0), var(--orange-y, 0)) rotate(var(--orange-r, 0deg));
+        will-change: transform;
+      }
+
+      .hero-orange-mobile path {
+        vector-effect: non-scaling-stroke;
+      }
+
+      .hero-flower {
+        display: none;
       }
 
       .hero-grid {
         grid-template-columns: minmax(0, 1fr) minmax(96px, 31vw);
+        grid-template-rows: auto auto;
         gap: 8px 10px;
         align-items: start;
         padding-top: 4px;
       }
 
-      h1 {
-        font-size: clamp(1.55rem, 6.4vw, 2.05rem);
+      .hero-content {
+        display: contents;
+      }
+
+      .hero-intro {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .hero-grid .hero-mascot {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        height: auto;
+        min-height: clamp(108px, 29vw, 150px);
+        transform: none;
+      }
+
+      .hero-body {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-top: 6px;
+      }
+
+      h1,
+      h2.section-title {
+        font-size: clamp(2.05rem, 8.4vw, 2.55rem);
         margin-bottom: 10px;
         line-height: 1.02;
       }
@@ -1526,14 +1856,24 @@
       }
 
       .button {
-        width: 100%;
-        min-height: 40px;
-        font-size: 0.82rem;
+        width: auto;
+        min-height: 30px;
+        padding: 0 11px;
+        font-size: 0.72rem;
       }
 
       .hero-actions-row {
-        display: grid;
+        display: flex;
+        flex-wrap: nowrap;
         gap: 8px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-actions-row .button {
+        width: auto;
+        flex: 0 0 auto;
+        white-space: nowrap;
       }
 
       .hero-mascot {
@@ -1541,6 +1881,7 @@
         min-height: clamp(108px, 29vw, 150px);
         margin-top: 2px;
         overflow: visible;
+        transform: none;
       }
 
       .hero-mascot::before {
@@ -1575,22 +1916,40 @@
 
       .section {
         padding: 62px 0;
+        overflow: hidden;
       }
 
-      .section-thread {
-        left: -76px;
-        top: -30px;
-        width: 210px;
-        height: 430px;
-        opacity: 0.72;
+      .section-decor-desktop,
+      #programma > .section-thread,
+      #programma > .section-sketches {
+        display: none !important;
+        position: absolute;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        visibility: hidden;
+        pointer-events: none;
       }
 
-      .section-sketches {
-        top: 12px;
-        right: -112px;
-        width: 300px;
-        height: 480px;
-        opacity: 0.48;
+      .hero-mascot {
+        z-index: 1;
+      }
+
+      #programma {
+        position: relative;
+        z-index: 1;
+        padding-top: 32px;
+      }
+
+      #programma .kicker {
+        position: relative;
+        z-index: 1;
+      }
+
+      #programma.section {
+        padding-bottom: 56px;
       }
 
       .registration::before {
@@ -1614,10 +1973,6 @@
         width: 138px;
         height: 112px;
         border-width: 10px;
-      }
-
-      h2.section-title {
-        font-size: clamp(2.28rem, 12vw, 3.8rem);
       }
 
       .resource-card {
@@ -1660,40 +2015,54 @@
         <g class="doodle doodle-purple" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path d="M-58 662 C44 564 122 618 68 704 C18 785 196 754 284 764 C418 778 500 824 642 766" stroke="#a855f7" stroke-width="26" />
         </g>
-        <g class="doodle doodle-star" stroke="#a855f7" stroke-width="9" stroke-linecap="round">
-          <g transform="translate(62 82)">
-            <line x1="0" y1="-31" x2="0" y2="31" />
-            <line x1="-31" y1="0" x2="31" y2="0" />
-            <line x1="-22" y1="-22" x2="22" y2="22" />
-            <line x1="22" y1="-22" x2="-22" y2="22" />
-            <line x1="-12" y1="-29" x2="12" y2="29" />
-            <line x1="12" y1="-29" x2="-12" y2="29" />
-          </g>
+      </svg>
+
+      <svg class="hero-flower hero-flower-purple doodle doodle-star" viewBox="-36 -36 72 72" aria-hidden="true">
+        <g stroke="#a855f7" stroke-width="9" stroke-linecap="round" fill="none">
+          <line x1="0" y1="-31" x2="0" y2="31" />
+          <line x1="-31" y1="0" x2="31" y2="0" />
+          <line x1="-22" y1="-22" x2="22" y2="22" />
+          <line x1="22" y1="-22" x2="-22" y2="22" />
+          <line x1="-12" y1="-29" x2="12" y2="29" />
+          <line x1="12" y1="-29" x2="-12" y2="29" />
         </g>
-        <g class="doodle doodle-star-yellow" stroke="#facc15" stroke-width="10" stroke-linecap="round">
-          <g transform="translate(1280 688)">
-            <line x1="0" y1="-34" x2="0" y2="34" />
-            <line x1="-34" y1="0" x2="34" y2="0" />
-            <line x1="-24" y1="-24" x2="24" y2="24" />
-            <line x1="24" y1="-24" x2="-24" y2="24" />
-            <line x1="-14" y1="-32" x2="14" y2="32" />
-            <line x1="14" y1="-32" x2="-14" y2="32" />
-          </g>
+      </svg>
+
+      <svg class="hero-flower hero-flower-yellow doodle doodle-star-yellow" viewBox="-38 -38 76 76" aria-hidden="true">
+        <g stroke="#facc15" stroke-width="10" stroke-linecap="round" fill="none">
+          <line x1="0" y1="-34" x2="0" y2="34" />
+          <line x1="-34" y1="0" x2="34" y2="0" />
+          <line x1="-24" y1="-24" x2="24" y2="24" />
+          <line x1="24" y1="-24" x2="-24" y2="24" />
+          <line x1="-14" y1="-32" x2="14" y2="32" />
+          <line x1="14" y1="-32" x2="-14" y2="32" />
+        </g>
+      </svg>
+
+      <svg class="hero-orange-mobile" viewBox="0 0 400 220" aria-hidden="true">
+        <g class="doodle-orange-mobile" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M228 26 C302 12 372 64 396 138" stroke="#ff8a3d" stroke-width="17" />
+          <path d="M320 16 C342 12 362 28 368 50 C374 72 358 90 336 94 C314 98 294 82 290 60 C286 38 298 20 320 16 Z" stroke="#ff8a3d" stroke-width="14" />
         </g>
       </svg>
 
       <div class="wrap hero-grid">
-        <div>
-          <p class="badge">LIVE WEBINAR • ISCRIZIONE GRATUITA</p>
-          <h1>Il mondo <span class="rotating-highlight">agile</span> per il nonprofit</h1>
-          <p class="hero-copy">
-            Un incontro Direct Channel Academy per trasformare metodo, CRM e dati in un modo di lavorare pi&ugrave; chiaro, collaborativo e misurabile.
-          </p>
-          <div class="hero-actions-row">
-            <a class="button" href="#iscrizione">Registrati al webinar</a>
-            <a class="button secondary" href="#programma">Scopri di pi&ugrave;</a>
+        <div class="hero-content">
+          <div class="hero-intro">
+            <p class="badge">LIVE WEBINAR • ISCRIZIONE GRATUITA</p>
+            <h1>Il mondo <span class="rotating-highlight">agile</span> per il nonprofit</h1>
           </div>
-          <p class="hero-note">Pensato per team fundraising, comunicazione, servizi e direzione che vogliono far crescere processi e relazioni con semplicit&agrave;.</p>
+
+          <div class="hero-body">
+            <p class="hero-copy">
+              Un incontro Direct Channel Academy per trasformare metodo, CRM e dati in un modo di lavorare pi&ugrave; chiaro, collaborativo e misurabile.
+            </p>
+            <div class="hero-actions-row">
+              <a class="button" href="#iscrizione">Registrati al webinar</a>
+              <a class="button secondary" href="#programma">Scopri di pi&ugrave;</a>
+            </div>
+            <p class="hero-note">Pensato per team fundraising, comunicazione, servizi e direzione che vogliono far crescere processi e relazioni con semplicit&agrave;.</p>
+          </div>
         </div>
 
         <figure class="hero-mascot" id="heroMascot" aria-label="Mascotte Direct Channel Academy">
@@ -1711,15 +2080,28 @@
       </div>
     </section>
 
+    <div class="hero-programma-divider" aria-hidden="true">
+      <svg class="section-mobile-wave" viewBox="-72 -12 640 68" preserveAspectRatio="none" aria-hidden="true">
+        <path
+          d="M-72 36 C-40 14 -4 52 28 32 C56 16 82 46 108 30 C128 18 142 44 136 54 C130 64 112 50 122 40 C138 28 160 38 182 30 C196 22 208 46 200 54 C192 62 180 48 188 40 C204 30 228 38 252 30 C276 22 300 48 324 34 C348 20 368 58 392 36 C412 18 432 72 408 80 C384 88 360 54 380 42 C404 30 430 42 456 32 C480 22 504 46 528 34 C544 26 560 34 568 30"
+          fill="none"
+          stroke="#a855f7"
+          stroke-width="15"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
     <section class="section" id="programma">
-      <svg class="section-thread" viewBox="0 0 360 620" preserveAspectRatio="none" aria-hidden="true">
+      <svg class="section-thread section-decor-desktop" viewBox="0 0 360 620" preserveAspectRatio="none" aria-hidden="true">
         <path d="M-34 18 C-18 92 48 120 118 108 C176 98 210 128 216 174 C226 252 142 306 106 352 C66 404 70 462 114 536" fill="none" stroke="#a855f7" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-      <svg class="section-sketches" viewBox="0 0 580 760" preserveAspectRatio="none" aria-hidden="true">
+      <svg class="section-sketches section-decor-desktop" viewBox="0 0 580 760" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <path d="M348 186 C332 125 394 116 414 158 C444 103 510 102 496 164 C564 168 584 222 526 242 C561 294 514 336 460 306 C437 358 368 346 386 288 C320 304 300 238 356 220" fill="none" stroke="#a7e7f2" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.78" />
         <path d="M94 514 C94 648 284 654 286 516" fill="none" stroke="#86efac" stroke-width="27" stroke-linecap="round" opacity="0.38" />
         <path d="M122 518 C122 616 256 620 258 518" fill="none" stroke="#22c55e" stroke-width="14" stroke-linecap="round" opacity="0.22" />
-        <g stroke="#e30613" stroke-width="10" stroke-linecap="round" opacity="0.9" transform="translate(454 628) rotate(8)">
+        <g class="section-sketch-flower" stroke="#e30613" stroke-width="10" stroke-linecap="round" opacity="0.9" transform="translate(454 628) rotate(8)">
           <line x1="0" y1="-36" x2="0" y2="36" />
           <line x1="-36" y1="0" x2="36" y2="0" />
           <line x1="-25" y1="-25" x2="25" y2="25" />
@@ -1731,7 +2113,7 @@
       <div class="wrap talk-grid">
         <div>
           <p class="kicker">Di cosa parleremo</p>
-          <h2 class="section-title">Meno attrito, pi&ugrave; <span class="rotating-highlight">direzione</span> nei progetti digitali.</h2>
+          <h2 class="section-title">Meno attrito, pi&ugrave; <span class="rotating-highlight rotating-highlight--phase-yellow">direzione</span> nei progetti digitali.</h2>
           <div class="editorial-copy">
             <p>
               Il webinar mostra come applicare un approccio agile a campagne, processi e progetti di comunicazione senza perdere controllo su obiettivi, tempi e risultati.
@@ -1945,6 +2327,9 @@
       var hero = document.querySelector(".hero");
       var programSection = document.getElementById("programma");
       var registrationSection = document.getElementById("registrazione");
+      var mobileWave = document.querySelector(".section-mobile-wave");
+      var mobileWaveDivider = document.querySelector(".hero-programma-divider");
+      var mobileWaveQuery = window.matchMedia("(max-width: 680px)");
       if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       var ticking = false;
@@ -1977,7 +2362,7 @@
         hero.style.setProperty("--star-yellow-scale", (1 + 0.06 * ease).toFixed(3));
         hero.style.setProperty("--star-yellow-opacity", (1 - 0.12 * ease).toFixed(3));
 
-        if (programSection) {
+        if (programSection && !mobileWaveQuery.matches) {
           var programRect = programSection.getBoundingClientRect();
           var programScroll = Math.max(0, window.innerHeight - programRect.top);
           var programMove = programScroll * 0.28;
@@ -1987,6 +2372,25 @@
           programSection.style.setProperty("--section-sketch-x", (-sketchMove).toFixed(2) + "px");
           programSection.style.setProperty("--section-sketch-y", (sketchMove * 0.42).toFixed(2) + "px");
           programSection.style.setProperty("--section-sketch-r", (sketchMove * 0.018).toFixed(2) + "deg");
+        }
+
+        if (mobileWave && mobileWaveDivider && mobileWaveQuery.matches) {
+          var dividerRect = mobileWaveDivider.getBoundingClientRect();
+          var viewportH = window.innerHeight;
+          var waveTravel = (viewportH + dividerRect.height) * 0.95;
+          var waveProgress = clamp((viewportH - dividerRect.top) / Math.max(waveTravel, 1), 0, 1);
+          var wavePhase = waveProgress * Math.PI * 9;
+          var waveDrift = (waveProgress - 0.5) * 16;
+          var waveX = Math.max(-8, Math.min(8, waveDrift + Math.sin(wavePhase * 0.92) * 9 * waveProgress));
+          var waveY = Math.cos(wavePhase * 1.14) * 3 * waveProgress;
+          var waveR = Math.sin(wavePhase * 0.76) * 5 * waveProgress;
+          mobileWave.style.setProperty("--mobile-wave-x", waveX.toFixed(2) + "px");
+          mobileWave.style.setProperty("--mobile-wave-y", waveY.toFixed(2) + "px");
+          mobileWave.style.setProperty("--mobile-wave-r", waveR.toFixed(2) + "deg");
+        } else if (mobileWave) {
+          mobileWave.style.setProperty("--mobile-wave-x", "0px");
+          mobileWave.style.setProperty("--mobile-wave-y", "0px");
+          mobileWave.style.setProperty("--mobile-wave-r", "0deg");
         }
 
         if (registrationSection) {
