@@ -1658,6 +1658,7 @@
             id="heroMascotImg"
             src="assets/mascotte-direct-channel-cutout-crop.png"
             data-default-src="assets/mascotte-direct-channel-cutout-crop.png"
+            data-default-mobile-src="assets/mascotte-direct-channel-mobile.png"
             data-summer-src="assets/mascotte-summer-cutout.png"
             data-autumn-src="assets/mascotte-autumn-cutout.png"
             data-winter-src="assets/mascotte-winter-cutout.png"
@@ -2236,15 +2237,27 @@
         }
       };
 
-      var defaultSrc = heroMascotImg.dataset.defaultSrc;
+      var defaultDesktopSrc = heroMascotImg.dataset.defaultSrc;
+      var defaultMobileSrc = heroMascotImg.dataset.defaultMobileSrc || defaultDesktopSrc;
+      var defaultMascotQuery = window.matchMedia("(max-width: 680px)");
       var defaultAlt = "Mascotte Direct Channel con occhiali e maglia rossa";
       var activeSeason = null;
+
+      function getDefaultSrc() {
+        return defaultMascotQuery.matches ? defaultMobileSrc : defaultDesktopSrc;
+      }
+
+      function updateDefaultMascotSrc() {
+        if (!activeSeason) {
+          heroMascotImg.src = getDefaultSrc();
+        }
+      }
 
       function setSeason(seasonKey) {
         heroMascot.classList.remove("is-summer", "is-autumn", "is-winter");
 
         if (!seasonKey) {
-          heroMascotImg.src = defaultSrc;
+          heroMascotImg.src = getDefaultSrc();
           heroMascotImg.alt = defaultAlt;
           activeSeason = null;
         } else {
@@ -2268,6 +2281,14 @@
           setSeason(activeSeason === seasonKey ? null : seasonKey);
         });
       });
+
+      updateDefaultMascotSrc();
+
+      if (typeof defaultMascotQuery.addEventListener === "function") {
+        defaultMascotQuery.addEventListener("change", updateDefaultMascotSrc);
+      } else {
+        defaultMascotQuery.addListener(updateDefaultMascotSrc);
+      }
     })();
   </script>
 </body>
