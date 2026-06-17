@@ -2634,6 +2634,136 @@
 
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    function decodePrefillPart(value) {
+      if (!value) return "";
+      try {
+        return decodeURIComponent(value.replace(/\+/g, " "));
+      } catch (error) {
+        return value.replace(/\+/g, " ");
+      }
+    }
+
+    function parseRegistrationPrefillPayload(payload) {
+      if (!payload) return null;
+
+      var cleanPayload = payload.replace(/^#/, "").replace(/^\/+/, "").trim();
+      if (!cleanPayload) return null;
+
+      var ampIndex = cleanPayload.indexOf("&");
+      var bangIndex = cleanPayload.indexOf("!");
+
+      if (ampIndex === -1 || bangIndex === -1 || bangIndex <= ampIndex) return null;
+
+      var nome = decodePrefillPart(cleanPayload.slice(0, ampIndex));
+      var cognome = decodePrefillPart(cleanPayload.slice(ampIndex + 1, bangIndex));
+      var tail = cleanPayload.slice(bangIndex + 1);
+      var dashIndex = tail.indexOf("-");
+      var email = "";
+      var organizzazione = "";
+
+      if (dashIndex === -1) {
+        email = decodePrefillPart(tail);
+      } else {
+        email = decodePrefillPart(tail.slice(0, dashIndex));
+        organizzazione = decodePrefillPart(tail.slice(dashIndex + 1));
+      }
+
+      return {
+        nome: nome,
+        cognome: cognome,
+        email: email,
+        organizzazione: organizzazione
+      };
+    }
+
+    function getRegistrationPrefillPayloadFromUrl() {
+      var hash = window.location.hash;
+      if (hash && hash.length > 1 && hash.indexOf("!") !== -1) {
+        return hash.slice(1);
+      }
+
+      var path = window.location.pathname.replace(/\/index\.html$/i, "");
+      var segments = path.split("/").filter(Boolean);
+
+      for (var i = segments.length - 1; i >= 0; i--) {
+        if (segments[i].indexOf("&") !== -1 && segments[i].indexOf("!") !== -1) {
+          return segments[i];
+        }
+      }
+
+      return null;
+    }
+
+    function buildRegistrationPrefillPayload(nome, cognome, email, organizzazione) {
+      var payload = encodeURIComponent(nome) + "&" + encodeURIComponent(cognome) + "!" + encodeURIComponent(email);
+      if (organizzazione) {
+        payload += "-" + encodeURIComponent(organizzazione);
+      }
+      return payload;
+    }
+
+    function buildRegistrationPrefillUrl(nome, cognome, email, organizzazione, options) {
+      var opts = options || {};
+      var payload = buildRegistrationPrefillPayload(nome, cognome, email, organizzazione);
+      var basePath = window.location.pathname.replace(/\/index\.html$/i, "").replace(/\/[^/]*$/, "");
+      var baseUrl = window.location.origin + (basePath || "") + "/";
+
+      if (opts.mode === "path") {
+        return baseUrl + payload;
+      }
+
+      return baseUrl + "index.html#" + payload;
+    }
+
+    function applyRegistrationPrefillFromUrl() {
+      var nomeField = document.getElementById("nome");
+      var cognomeField = document.getElementById("cognome");
+      var emailField = document.getElementById("email");
+      var organizzazioneField = document.getElementById("organizzazione");
+
+      if (!nomeField || !cognomeField || !emailField || !organizzazioneField) return false;
+
+      var query = new URLSearchParams(window.location.search);
+      var hasQueryPrefill = query.has("nome") || query.has("cognome") || query.has("email") || query.has("organizzazione");
+      var prefillData = null;
+
+      if (hasQueryPrefill) {
+        prefillData = {
+          nome: decodePrefillPart(query.get("nome") || ""),
+          cognome: decodePrefillPart(query.get("cognome") || ""),
+          email: decodePrefillPart(query.get("email") || ""),
+          organizzazione: decodePrefillPart(query.get("organizzazione") || "")
+        };
+      } else {
+        prefillData = parseRegistrationPrefillPayload(getRegistrationPrefillPayloadFromUrl());
+      }
+
+      if (!prefillData) return false;
+
+      if (prefillData.nome) nomeField.value = prefillData.nome;
+      if (prefillData.cognome) cognomeField.value = prefillData.cognome;
+      if (prefillData.email) emailField.value = prefillData.email;
+      if (prefillData.organizzazione) organizzazioneField.value = prefillData.organizzazione;
+
+      var nomeCompletoField = document.getElementById("nomeCompleto");
+      if (nomeCompletoField && nomeField.value.trim() && cognomeField.value.trim()) {
+        nomeCompletoField.value = nomeField.value.trim() + " " + cognomeField.value.trim();
+      }
+
+      var registrationAnchor = document.getElementById("iscrizione");
+      if (registrationAnchor) {
+        window.setTimeout(function () {
+          registrationAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 120);
+      }
+
+      return true;
+    }
+
+    window.buildRegistrationPrefillUrl = buildRegistrationPrefillUrl;
+    window.buildRegistrationPrefillPayload = buildRegistrationPrefillPayload;
+    applyRegistrationPrefillFromUrl();
+
     function validate(config) {
       var nome = config.fields.nome;
       var cognome = config.fields.cognome;

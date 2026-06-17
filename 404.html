@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Direct Channel Academy | Webinar gratuito</title>
+  <script>
+    (function () {
+      var path = window.location.pathname.replace(/\/+$/, "");
+      var parts = path.split("/").filter(Boolean);
+      var slug = parts[parts.length - 1] || "";
+      var base = parts.length > 1 ? "/" + parts.slice(0, -1).join("/") + "/" : "/";
+
+      if (!slug || slug === "index.html" || slug.indexOf("!") === -1 || slug.indexOf("&") === -1) {
+        window.location.replace(base + "index.html");
+        return;
+      }
+
+      window.location.replace(base + "index.html#" + slug);
+    })();
+  </script>
+</head>
+<body></body>
+</html>
