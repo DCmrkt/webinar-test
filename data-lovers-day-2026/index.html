@@ -33,7 +33,8 @@
       --mint: #acd9be;
       --red: #e10a27;
       --paper: #ffffff;
-      --wash: #f6f7fb;
+      --hero-wash: #e8f4eb;
+      --wash: #cce8e7;
       --muted: #626579;
       --line: #dfe1ec;
       --max-width: 1180px;
@@ -80,7 +81,7 @@
     .brand img { width: auto; height: clamp(24px, 3.8vw, 32px); max-width: min(148px, 34vw); }
     .header-note { display: inline-flex; align-items: center; justify-content: center; justify-self: center; gap: 8px; min-height: 30px; padding: 0 11px; border: 1px solid rgba(22, 101, 52, .16); border-radius: 999px; background: rgba(240, 253, 244, .68); color: #166534; font-size: var(--font-small); font-weight: 800; letter-spacing: .08em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
     .header-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .12); }
-    .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--paper); }
+    .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--hero-wash); }
     .hero-layout { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(24px, 3.2vw, 44px); min-height: 650px; padding-block: clamp(20px, 4vh, 48px) 56px; }
     .hero-content { position: relative; min-width: 0; }
     .hero-intro > .eyebrow { margin-bottom: 22px; color: var(--muted); }
@@ -90,7 +91,7 @@
     .year { align-self: center; padding: 9px 12px; border: 1px solid var(--line); font-size: 22px; line-height: 1; letter-spacing: .04em; font-weight: 500; border-radius: 4px; }
     .map-pin { position: relative; display: inline-block; width: .51em; height: .62em; margin: 0 .055em 0 .015em; transform: translateY(.025em); }
     .map-pin::before { content: ""; position: absolute; inset: 0 0 .11em; border-radius: 50% 50% 50% 0; background: var(--red); transform: rotate(-45deg); }
-    .map-pin::after { content: ""; position: absolute; width: .205em; height: .205em; border-radius: 50%; background: white; top: .15em; left: .1525em; }
+    .map-pin::after { content: ""; position: absolute; width: .205em; height: .205em; border-radius: 50%; background: var(--hero-wash); top: .15em; left: .1525em; }
     .hero-subtitle { max-width: 650px; margin-top: 22px; color: var(--muted); font-size: var(--font-body); font-weight: 500; line-height: 1.5; }
     .event-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; padding: 0; list-style: none; }
     .event-meta li { display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border: 1px solid rgba(227, 6, 19, .14); border-radius: 999px; background: rgba(255, 255, 255, .68); color: #b90510; font-size: var(--font-small); font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
@@ -105,7 +106,7 @@
     .deadline a { flex: 0 0 auto; display: grid; place-items: center; width: 43px; height: 43px; border: 1px solid var(--navy); border-radius: 50%; font-size: 23px; text-decoration: none; transition: background .18s; }
     .deadline a:hover { background: white; }
 
-    .about { padding-block: var(--section-padding); }
+    .about { padding-block: var(--section-padding); background: linear-gradient(115deg, #e7e3fb 0%, #f8e1f7 100%); }
     .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(310px, 420px); gap: clamp(34px, 7vw, 86px); align-items: start; }
     .about .eyebrow { margin-bottom: 14px; color: #655ac3; }
     .about h2 { max-width: 760px; margin-bottom: 20px; font-size: var(--font-h2-display); line-height: 1; letter-spacing: 0; font-weight: 800; }
@@ -116,7 +117,7 @@
     .topic-line { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 29px; font-size: 12px; color: var(--navy); font-weight: 700; }
     .topic-line i { display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
 
-    .registration { position: relative; padding-block: var(--section-padding); background: var(--wash); border-top: 1px solid var(--line); }
+    .registration { position: relative; padding-block: var(--section-padding); background: linear-gradient(155deg, var(--wash) 0%, #e1efdd 100%); border-top: 1px solid rgba(45, 163, 186, .2); }
     .registration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4.5vw, 48px); align-items: start; }
     .agenda { min-width: 0; padding: clamp(24px, 4vw, 34px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); box-shadow: var(--shadow-soft); }
     .agenda .eyebrow { color: #655ac3; margin-bottom: 14px; }
@@ -140,20 +141,26 @@
     .form-title { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
     .form-title .eyebrow { margin-bottom: 8px; color: #655ac3; letter-spacing: .1em; }
     .form-title > p:last-child { font-size: var(--font-body); line-height: 1.45; color: var(--muted); }
-    .form-preview-note { display: flex; gap: 11px; align-items: flex-start; padding: 12px 14px; border: 1px solid #dedaf8; border-radius: var(--radius); background: #f4f2ff; font-size: var(--font-small); line-height: 1.4; color: #514887; }
-    .form-preview-note::before { content: "i"; flex: 0 0 auto; display: grid; place-items: center; width: 17px; height: 17px; margin-top: 1px; border: 1px solid currentColor; border-radius: 50%; font-weight: 700; font-size: 11px; }
-    .form-preview-note strong { font-weight: 800; }
-    .preview-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; margin: 16px 0 0; border: 0; padding: 0; }
+    .form-note { padding: 12px 14px; border: 1px solid #dedaf8; border-radius: var(--radius); background: #f4f2ff; font-size: var(--font-small); line-height: 1.45; color: #514887; }
+    .registration-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; margin: 16px 0 0; border: 0; padding: 0; }
     .field { min-width: 0; }
     .field.full { grid-column: 1 / -1; }
-    .field label { display: block; margin-bottom: 5px; font-size: var(--font-small); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .field > label { display: block; margin-bottom: 5px; font-size: var(--font-small); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
     .req { color: #8b3953; }
-    .field input, .field textarea { display: block; width: 100%; min-width: 0; min-height: 40px; border: 1px solid var(--line); border-radius: var(--radius); padding: 0 11px; background: white; color: var(--navy); font-size: var(--font-body); line-height: 1.5; }
+    .field > input, .field > textarea { display: block; width: 100%; min-width: 0; min-height: 40px; border: 1px solid var(--line); border-radius: var(--radius); padding: 0 11px; background: white; color: var(--navy); font-size: var(--font-body); line-height: 1.5; }
     .field textarea { min-height: 84px; padding: 10px 11px; resize: vertical; }
     .field input::placeholder, .field textarea::placeholder { color: #777a8b; font-size: var(--font-small); opacity: 1; }
-    .field input:disabled, .field textarea:disabled { opacity: 1; cursor: not-allowed; -webkit-text-fill-color: #777a8b; }
-    .form-submit { width: 100%; min-height: 42px; margin-top: 12px; padding-inline: 22px; opacity: .65; cursor: not-allowed; }
-    .form-submit:hover { background: var(--action); transform: none; box-shadow: 0 14px 30px rgba(168, 85, 247, .22); }
+    .field-help { margin-top: 5px; font-size: var(--font-small); color: var(--muted); }
+    .image-consent { min-width: 0; margin: 0; padding: 16px 0 0; border: 0; border-top: 1px solid var(--line); }
+    .image-consent legend { float: left; width: 100%; margin-bottom: 10px; font-size: var(--font-small); font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .consent-info { clear: both; padding: 10px 12px; border-radius: var(--radius); background: #f4f2ff; font-size: var(--font-small); line-height: 1.5; color: #514887; }
+    .consent-info summary { cursor: pointer; font-weight: 700; }
+    .consent-info p { margin-top: 10px; }
+    .consent-statement { clear: both; margin: 12px 0; font-size: var(--font-small); line-height: 1.5; color: var(--muted); }
+    .consent-options { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .consent-option { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; cursor: pointer; font-size: var(--font-small); font-weight: 700; }
+    .consent-option input { width: 18px; height: 18px; margin: 0; accent-color: var(--action); }
+    .form-submit { width: 100%; min-height: 42px; margin-top: 12px; padding-inline: 22px; }
     .form-foot { margin-top: 12px; color: var(--muted); font-size: var(--font-small); line-height: 1.45; }
     .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
@@ -164,9 +171,9 @@
     .resource-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2.4vw, 20px); align-items: stretch; }
     .resource-card { position: relative; display: flex; flex-direction: column; align-items: stretch; height: 100%; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--card-padding); text-decoration: none; box-shadow: var(--shadow-soft); transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
     .resource-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-    .resource-card.community { background: #edf9f1; border-color: rgba(34, 197, 94, .22); }
+    .resource-card.community { background: #d6efdf; border-color: rgba(34, 197, 94, .22); }
     .resource-card.community:hover { border-color: rgba(34, 197, 94, .36); }
-    .resource-card.webinar { background: #f6f0ff; border-color: rgba(168, 85, 247, .2); }
+    .resource-card.webinar { background: #eedff9; border-color: rgba(168, 85, 247, .2); }
     .resource-card.webinar:hover { border-color: rgba(168, 85, 247, .36); }
     .resource-card .eyebrow { margin-bottom: 8px; letter-spacing: .1em; position: relative; z-index: 1; }
     .resource-card h3 { font-size: var(--font-card-title); font-weight: 800; line-height: 1.2; margin-bottom: 10px; position: relative; z-index: 1; }
@@ -177,7 +184,8 @@
     .card-motif { position: absolute; top: 0; right: 27px; width: 68px; height: 66px; pointer-events: none; }
     .community .card-motif { background: var(--mint); border-radius: 0 0 50% 50%; }
     .webinar .card-motif { background: var(--pink); border-radius: 0 0 0 100%; }
-    .footer { border-top: 1px solid var(--line); }
+    .footer { border-top: 1px solid var(--line); background: #f6effa; }
+    .footer::before { content: ""; display: block; height: 8px; background: linear-gradient(to right, var(--teal) 0% 25%, var(--purple) 25% 50%, var(--pink) 50% 75%, var(--yellow) 75% 100%); }
     .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-block: 32px; }
     .footer .brand img { width: auto; height: clamp(30px, 5vw, 42px); max-width: min(220px, 72vw); }
     .footer-copy { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: var(--font-small); line-height: 1.45; color: var(--muted); text-align: center; }
@@ -201,7 +209,7 @@
       .hero-content { display: contents; }
       .hero-intro { grid-column: 1; grid-row: 1; min-width: 0; }
       .hero-intro > .eyebrow { max-width: 250px; margin-bottom: 16px; }
-      .hero-body { grid-column: 1 / -1; grid-row: 2; position: relative; background: var(--paper); }
+      .hero-body { grid-column: 1 / -1; grid-row: 2; position: relative; background: var(--hero-wash); }
       .hero h1 { font-size: clamp(40px, 11.5vw, 70px); line-height: 1.04; }
       .title-last { gap: 14px; }
       .year { font-size: 16px; padding: 7px 9px; }
@@ -229,7 +237,7 @@
       .hero-actions { flex-wrap: nowrap; justify-content: center; gap: 8px; }
       .hero-actions .button { min-height: 36px; padding-inline: 16px; white-space: nowrap; }
       .about h2 { margin-bottom: 10px; line-height: 1.02; }
-      .preview-fields { grid-template-columns: 1fr; }
+      .registration-fields { grid-template-columns: 1fr; }
     }
     @media (max-width: 380px) {
       .schedule li { grid-template-columns: 48px 1fr; gap: 12px; }
@@ -287,8 +295,8 @@
       </div>
     </div>
 
-    <section class="about wrap" id="di-cosa-parleremo" aria-labelledby="about-title">
-      <div class="about-grid">
+    <section class="about" id="di-cosa-parleremo" aria-labelledby="about-title">
+      <div class="about-grid wrap">
         <div>
           <p class="eyebrow">Di cosa parleremo</p>
           <h2 id="about-title">Dati, persone, territori:<br>tante prospettive,<br><span class="highlight">un unico filo conduttore.</span></h2>
@@ -338,46 +346,63 @@
             <h2 id="form-title">Iscriviti all'incontro</h2>
             <p>Inserisci i tuoi dati per confermare la partecipazione gratuita.</p>
           </div>
-          <p class="form-preview-note" id="form-preview-note"><span><strong>Modulo in anteprima.</strong> Le iscrizioni saranno disponibili a breve. In questa fase non vengono raccolti né inviati dati.</span></p>
+          <p class="form-note" id="form-note">L’invio apre Google Forms in una nuova scheda: verifica lì la conferma della tua iscrizione.</p>
 
-          <!-- Google Form pending: replace this preview with the supplied form integration.
-               No action, field mapping, iframe or remote request is configured for this event.
-               Keep the fieldset and submit button disabled until the new endpoint is verified. -->
-          <form id="registration-preview" aria-labelledby="form-title" aria-describedby="form-preview-note">
-            <fieldset class="preview-fields" disabled>
-              <legend class="visually-hidden">Dati di iscrizione — anteprima non attiva</legend>
-              <div class="field">
-                <label for="nome">Nome <span class="req">*</span></label>
-                <input id="nome" type="text" autocomplete="given-name" placeholder="Nome" required>
-              </div>
-              <div class="field">
-                <label for="cognome">Cognome <span class="req">*</span></label>
-                <input id="cognome" type="text" autocomplete="family-name" placeholder="Cognome" required>
+          <!-- Field IDs and consent choices verified against the event's public Google Form.
+               Native POST keeps Google's confirmation or validation errors visible;
+               no hidden iframe or inferred success message is used. -->
+          <form id="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/formResponse" method="post" target="_blank" rel="noopener noreferrer" aria-labelledby="form-title" aria-describedby="form-note">
+            <input type="hidden" name="fvv" value="1">
+            <input type="hidden" name="pageHistory" value="0">
+            <input type="hidden" name="entry.1640139106_sentinel" value="">
+            <fieldset class="registration-fields">
+              <legend class="visually-hidden">Dati di iscrizione</legend>
+              <div class="field full">
+                <label for="nome">Nome e cognome <span class="req">*</span></label>
+                <input id="nome" name="entry.1529339823" type="text" autocomplete="name" placeholder="Nome e cognome" required>
               </div>
               <div class="field full">
                 <label for="email">Email <span class="req">*</span></label>
-                <input id="email" type="email" autocomplete="email" placeholder="nome@organizzazione.it" required>
+                <input id="email" name="entry.536729908" type="email" autocomplete="email" placeholder="nome@organizzazione.it" required>
               </div>
               <div class="field">
                 <label for="organizzazione">Organizzazione <span class="req">*</span></label>
-                <input id="organizzazione" type="text" autocomplete="organization" placeholder="La tua organizzazione" required>
+                <input id="organizzazione" name="entry.523287991" type="text" autocomplete="organization" placeholder="La tua organizzazione" required>
               </div>
               <div class="field">
                 <label for="ruolo">Ruolo <span class="req">*</span></label>
-                <input id="ruolo" type="text" autocomplete="organization-title" placeholder="Il tuo ruolo" required>
+                <input id="ruolo" name="entry.748142295" type="text" autocomplete="organization-title" placeholder="Il tuo ruolo" required>
               </div>
               <div class="field full">
-                <label for="intolleranze">Intolleranze alimentari / allergie</label>
-                <input id="intolleranze" type="text" placeholder="Segnala eventuali esigenze alimentari">
+                <label for="intolleranze">Hai intolleranze alimentari o allergie? <span class="req">*</span></label>
+                <input id="intolleranze" name="entry.360631223" type="text" placeholder="Segnala eventuali intolleranze o allergie" aria-describedby="intolleranze-help" required>
+                <p class="field-help" id="intolleranze-help">Se non ne hai, scrivi “Nessuna”.</p>
               </div>
               <div class="field full">
-                <label for="domande">Domande</label>
-                <textarea id="domande" rows="2" placeholder="C'è qualcosa che vorresti chiederci?"></textarea>
+                <label for="alimentazione">Segui stili alimentari particolari? <span class="req">*</span></label>
+                <input id="alimentazione" name="entry.491456433" type="text" placeholder="Vegetariano, vegano, ecc." aria-describedby="alimentazione-help" required>
+                <p class="field-help" id="alimentazione-help">Se non ne segui, scrivi “Nessuno”.</p>
+              </div>
+              <fieldset class="image-consent field full" aria-describedby="consent-statement">
+                <legend>Consenso all’uso di immagine <span class="req">*</span></legend>
+                <details class="consent-info">
+                  <summary>Informativa sull’uso di foto e video</summary>
+                  <p>Ai sensi del Regolamento UE 2016/679 (GDPR) e in conformità con la normativa vigente sulla protezione dei dati personali (<a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">leggi qui l’informativa</a>), ti informiamo che in occasione dell’evento, Direct Channel S.p.A. realizzerà immagini fotografiche e riprese audio/video che potrebbero ritrarti (i “Contenuti”), al fine di pubblicizzare, promuovere e documentare l’evento. Tali Contenuti, o parte di essi, saranno pubblicati su siti web e canali social appartenenti a Direct Channel S.p.A., nonché attraverso i media partner dell’iniziativa, da Direct Channel S.p.A. e/o da terzi soggetti partner di Direct Channel S.p.A., e saranno utilizzati da Direct Channel S.p.A. per comunicazione below the line.</p>
+                </details>
+                <p class="consent-statement" id="consent-statement">Prestando il consenso, dichiaro di essere maggiorenne e di accettare l’utilizzo dei Contenuti che mi ritraggono per le finalità sopra indicate, rinunciando a qualsiasi compenso o pretesa nei confronti di Direct Channel S.p.A., delle società del Gruppo Mondadori e/o loro cessionari.</p>
+                <div class="consent-options">
+                  <label class="consent-option"><input type="radio" name="entry.1640139106" value="Acconsento" required> Acconsento</label>
+                  <label class="consent-option"><input type="radio" name="entry.1640139106" value="Non acconsento" required> Non acconsento</label>
+                </div>
+              </fieldset>
+              <div class="field full">
+                <label for="domande">Desideri comunicarci qualcosa?</label>
+                <textarea id="domande" name="entry.65890871" rows="2" placeholder="C'è qualcosa che vorresti chiederci?"></textarea>
               </div>
             </fieldset>
-            <button class="button form-submit" type="submit" disabled aria-describedby="form-preview-note">Registrati</button>
+            <button class="button form-submit" type="submit" aria-describedby="form-note">Registrati</button>
           </form>
-          <p class="form-foot">* Campi obbligatori all’apertura delle iscrizioni.<br><a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Informativa privacy Direct Channel</a></p>
+          <p class="form-foot">* Campi obbligatori. Puoi anche <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/viewform" target="_blank" rel="noopener noreferrer">aprire il modulo Google</a>.<br><a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Informativa privacy Direct Channel</a></p>
         </div>
       </div>
 
@@ -416,11 +441,5 @@
       </div>
     </div>
   </footer>
-  <script>
-    // Defense in depth for the preview: never submit or persist registration data.
-    document.getElementById("registration-preview").addEventListener("submit", function (event) {
-      event.preventDefault();
-    });
-  </script>
 </body>
 </html>
