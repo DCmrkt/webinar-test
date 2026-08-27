@@ -64,21 +64,27 @@
     .hero-header { position: relative; height: 80px; }
     .hero-header .brand { position: absolute; right: calc(var(--hero-art-width) + 28px); top: 24px; }
     .hero-layout { position: relative; display: flex; align-items: center; width: calc(88% - var(--hero-art-width)); min-height: calc(100vh - 80px); min-height: calc(100svh - 80px); margin-left: 9.5%; padding-block: 12px 40px; }
-    .hero-copy { width: 100%; max-width: 520px; }
-    .hero h1 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(70px, 7.5vw, 110px); font-weight: 400; line-height: 1.01; letter-spacing: .065em; text-transform: uppercase; }
+    .hero-copy { width: 100%; max-width: 640px; }
+    .hero h1 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(96px, 10.4vw, 164px); font-weight: 400; line-height: .93; letter-spacing: .035em; text-transform: uppercase; }
     .title-line { display: block; white-space: nowrap; }
     .title-pin { display: inline-block; width: .57em; height: .72em; margin-inline: -.015em .035em; overflow: visible; transform: translateY(.105em); fill: var(--red); }
-    .cover-date { display: flex; flex-wrap: wrap; gap: .55em; margin-top: 24px; font-size: clamp(12px, 1.4vw, 18px); font-weight: 500; letter-spacing: .17em; line-height: 1.5; text-transform: uppercase; }
-    .cover-city::after { content: " ·"; }
-    .hero-subtitle { max-width: 490px; margin-top: 22px; font-size: var(--font-body); line-height: 1.45; color: #51586b; }
-    .event-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 14px 0 0; padding: 0; list-style: none; font-size: var(--font-small); color: var(--muted); }
-    .event-meta li + li::before { content: "•"; margin-right: 14px; color: var(--teal); }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; }
-    .hero-mascot { position: absolute; right: calc(var(--hero-art-width) + .8%); bottom: clamp(24px, 4vh, 42px); width: clamp(112px, 10.5vw, 166px); transform: scaleX(-1); mix-blend-mode: multiply; pointer-events: none; }
-    .deadline { background: #dceef1; border-block: 1px solid rgba(45, 163, 186, .12); }
+    .event-banners { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .event-banner { display: flex; align-items: center; min-height: 38px; padding: 8px 12px; border: 1px solid transparent; border-radius: 6px; font-size: 13px; font-weight: 700; line-height: 1.35; }
+    .event-banner.date { background: #c5e5d2; border-color: #b5d7c2; }
+    .event-banner.hours { background: #f7dcf5; border-color: #ecc9e9; }
+    .event-banner.venue { padding: 0; background: #e6e1fb; border-color: #d4ccef; }
+    .event-banner.venue a { display: flex; align-items: center; justify-content: space-between; gap: 9px; width: 100%; min-height: 38px; padding: 8px 12px; border-radius: inherit; text-decoration: none; }
+    .event-banner.venue a:hover { background: #d9d0f5; text-decoration: underline; }
+    .hero-subtitle { max-width: 490px; margin-top: 18px; font-size: 16px; line-height: 1.45; color: #51586b; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 22px; }
+    .hero-attendance { font-size: 11px; line-height: 1.5; color: var(--muted); }
+    .hero-mascot { position: absolute; left: calc(100% - var(--hero-art-width)); bottom: clamp(24px, 4vh, 42px); width: clamp(150px, 14vw, 205px); transform: translateX(-50%) scaleX(-1); pointer-events: none; }
+    .mascot-ground { mix-blend-mode: multiply; }
+    .mascot-body { -webkit-mask-image: linear-gradient(#000 82%, transparent 91%); mask-image: linear-gradient(#000 82%, transparent 91%); }
+    .deadline { background: #8cd4de; border-block: 1px solid #5ab7c7; }
     .deadline-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 22px; }
     .deadline p { max-width: 1000px; font: inherit; line-height: 1.5; }
-    .deadline a { flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #93bec6; border-radius: 50%; font-size: 22px; text-decoration: none; }
+    .deadline a { flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid rgba(16, 20, 57, .25); border-radius: 50%; background: rgba(255, 255, 255, .35); font-size: 22px; text-decoration: none; }
     .deadline a:hover { background: white; }
 
     .about { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(56px, 8vh, 92px); background: #f7f3fc; }
@@ -94,15 +100,12 @@
     .section-art { position: absolute; z-index: -1; pointer-events: none; overflow: visible; }
     .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
     [data-scroll-art] { transform: translate3d(var(--art-x, 0px), var(--art-y, 0px), 0) rotate(var(--art-turn, 0deg)) scale(var(--art-scale, 1)); transform-origin: center; }
-    .about-art { width: clamp(640px, 90vw, 1300px); height: auto; aspect-ratio: 460 / 150; right: -8%; bottom: -110px; opacity: .42; }
-    .about-details { width: 300px; height: auto; aspect-ratio: 1 / 2; right: -65px; top: -100px; opacity: .42; }
+    .about-art { width: clamp(640px, 90vw, 1300px); height: auto; aspect-ratio: 460 / 150; right: -8%; bottom: -110px; opacity: .25; }
 
     /* Each desktop section is one viewport; content can grow for zoom or expanded terms. */
     .viewport-section { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; min-height: 100vh; min-height: 100svh; padding-block: clamp(20px, 3.2vh, 40px); }
     .registration { background: #e5f2f1; }
-    .registration-art { width: clamp(440px, 44vw, 700px); height: auto; aspect-ratio: 250 / 390; left: clamp(-280px, -17vw, -170px); bottom: -180px; opacity: .8; }
-    .registration-orbit { width: clamp(460px, 50vw, 780px); height: auto; aspect-ratio: 1; right: -19%; top: -170px; opacity: .72; }
-    .registration-details { width: 270px; height: auto; aspect-ratio: 260 / 620; right: -36px; bottom: -26px; opacity: .78; }
+    .registration-art { width: clamp(440px, 44vw, 700px); height: auto; aspect-ratio: 250 / 390; left: clamp(-280px, -17vw, -170px); bottom: -180px; opacity: .5; }
     .registration-grid { display: grid; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); gap: clamp(24px, 3vw, 40px); align-items: stretch; }
     .agenda, .registration-form { min-width: 0; border: 1px solid rgba(16, 20, 57, .1); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
     .agenda { display: flex; flex-direction: column; padding: clamp(20px, 3vh, 30px); background: rgba(255, 255, 255, .82); }
@@ -147,9 +150,8 @@
     .form-foot { margin-top: 7px; font-size: 11px; line-height: 1.4; color: var(--muted); }
 
     .location { background: #f8f5fd; }
-    .location-art { right: -8%; bottom: -120px; width: clamp(760px, 100vw, 1440px); height: auto; aspect-ratio: 490 / 180; opacity: .7; }
-    .location-orbit { width: clamp(420px, 42vw, 680px); height: auto; aspect-ratio: 1; left: -20%; top: -200px; opacity: .48; }
-    .location-details { width: clamp(280px, 30vw, 430px); height: auto; aspect-ratio: 360 / 600; right: -36px; top: -130px; opacity: .72; }
+    .location-art { right: -8%; bottom: -120px; width: clamp(760px, 100vw, 1440px); height: auto; aspect-ratio: 490 / 180; opacity: .38; }
+    .location-details { width: clamp(280px, 30vw, 430px); height: auto; aspect-ratio: 360 / 600; right: -36px; top: -130px; opacity: .45; }
     .location-heading { margin-bottom: 26px; }
     .location-heading .eyebrow { margin-bottom: 8px; color: #655ac3; font-size: 12px; }
     .location-heading h2 { font-size: clamp(28px, 3vw, 40px); font-weight: 800; }
@@ -172,24 +174,24 @@
     .metro-card .arrival-note { margin-bottom: 22px; }
     .location-link { position: relative; z-index: 1; align-self: flex-start; margin-top: auto; font-size: 12px; font-weight: 800; color: #6d28a7; }
     .metro-card > :not(.metro-motif) { position: relative; z-index: 1; }
-    .metro-motif { position: absolute; z-index: 0; right: -50px; bottom: -55px; width: 300px; height: auto; aspect-ratio: 190 / 100; opacity: .42; pointer-events: none; }
+    .metro-motif { position: absolute; z-index: 0; right: -50px; bottom: -55px; width: 300px; height: auto; aspect-ratio: 190 / 100; opacity: .3; pointer-events: none; }
     .footer { border-top: 1px solid var(--line); background: #fafafc; }
     .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-block: 26px; }
     .footer .brand img { width: 90px; height: auto; }
     .footer-copy { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: 12px; color: var(--muted); text-align: center; }
 
     @media (max-width: 1180px) {
-      .about-details { opacity: .18; }
-      .registration-details { right: -110px; opacity: .65; }
-      .location-details { right: -25px; opacity: .6; }
+      .location-details { right: -25px; opacity: .35; }
     }
     @media (min-width: 981px) and (max-height: 740px) {
       .hero-header { height: 64px; }
       .hero-header .brand { top: 18px; }
       .hero-layout { min-height: calc(100svh - 64px); padding-block: 6px 24px; }
-      .hero h1 { font-size: clamp(68px, 6.7vw, 94px); }
-      .cover-date, .hero-subtitle, .hero-actions { margin-top: 16px; }
-      .event-meta { margin-top: 10px; }
+      .hero h1 { font-size: clamp(90px, 9.5vw, 138px); }
+      .event-banners, .hero-subtitle, .hero-actions { margin-top: 16px; }
+      .event-banner, .event-banner.venue a { min-height: 34px; padding-block: 6px; font-size: 12px; }
+      .event-banner.venue { padding-block: 0; }
+      .hero-subtitle { font-size: 15px; }
       .agenda { padding: 20px; }
       .schedule { margin-block: 14px; }
       .schedule li { padding-block: 10px; }
@@ -221,8 +223,8 @@
       .registration-form { font-size: 14px; }
       .location-grid { gap: 20px; }
       .metro-card { padding: 24px; }
-      .hero-mascot { width: 108px; right: calc(var(--hero-art-width) + .8%); bottom: 30px; }
-      .hero h1 { font-size: clamp(58px, 7.5vw, 78px); }
+      .hero-mascot { width: 150px; bottom: 30px; }
+      .hero h1 { font-size: clamp(72px, 10.2vw, 100px); }
       .hero-layout { min-height: calc(min(100svh, 820px) - 80px); }
       .hero-subtitle { font-size: 16px; }
       .hero-actions { gap: 8px; }
@@ -239,22 +241,20 @@
       .hero-layout { display: block; width: auto; min-height: 0; margin-left: 0; padding: 12px var(--gutter) 30px max(8%, var(--gutter)); }
       .hero-copy { max-width: none; }
       .hero-heading { min-height: 246px; }
-      .hero h1 { width: 72%; font-size: clamp(42px, 12vw, 72px); line-height: 1.04; letter-spacing: .045em; }
-      .cover-date { max-width: 62%; flex-direction: column; gap: 2px; margin-top: 22px; font-size: 11px; letter-spacing: .13em; }
-      .cover-city::after { content: ""; }
-      .hero-subtitle { margin-top: 20px; font-size: 15px; }
-      .event-meta { font-size: 12px; }
-      .event-meta li:last-child { flex-basis: 100%; }
-      .event-meta li:last-child::before { content: none; }
+      .hero h1 { width: 74%; font-size: clamp(48px, 15vw, 88px); line-height: .95; letter-spacing: .025em; }
+      .event-banners { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 18px; }
+      .event-banner { min-height: 38px; font-size: 12px; padding: 8px 10px; }
+      .event-banner.venue { grid-column: 1 / -1; }
+      .event-banner.venue a { min-height: 38px; padding: 8px 10px; }
+      .hero-subtitle { margin-top: 18px; font-size: 15px; }
       .hero-actions { margin-top: 22px; }
       .hero-actions .button { min-height: 36px; padding-inline: 16px; }
-      .hero-mascot { top: 237px; right: 23.5%; bottom: auto; width: clamp(72px, 22.5vw, 88px); }
+      .hero-mascot { top: 205px; bottom: auto; width: clamp(108px, 30vw, 120px); }
       .deadline-inner { gap: 16px; padding-block: 20px; }
       .deadline a { width: 34px; height: 34px; }
       .about { padding-block: 48px 64px; }
       .about h2 { font-size: clamp(30px, 8.8vw, 42px); }
-      .about-art { width: 760px; right: -340px; bottom: -90px; opacity: .35; }
-      .about-details { width: 240px; right: -55px; top: 90px; opacity: .2; }
+      .about-art { width: 760px; right: -340px; bottom: -90px; opacity: .22; }
       .viewport-section { padding-block: 36px; }
       .agenda, .registration-form { padding: 18px; }
       .agenda h2, .form-title h2 { font-size: 22px; }
@@ -267,18 +267,15 @@
       .consent-option { min-height: 38px; font-size: 13px; }
       .form-submit { min-height: 42px; }
       .form-note, .form-foot { font-size: 12px; }
-      .registration-art { width: 480px; left: -285px; bottom: -50px; opacity: .65; }
-      .registration-orbit { width: 500px; right: -290px; top: -110px; opacity: .55; }
-      .registration-details { width: 240px; right: -90px; bottom: -15px; }
+      .registration-art { width: 480px; left: -285px; bottom: -50px; opacity: .45; }
       .location-heading { margin-bottom: 22px; }
       .location-heading h2 { font-size: 30px; }
       .location-grid { grid-template-columns: 1fr; }
       .map-frame { height: 250px; }
       .location-card-content, .metro-card { padding: 22px; }
       .location-card h3 { font-size: 22px; }
-      .location-art { width: 800px; right: -280px; bottom: -75px; opacity: .6; }
-      .location-orbit { width: 440px; left: -280px; top: -120px; }
-      .location-details { width: 300px; right: -50px; top: 0; opacity: .4; }
+      .location-art { width: 800px; right: -280px; bottom: -75px; opacity: .32; }
+      .location-details { width: 300px; right: -50px; top: 0; opacity: .25; }
       .metro-motif { width: 270px; }
       .footer-copy { font-size: 11px; }
     }
@@ -338,21 +335,22 @@
               <span class="title-line" aria-hidden="true">L<svg class="title-pin" viewBox="0 0 60 76" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M30 0C13.43 0 0 13.43 0 30c0 14.8 16.5 32.5 30 46 13.5-13.5 30-31.2 30-46C60 13.43 46.57 0 30 0Zm0 18a12 12 0 1 0 0 24 12 12 0 0 0 0-24Z"/></svg>vers</span>
               <span class="title-line" aria-hidden="true">Day</span>
             </h1>
-            <p class="cover-date"><span class="cover-city">Milano</span><time datetime="2026-11-26">26 novembre 2026</time></p>
           </div>
-          <p class="hero-subtitle">Una giornata dedicata al mondo dei dati e a chi, ogni giorno, li respira.</p>
-          <ul class="event-meta" aria-label="Quando e dove">
-            <li>10.30–17.00</li>
-            <li>In presenza · Partecipazione gratuita</li>
-            <li><a href="#come-arrivare">Milano, Copernico Blend Tower</a></li>
+          <ul class="event-banners" aria-label="Data, orario e sede">
+            <li class="event-banner date"><time datetime="2026-11-26">Giovedì 26 novembre 2026</time></li>
+            <li class="event-banner hours">10.30–17.00</li>
+            <li class="event-banner venue"><a href="https://www.coperni.co/en/node/184" target="_blank" rel="noopener noreferrer">Milano, Spazio Copernico <span aria-hidden="true">↗</span></a></li>
           </ul>
+          <p class="hero-subtitle">Una giornata dedicata al mondo dei dati e a chi, ogni giorno, li respira.</p>
           <div class="hero-actions">
             <a class="button" href="#iscrizione">Registrati</a>
             <a class="button secondary" href="#di-cosa-parleremo">Scopri di più</a>
+            <span class="hero-attendance">In presenza · Partecipazione gratuita</span>
           </div>
         </div>
       </div>
-      <img class="hero-mascot" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
+      <img class="hero-mascot mascot-ground" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
+      <img class="hero-mascot mascot-body" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
     </section>
 
     <div class="deadline">
@@ -363,13 +361,6 @@
     </div>
 
     <section class="about" id="di-cosa-parleremo" aria-labelledby="about-title">
-      <svg class="section-art about-details" viewBox="0 0 300 600" data-scroll-art data-scroll-depth="70" data-scroll-drift="-16" aria-hidden="true" focusable="false">
-        <path fill="#6961d8" opacity=".45" d="M0 0h160v100a80 80 0 0 1-160 0z"/>
-        <use href="#cover-violet-column" x="170" y="0" width="110" height="330"/>
-        <circle cx="108" cy="248" r="18" fill="#f2e900"/>
-        <path fill="#acd9be" opacity=".7" d="M10 282a85 85 0 0 1 0 170z"/>
-        <use href="#cover-yellow-column" x="155" y="380" width="115" height="216"/>
-      </svg>
       <svg class="section-art about-art" viewBox="0 0 460 150" data-scroll-art data-scroll-depth="-90" data-scroll-drift="36" data-scroll-turn="-3" aria-hidden="true" focusable="false">
         <path d="M-20 112C40 112 40 26 105 26S170 112 235 112 300 26 365 26 430 112 495 112" fill="none" stroke="#fac9fa" stroke-width="36"/>
         <circle cx="358" cy="101" r="14" fill="#6961d8"/>
@@ -388,21 +379,10 @@
     </section>
 
     <section class="registration viewport-section" id="iscrizione" aria-label="Programma e iscrizione">
-      <svg class="section-art registration-details" viewBox="0 0 260 620" data-scroll-art data-scroll-depth="-65" data-scroll-drift="18" data-scroll-turn="-2" aria-hidden="true" focusable="false">
-        <use href="#cover-violet-column" x="110" y="0" width="95" height="285"/>
-        <circle cx="30" cy="70" r="28" fill="#f2e900"/>
-        <path fill="#acd9be" d="M175 300a85 85 0 0 1 0 170z"/>
-        <use href="#cover-yellow-column" x="30" y="360" width="135" height="254"/>
-        <path fill="#6961d8" d="M260 530a90 90 0 0 0-90 90h90z"/>
-      </svg>
       <svg class="section-art registration-art" viewBox="0 0 250 390" data-scroll-art data-scroll-depth="100" data-scroll-drift="-24" data-scroll-turn="4" aria-hidden="true" focusable="false">
         <path fill="#acd9be" d="M0 0h130v76a65 65 0 0 1-130 0z"/>
         <path d="M30 410V285c0-62 140-62 140-124V78" fill="none" stroke="#fac9fa" stroke-width="32"/>
         <path fill="#6961d8" d="M0 258a132 132 0 0 1 132 132H0z"/>
-        <circle cx="160" cy="233" r="14" fill="#f2e900"/>
-      </svg>
-      <svg class="section-art registration-orbit" viewBox="0 0 260 260" data-scroll-art data-scroll-depth="-85" data-scroll-drift="30" aria-hidden="true" focusable="false">
-        <circle cx="130" cy="130" r="110" fill="none" stroke="#fac9fa" stroke-width="36"/>
       </svg>
       <div class="registration-grid wrap">
         <div class="agenda" id="programma">
@@ -431,7 +411,7 @@
               <div><h3>Foto di gruppo e bye bye</h3></div>
             </li>
           </ol>
-          <div class="venue-note"><i class="venue-dot" aria-hidden="true"></i><p><strong>Milano, Copernico Blend Tower</strong><span>Piazza IV Novembre 7 · <a href="#come-arrivare">Come arrivare</a></span></p></div>
+          <div class="venue-note"><i class="venue-dot" aria-hidden="true"></i><p><strong><a href="https://www.coperni.co/en/node/184" target="_blank" rel="noopener noreferrer">Milano, Copernico Blend Tower</a></strong><span>Piazza IV Novembre 7 · <a href="#come-arrivare">Come arrivare</a></span></p></div>
         </div>
 
         <div class="registration-form">
@@ -506,17 +486,10 @@
       <svg class="section-art location-details" viewBox="0 0 360 600" data-scroll-art data-scroll-depth="65" data-scroll-drift="-16" aria-hidden="true" focusable="false">
         <use href="#cover-violet-column" x="240" y="0" width="100" height="300"/>
         <use href="#cover-yellow-column" x="240" y="340" width="100" height="188"/>
-        <path fill="#acd9be" d="M0 150a90 90 0 0 1 0 180z"/>
-        <circle cx="160" cy="160" r="24" fill="#f2e900"/>
-        <path fill="#6961d8" d="M0 450a150 150 0 0 1 150 150H0z"/>
-      </svg>
-      <svg class="section-art location-orbit" viewBox="0 0 260 260" data-scroll-art data-scroll-depth="-80" data-scroll-drift="-22" aria-hidden="true" focusable="false">
-        <circle cx="130" cy="130" r="104" fill="none" stroke="#acd9be" stroke-width="44"/>
       </svg>
       <svg class="section-art location-art" viewBox="0 0 490 180" data-scroll-art data-scroll-depth="95" data-scroll-drift="-40" data-scroll-turn="3" aria-hidden="true" focusable="false">
         <path d="M-20 112C45 112 45 30 110 30S175 112 240 112 305 30 370 30 435 112 500 112" fill="none" stroke="#fac9fa" stroke-width="40"/>
         <circle cx="398" cy="126" r="58" fill="#acd9be"/>
-        <circle cx="240" cy="37" r="12" fill="#6961d8"/>
       </svg>
       <div class="location-inner wrap">
         <div class="location-heading">
