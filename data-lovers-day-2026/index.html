@@ -56,12 +56,14 @@
     .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     /* Live HTML typography and native SVG geometry: no poster image in the UI. */
-    .hero { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; background: #fbfdfd; }
-    .hero-rail { position: absolute; z-index: -1; inset: 0 auto 0 0; width: 5.9%; height: 100%; }
-    .hero-pattern { position: absolute; z-index: -1; inset: 0 0 0 auto; width: 38.7%; height: 100%; background: var(--teal); }
+    .hero { --hero-art-width: 41%; position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; background: #fbfdfd; }
+    .hero-rail { position: absolute; z-index: -1; inset: 0 auto 0 0; width: 6.3%; height: 100%; overflow: hidden; }
+    .hero-pattern { position: absolute; z-index: -1; inset: 0 0 0 auto; width: var(--hero-art-width); height: 100%; overflow: hidden; background: var(--teal); }
+    .hero-shapes { --art-scale: 1.065; transform-box: view-box; }
+    .rail-shapes { transform-box: view-box; }
     .hero-header { position: relative; height: 80px; }
-    .hero-header .brand { position: absolute; right: calc(38.7% + 28px); top: 24px; }
-    .hero-layout { position: relative; display: flex; align-items: center; width: 49%; min-height: calc(100vh - 80px); min-height: calc(100svh - 80px); margin-left: 9.5%; padding-block: 12px 40px; }
+    .hero-header .brand { position: absolute; right: calc(var(--hero-art-width) + 28px); top: 24px; }
+    .hero-layout { position: relative; display: flex; align-items: center; width: calc(88% - var(--hero-art-width)); min-height: calc(100vh - 80px); min-height: calc(100svh - 80px); margin-left: 9.5%; padding-block: 12px 40px; }
     .hero-copy { width: 100%; max-width: 520px; }
     .hero h1 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(70px, 7.5vw, 110px); font-weight: 400; line-height: 1.01; letter-spacing: .065em; text-transform: uppercase; }
     .title-line { display: block; white-space: nowrap; }
@@ -72,7 +74,7 @@
     .event-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 14px 0 0; padding: 0; list-style: none; font-size: var(--font-small); color: var(--muted); }
     .event-meta li + li::before { content: "•"; margin-right: 14px; color: var(--teal); }
     .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; }
-    .hero-mascot { position: absolute; right: 39.8%; bottom: clamp(24px, 4vh, 42px); width: clamp(112px, 10.5vw, 166px); transform: scaleX(-1); mix-blend-mode: multiply; pointer-events: none; }
+    .hero-mascot { position: absolute; right: calc(var(--hero-art-width) + .8%); bottom: clamp(24px, 4vh, 42px); width: clamp(112px, 10.5vw, 166px); transform: scaleX(-1); mix-blend-mode: multiply; pointer-events: none; }
     .deadline { background: #dceef1; border-block: 1px solid rgba(45, 163, 186, .12); }
     .deadline-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 22px; }
     .deadline p { max-width: 1000px; font: inherit; line-height: 1.5; }
@@ -90,13 +92,14 @@
     .topic-line { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 26px; font-size: 12px; font-weight: 700; }
     .topic-line i { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
     .section-art { position: absolute; z-index: -1; pointer-events: none; overflow: visible; }
-    .about-art { width: min(38vw, 460px); height: 150px; right: -30px; bottom: -54px; opacity: .7; }
+    [data-scroll-art] { transform: translate3d(var(--art-x, 0px), var(--art-y, 0px), 0) rotate(var(--art-turn, 0deg)) scale(var(--art-scale, 1)); transform-origin: center; }
+    .about-art { width: clamp(640px, 90vw, 1300px); height: auto; aspect-ratio: 460 / 150; right: -8%; bottom: -110px; opacity: .42; }
 
     /* Each desktop section is one viewport; content can grow for zoom or expanded terms. */
     .viewport-section { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; min-height: 100vh; min-height: 100svh; padding-block: clamp(20px, 3.2vh, 40px); }
     .registration { background: #e5f2f1; }
-    .registration-art { width: 250px; height: 390px; left: -115px; bottom: -35px; }
-    .registration-orbit { width: 260px; height: 260px; right: -145px; top: -90px; opacity: .8; }
+    .registration-art { width: clamp(440px, 44vw, 700px); height: auto; aspect-ratio: 250 / 390; left: clamp(-280px, -17vw, -170px); bottom: -180px; opacity: .8; }
+    .registration-orbit { width: clamp(460px, 50vw, 780px); height: auto; aspect-ratio: 1; right: -19%; top: -170px; opacity: .72; }
     .registration-grid { display: grid; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); gap: clamp(24px, 3vw, 40px); align-items: stretch; }
     .agenda, .registration-form { min-width: 0; border: 1px solid rgba(16, 20, 57, .1); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
     .agenda { display: flex; flex-direction: column; padding: clamp(20px, 3vh, 30px); background: rgba(255, 255, 255, .82); }
@@ -141,7 +144,8 @@
     .form-foot { margin-top: 7px; font-size: 11px; line-height: 1.4; color: var(--muted); }
 
     .location { background: #f8f5fd; }
-    .location-art { right: -80px; bottom: -70px; width: 490px; height: 180px; }
+    .location-art { right: -8%; bottom: -120px; width: clamp(760px, 100vw, 1440px); height: auto; aspect-ratio: 490 / 180; opacity: .7; }
+    .location-orbit { width: clamp(420px, 42vw, 680px); height: auto; aspect-ratio: 1; left: -20%; top: -200px; opacity: .48; }
     .location-heading { margin-bottom: 26px; }
     .location-heading .eyebrow { margin-bottom: 8px; color: #655ac3; font-size: 12px; }
     .location-heading h2 { font-size: clamp(28px, 3vw, 40px); font-weight: 800; }
@@ -163,7 +167,8 @@
     .metro-line small { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
     .metro-card .arrival-note { margin-bottom: 22px; }
     .location-link { position: relative; z-index: 1; align-self: flex-start; margin-top: auto; font-size: 12px; font-weight: 800; color: #6d28a7; }
-    .metro-motif { position: absolute; right: -45px; bottom: -40px; width: 190px; height: 100px; opacity: .6; pointer-events: none; }
+    .metro-card > :not(.metro-motif) { position: relative; z-index: 1; }
+    .metro-motif { position: absolute; z-index: 0; right: -50px; bottom: -55px; width: 300px; height: auto; aspect-ratio: 190 / 100; opacity: .42; pointer-events: none; }
     .footer { border-top: 1px solid var(--line); background: #fafafc; }
     .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-block: 26px; }
     .footer .brand img { width: 90px; height: auto; }
@@ -207,16 +212,16 @@
       .registration-form { font-size: 14px; }
       .location-grid { gap: 20px; }
       .metro-card { padding: 24px; }
-      .hero-mascot { width: 108px; right: 39.5%; bottom: 30px; }
+      .hero-mascot { width: 108px; right: calc(var(--hero-art-width) + .8%); bottom: 30px; }
       .hero h1 { font-size: clamp(58px, 7.5vw, 78px); }
-      .hero-layout { width: 49%; min-height: calc(min(100svh, 820px) - 80px); }
+      .hero-layout { min-height: calc(min(100svh, 820px) - 80px); }
       .hero-subtitle { font-size: 16px; }
       .hero-actions { gap: 8px; }
       .hero-actions .button { font-size: 14px; }
     }
     @media (max-width: 680px) {
       :root { --gutter: 18px; --font-body: .9375rem; --font-small: .75rem; }
-      .hero { min-height: 0; }
+      .hero { --hero-art-width: 24%; min-height: 0; }
       .hero-header { height: 72px; }
       .hero-header .brand { right: calc(24% + 14px); top: 20px; }
       .hero-header .brand img { width: 76px; }
@@ -239,7 +244,7 @@
       .deadline a { width: 34px; height: 34px; }
       .about { padding-block: 48px 64px; }
       .about h2 { font-size: clamp(30px, 8.8vw, 42px); }
-      .about-art { width: 250px; bottom: -58px; }
+      .about-art { width: 760px; right: -340px; bottom: -90px; opacity: .35; }
       .viewport-section { padding-block: 36px; }
       .agenda, .registration-form { padding: 18px; }
       .agenda h2, .form-title h2 { font-size: 22px; }
@@ -252,19 +257,23 @@
       .consent-option { min-height: 38px; font-size: 13px; }
       .form-submit { min-height: 42px; }
       .form-note, .form-foot { font-size: 12px; }
-      .registration-art { left: -170px; opacity: .7; }
+      .registration-art { width: 480px; left: -285px; bottom: -50px; opacity: .65; }
+      .registration-orbit { width: 500px; right: -290px; top: -110px; opacity: .55; }
       .location-heading { margin-bottom: 22px; }
       .location-heading h2 { font-size: 30px; }
       .location-grid { grid-template-columns: 1fr; }
       .map-frame { height: 250px; }
       .location-card-content, .metro-card { padding: 22px; }
       .location-card h3 { font-size: 22px; }
-      .metro-motif { width: 170px; }
+      .location-art { width: 800px; right: -280px; bottom: -75px; opacity: .6; }
+      .location-orbit { width: 440px; left: -280px; top: -120px; }
+      .metro-motif { width: 270px; }
       .footer-copy { font-size: 11px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition: none !important; }
+      [data-scroll-art] { transform: scale(var(--art-scale, 1)) !important; will-change: auto !important; }
     }
   </style>
 </head>
@@ -274,10 +283,13 @@
     <section class="hero" aria-labelledby="event-title">
       <svg class="hero-rail" viewBox="0 0 64 535" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <path fill="#2da3ba" d="M0 0h64v535H0z"/>
-        <path fill="#f2e900" d="M0 0h64v18c0 36-26 64-60 64H0zM0 416c18-7 40-9 64-8v127H0z"/>
-        <path fill="#acd9be" d="M0 182h64v86c0 33-28 65-64 68z"/>
+        <g class="rail-shapes" data-scroll-art data-scroll-depth="-24">
+          <path fill="#f2e900" d="M0 0h64v18c0 36-26 64-60 64H0zM0 416c18-7 40-9 64-8v127H0z"/>
+          <path fill="#acd9be" d="M0 182h64v86c0 33-28 65-64 68z"/>
+        </g>
       </svg>
       <svg class="hero-pattern" viewBox="0 0 414 535" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <g class="hero-shapes" data-scroll-art data-scroll-depth="44">
         <path fill="#6961d8" d="M0 0h106v29a53 53 0 0 1-106 0zM194 0h89v270h-89zM0 370a165 165 0 0 1 165 165H0z"/>
         <path fill="#acd9be" d="M0 80a54 54 0 0 1 0 108z"/>
         <circle cx="80" cy="134" r="13.5" fill="#f2e900"/>
@@ -287,6 +299,7 @@
         <path fill="#fff" d="m194 177 89-24v46zm0 28 89 22-89 23z"/>
         <path fill="#f2e900" d="M226 377h84v158h-84z"/>
         <path fill="#fff" d="m263 377 24 89 23-89zm-37 158 24-80 22 80z"/>
+        </g>
       </svg>
       <header class="hero-header">
         <a class="brand" href="../" aria-label="Direct Channel, pagina principale">
@@ -326,7 +339,7 @@
     </div>
 
     <section class="about" id="di-cosa-parleremo" aria-labelledby="about-title">
-      <svg class="section-art about-art" viewBox="0 0 460 150" aria-hidden="true" focusable="false">
+      <svg class="section-art about-art" viewBox="0 0 460 150" data-scroll-art data-scroll-depth="-90" data-scroll-drift="36" data-scroll-turn="-3" aria-hidden="true" focusable="false">
         <path d="M-20 112C40 112 40 26 105 26S170 112 235 112 300 26 365 26 430 112 495 112" fill="none" stroke="#fac9fa" stroke-width="36"/>
         <circle cx="358" cy="101" r="14" fill="#6961d8"/>
       </svg>
@@ -344,13 +357,13 @@
     </section>
 
     <section class="registration viewport-section" id="iscrizione" aria-label="Programma e iscrizione">
-      <svg class="section-art registration-art" viewBox="0 0 250 390" aria-hidden="true" focusable="false">
+      <svg class="section-art registration-art" viewBox="0 0 250 390" data-scroll-art data-scroll-depth="100" data-scroll-drift="-24" data-scroll-turn="4" aria-hidden="true" focusable="false">
         <path fill="#acd9be" d="M0 0h130v76a65 65 0 0 1-130 0z"/>
         <path d="M30 410V285c0-62 140-62 140-124V78" fill="none" stroke="#fac9fa" stroke-width="32"/>
         <path fill="#6961d8" d="M0 258a132 132 0 0 1 132 132H0z"/>
         <circle cx="160" cy="233" r="14" fill="#f2e900"/>
       </svg>
-      <svg class="section-art registration-orbit" viewBox="0 0 260 260" aria-hidden="true" focusable="false">
+      <svg class="section-art registration-orbit" viewBox="0 0 260 260" data-scroll-art data-scroll-depth="-85" data-scroll-drift="30" aria-hidden="true" focusable="false">
         <circle cx="130" cy="130" r="110" fill="none" stroke="#fac9fa" stroke-width="36"/>
       </svg>
       <div class="registration-grid wrap">
@@ -452,7 +465,10 @@
     </section>
 
     <section class="location viewport-section" id="come-arrivare" aria-labelledby="location-title">
-      <svg class="section-art location-art" viewBox="0 0 490 180" aria-hidden="true" focusable="false">
+      <svg class="section-art location-orbit" viewBox="0 0 260 260" data-scroll-art data-scroll-depth="-80" data-scroll-drift="-22" aria-hidden="true" focusable="false">
+        <circle cx="130" cy="130" r="104" fill="none" stroke="#acd9be" stroke-width="44"/>
+      </svg>
+      <svg class="section-art location-art" viewBox="0 0 490 180" data-scroll-art data-scroll-depth="95" data-scroll-drift="-40" data-scroll-turn="3" aria-hidden="true" focusable="false">
         <path d="M-20 112C45 112 45 30 110 30S175 112 240 112 305 30 370 30 435 112 500 112" fill="none" stroke="#fac9fa" stroke-width="40"/>
         <circle cx="398" cy="126" r="58" fill="#acd9be"/>
         <circle cx="240" cy="37" r="12" fill="#6961d8"/>
@@ -482,7 +498,7 @@
             </ul>
             <p class="arrival-note">Dalla Stazione Centrale prosegui a piedi verso <strong>Piazza IV Novembre 7</strong>: Blend Tower si trova a pochi passi dalla stazione.</p>
             <a class="location-link" href="https://giromilano.atm.it/" target="_blank" rel="noopener noreferrer">Consulta percorsi e orari su ATM <span aria-hidden="true">↗</span></a>
-            <svg class="metro-motif" viewBox="0 0 190 100" aria-hidden="true" focusable="false">
+            <svg class="metro-motif" viewBox="0 0 190 100" data-scroll-art data-scroll-depth="24" data-scroll-drift="12" aria-hidden="true" focusable="false">
               <path d="M-15 80C25 80 25 20 65 20S105 80 145 80 185 20 225 20" fill="none" stroke="#fac9fa" stroke-width="22"/>
             </svg>
           </article>
@@ -490,7 +506,6 @@
       </div>
     </section>
   </main>
-
   <footer class="footer">
     <div class="footer-inner wrap">
       <a class="brand" href="../" aria-label="Direct Channel, pagina principale"><img src="assets/direct-channel-logo.png" alt="Direct Channel" width="800" height="376" loading="lazy"></a>
@@ -502,5 +517,66 @@
       </div>
     </div>
   </footer>
+  <script>
+    (() => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const layers = Array.from(document.querySelectorAll('[data-scroll-art]'), node => ({
+        node,
+        section: node.closest('section'),
+        depth: Number(node.dataset.scrollDepth || 0),
+        drift: Number(node.dataset.scrollDrift || 0),
+        turn: Number(node.dataset.scrollTurn || 0)
+      }));
+      let frame = 0;
+
+      // One update per scroll frame; only decorative transforms change.
+      function paint() {
+        frame = 0;
+        if (reducedMotion.matches) return;
+        const height = window.innerHeight;
+        const strength = window.innerWidth <= 680 ? .4 : 1;
+        const bounds = new Map();
+        layers.forEach(({ section }) => {
+          if (!bounds.has(section)) bounds.set(section, section.getBoundingClientRect());
+        });
+
+        layers.forEach(({ node, section, depth, drift, turn }) => {
+          const rect = bounds.get(section);
+          const visible = rect.bottom > 0 && rect.top < height;
+          node.style.willChange = visible ? 'transform' : '';
+          if (!visible) return;
+
+          const progress = Math.max(-1, Math.min(1,
+            (height / 2 - rect.top - rect.height / 2) / ((height + rect.height) / 2)
+          ));
+          node.style.setProperty('--art-y', `${(progress * depth * strength).toFixed(2)}px`);
+          node.style.setProperty('--art-x', `${(progress * drift * strength).toFixed(2)}px`);
+          node.style.setProperty('--art-turn', `${(progress * turn * strength).toFixed(2)}deg`);
+        });
+      }
+
+      function schedule() {
+        if (!reducedMotion.matches && !frame) frame = window.requestAnimationFrame(paint);
+      }
+
+      function applyMotionPreference() {
+        if (frame) window.cancelAnimationFrame(frame);
+        frame = 0;
+        layers.forEach(({ node }) => {
+          ['--art-x', '--art-y', '--art-turn'].forEach(name => node.style.removeProperty(name));
+          node.style.willChange = '';
+        });
+        schedule();
+      }
+
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule, { passive: true });
+      window.addEventListener('pageshow', schedule);
+      document.addEventListener('toggle', schedule, true);
+      reducedMotion.addEventListener('change', applyMotionPreference);
+      if (document.fonts) document.fonts.ready.then(schedule);
+      schedule();
+    })();
+  </script>
 </body>
 </html>
