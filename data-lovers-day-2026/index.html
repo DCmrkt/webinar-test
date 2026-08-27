@@ -92,14 +92,17 @@
     .topic-line { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 26px; font-size: 12px; font-weight: 700; }
     .topic-line i { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
     .section-art { position: absolute; z-index: -1; pointer-events: none; overflow: visible; }
+    .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
     [data-scroll-art] { transform: translate3d(var(--art-x, 0px), var(--art-y, 0px), 0) rotate(var(--art-turn, 0deg)) scale(var(--art-scale, 1)); transform-origin: center; }
     .about-art { width: clamp(640px, 90vw, 1300px); height: auto; aspect-ratio: 460 / 150; right: -8%; bottom: -110px; opacity: .42; }
+    .about-details { width: 300px; height: auto; aspect-ratio: 1 / 2; right: -65px; top: -100px; opacity: .42; }
 
     /* Each desktop section is one viewport; content can grow for zoom or expanded terms. */
     .viewport-section { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; min-height: 100vh; min-height: 100svh; padding-block: clamp(20px, 3.2vh, 40px); }
     .registration { background: #e5f2f1; }
     .registration-art { width: clamp(440px, 44vw, 700px); height: auto; aspect-ratio: 250 / 390; left: clamp(-280px, -17vw, -170px); bottom: -180px; opacity: .8; }
     .registration-orbit { width: clamp(460px, 50vw, 780px); height: auto; aspect-ratio: 1; right: -19%; top: -170px; opacity: .72; }
+    .registration-details { width: 270px; height: auto; aspect-ratio: 260 / 620; right: -36px; bottom: -26px; opacity: .78; }
     .registration-grid { display: grid; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); gap: clamp(24px, 3vw, 40px); align-items: stretch; }
     .agenda, .registration-form { min-width: 0; border: 1px solid rgba(16, 20, 57, .1); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
     .agenda { display: flex; flex-direction: column; padding: clamp(20px, 3vh, 30px); background: rgba(255, 255, 255, .82); }
@@ -146,6 +149,7 @@
     .location { background: #f8f5fd; }
     .location-art { right: -8%; bottom: -120px; width: clamp(760px, 100vw, 1440px); height: auto; aspect-ratio: 490 / 180; opacity: .7; }
     .location-orbit { width: clamp(420px, 42vw, 680px); height: auto; aspect-ratio: 1; left: -20%; top: -200px; opacity: .48; }
+    .location-details { width: clamp(280px, 30vw, 430px); height: auto; aspect-ratio: 360 / 600; right: -36px; top: -130px; opacity: .72; }
     .location-heading { margin-bottom: 26px; }
     .location-heading .eyebrow { margin-bottom: 8px; color: #655ac3; font-size: 12px; }
     .location-heading h2 { font-size: clamp(28px, 3vw, 40px); font-weight: 800; }
@@ -174,6 +178,11 @@
     .footer .brand img { width: 90px; height: auto; }
     .footer-copy { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: 12px; color: var(--muted); text-align: center; }
 
+    @media (max-width: 1180px) {
+      .about-details { opacity: .18; }
+      .registration-details { right: -110px; opacity: .65; }
+      .location-details { right: -105px; opacity: .6; }
+    }
     @media (min-width: 981px) and (max-height: 740px) {
       .hero-header { height: 64px; }
       .hero-header .brand { top: 18px; }
@@ -245,6 +254,7 @@
       .about { padding-block: 48px 64px; }
       .about h2 { font-size: clamp(30px, 8.8vw, 42px); }
       .about-art { width: 760px; right: -340px; bottom: -90px; opacity: .35; }
+      .about-details { width: 240px; right: -110px; top: 90px; opacity: .15; }
       .viewport-section { padding-block: 36px; }
       .agenda, .registration-form { padding: 18px; }
       .agenda h2, .form-title h2 { font-size: 22px; }
@@ -259,6 +269,7 @@
       .form-note, .form-foot { font-size: 12px; }
       .registration-art { width: 480px; left: -285px; bottom: -50px; opacity: .65; }
       .registration-orbit { width: 500px; right: -290px; top: -110px; opacity: .55; }
+      .registration-details { width: 240px; right: -90px; bottom: -15px; }
       .location-heading { margin-bottom: 22px; }
       .location-heading h2 { font-size: 30px; }
       .location-grid { grid-template-columns: 1fr; }
@@ -267,6 +278,7 @@
       .location-card h3 { font-size: 22px; }
       .location-art { width: 800px; right: -280px; bottom: -75px; opacity: .6; }
       .location-orbit { width: 440px; left: -280px; top: -120px; }
+      .location-details { width: 300px; right: -135px; top: 0; opacity: .4; }
       .metro-motif { width: 270px; }
       .footer-copy { font-size: 11px; }
     }
@@ -280,6 +292,18 @@
 <body>
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
   <main id="contenuto" data-layout="native-viewport">
+    <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="cover-violet-column" viewBox="0 0 90 270">
+          <path fill="#6961d8" d="M0 0h90v270H0z"/>
+          <path fill="#fff" d="m0 177 90-24v46zm0 28 90 22-90 23z"/>
+        </symbol>
+        <symbol id="cover-yellow-column" viewBox="0 0 84 158">
+          <path fill="#f2e900" d="M0 0h84v158H0z"/>
+          <path fill="#fff" d="m37 0 24 89L84 0zM0 158l24-80 22 80z"/>
+        </symbol>
+      </defs>
+    </svg>
     <section class="hero" aria-labelledby="event-title">
       <svg class="hero-rail" viewBox="0 0 64 535" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <path fill="#2da3ba" d="M0 0h64v535H0z"/>
@@ -339,6 +363,13 @@
     </div>
 
     <section class="about" id="di-cosa-parleremo" aria-labelledby="about-title">
+      <svg class="section-art about-details" viewBox="0 0 300 600" data-scroll-art data-scroll-depth="70" data-scroll-drift="-16" aria-hidden="true" focusable="false">
+        <path fill="#6961d8" opacity=".45" d="M0 0h160v100a80 80 0 0 1-160 0z"/>
+        <use href="#cover-violet-column" x="170" y="0" width="110" height="330"/>
+        <circle cx="108" cy="248" r="18" fill="#f2e900"/>
+        <path fill="#acd9be" opacity=".7" d="M10 282a85 85 0 0 1 0 170z"/>
+        <use href="#cover-yellow-column" x="155" y="380" width="115" height="216"/>
+      </svg>
       <svg class="section-art about-art" viewBox="0 0 460 150" data-scroll-art data-scroll-depth="-90" data-scroll-drift="36" data-scroll-turn="-3" aria-hidden="true" focusable="false">
         <path d="M-20 112C40 112 40 26 105 26S170 112 235 112 300 26 365 26 430 112 495 112" fill="none" stroke="#fac9fa" stroke-width="36"/>
         <circle cx="358" cy="101" r="14" fill="#6961d8"/>
@@ -357,6 +388,13 @@
     </section>
 
     <section class="registration viewport-section" id="iscrizione" aria-label="Programma e iscrizione">
+      <svg class="section-art registration-details" viewBox="0 0 260 620" data-scroll-art data-scroll-depth="-65" data-scroll-drift="18" data-scroll-turn="-2" aria-hidden="true" focusable="false">
+        <use href="#cover-violet-column" x="110" y="0" width="95" height="285"/>
+        <circle cx="30" cy="70" r="28" fill="#f2e900"/>
+        <path fill="#acd9be" d="M175 300a85 85 0 0 1 0 170z"/>
+        <use href="#cover-yellow-column" x="30" y="360" width="135" height="254"/>
+        <path fill="#6961d8" d="M260 530a90 90 0 0 0-90 90h90z"/>
+      </svg>
       <svg class="section-art registration-art" viewBox="0 0 250 390" data-scroll-art data-scroll-depth="100" data-scroll-drift="-24" data-scroll-turn="4" aria-hidden="true" focusable="false">
         <path fill="#acd9be" d="M0 0h130v76a65 65 0 0 1-130 0z"/>
         <path d="M30 410V285c0-62 140-62 140-124V78" fill="none" stroke="#fac9fa" stroke-width="32"/>
@@ -465,6 +503,13 @@
     </section>
 
     <section class="location viewport-section" id="come-arrivare" aria-labelledby="location-title">
+      <svg class="section-art location-details" viewBox="0 0 360 600" data-scroll-art data-scroll-depth="65" data-scroll-drift="-16" aria-hidden="true" focusable="false">
+        <use href="#cover-violet-column" x="240" y="0" width="100" height="300"/>
+        <use href="#cover-yellow-column" x="240" y="340" width="100" height="188"/>
+        <path fill="#acd9be" d="M0 150a90 90 0 0 1 0 180z"/>
+        <circle cx="160" cy="160" r="24" fill="#f2e900"/>
+        <path fill="#6961d8" d="M0 450a150 150 0 0 1 150 150H0z"/>
+      </svg>
       <svg class="section-art location-orbit" viewBox="0 0 260 260" data-scroll-art data-scroll-depth="-80" data-scroll-drift="-22" aria-hidden="true" focusable="false">
         <circle cx="130" cy="130" r="104" fill="none" stroke="#acd9be" stroke-width="44"/>
       </svg>
