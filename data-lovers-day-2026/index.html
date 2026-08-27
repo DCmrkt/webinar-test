@@ -78,9 +78,8 @@
     .hero-subtitle { max-width: 490px; margin-top: 18px; font-size: 16px; line-height: 1.45; color: #51586b; }
     .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 22px; }
     .hero-attendance { font-size: 11px; line-height: 1.5; color: var(--muted); }
-    .hero-mascot { position: absolute; left: calc(100% - var(--hero-art-width)); bottom: clamp(24px, 4vh, 42px); width: clamp(150px, 14vw, 205px); transform: translateX(-50%) scaleX(-1); pointer-events: none; }
-    .mascot-ground { mix-blend-mode: multiply; }
-    .mascot-body { -webkit-mask-image: linear-gradient(#000 82%, transparent 91%); mask-image: linear-gradient(#000 82%, transparent 91%); }
+    /* Clip only the leftover floor; normal compositing preserves the gray paws. */
+    .hero-mascot { position: absolute; left: calc(100% - var(--hero-art-width)); bottom: clamp(24px, 4vh, 42px); width: clamp(150px, 14vw, 205px); transform: translateX(-50%) scaleX(-1); clip-path: url(#mascot-cutout); pointer-events: none; }
     .deadline { background: #8cd4de; border-block: 1px solid #5ab7c7; }
     .deadline-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 22px; }
     .deadline p { max-width: 1000px; font: inherit; line-height: 1.5; }
@@ -292,6 +291,9 @@
   <main id="contenuto" data-layout="native-viewport">
     <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
       <defs>
+        <clipPath id="mascot-cutout" clipPathUnits="objectBoundingBox">
+          <path transform="scale(.001111111111 .001141552511)" d="M0 0H900V825H620C590 827 526 823 491 818L471 809C469 820 480 837 484 848C486 853 483 857 477 858L442 859C435 859 430 856 428 850L430 835C427 825 425 814 423 798L418 798C400 809 381 816 359 819L338 821C337 839 334 854 324 862C316 871 298 870 286 865C280 861 280 849 285 840L292 823C258 821 230 814 213 800C193 785 183 760 178 734L175 771C176 795 170 815 158 823C139 833 82 845 50 843L22 841C18 840 16 837 16 833H0Z"/>
+        </clipPath>
         <symbol id="cover-violet-column" viewBox="0 0 90 270">
           <path fill="#6961d8" d="M0 0h90v270H0z"/>
           <path fill="#fff" d="m0 177 90-24v46zm0 28 90 22-90 23z"/>
@@ -350,8 +352,7 @@
           </div>
         </div>
       </div>
-      <img class="hero-mascot mascot-ground" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
-      <img class="hero-mascot mascot-body" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
+      <img class="hero-mascot" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
     </section>
 
     <div class="deadline">
