@@ -18,44 +18,22 @@
   <link rel="canonical" href="https://dcmrkt.github.io/webinar-test/data-lovers-day-2026/">
   <link rel="icon" type="image/png" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preload" as="image" href="assets/event-poster.png">
   <title>Data Lovers Day 2026 | Direct Channel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
-    :root {
-      --navy: #101439;
-      --teal: #2da3ba;
-      --purple: #6961d8;
-      --pink: #fac9fa;
-      --yellow: #f2e900;
-      --mint: #acd9be;
-      --red: #e10a27;
-      --paper: #ffffff;
-      --hero-wash: #e8f4eb;
-      --wash: #cce8e7;
-      --muted: #626579;
-      --line: #dfe1ec;
-      --max-width: 1180px;
-      /* Component dimensions and type scale shared with analisibenchmark2027. */
-      --gutter: 20px;
-      --radius: 8px;
-      --font-body: clamp(1rem, 1.5vw, 1.18rem);
-      --font-small: .8125rem;
-      --font-h2: clamp(1.25rem, 2.1vw, 1.75rem);
-      --font-h2-display: clamp(3rem, 6.4vw, 4.3rem);
-      --font-card-title: clamp(1.1rem, 1.8vw, 1.38rem);
-      --card-padding: clamp(18px, 2.8vw, 26px);
-      --section-padding: clamp(64px, 9vw, 112px);
-      --action: #a855f7;
-      --action-hover: #9333ea;
-      --shadow: 0 22px 70px rgba(48, 31, 24, .12);
-      --shadow-soft: 0 14px 42px rgba(48, 31, 24, .08);
-    }
 
+    :root {
+      --navy: #101439; --teal: #2da3ba; --purple: #6961d8; --pink: #fac9fa;
+      --yellow: #f2e900; --mint: #acd9be; --red: #e10a27; --paper: #fff;
+      --muted: #626579; --line: #dfe1ec; --max-width: 1180px; --gutter: 24px; --radius: 8px;
+      --font-body: clamp(1rem, 1.35vw, 1.125rem); --font-small: .8125rem;
+      --action: #a855f7; --action-hover: #9333ea;
+      --shadow-soft: 0 14px 42px rgba(16, 20, 57, .07);
+    }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 28px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 0; }
     body { margin: 0; background: var(--paper); color: var(--navy); font-family: "Plus Jakarta Sans", sans-serif; font-size: var(--font-body); font-weight: 500; line-height: 1.5; -webkit-font-smoothing: antialiased; }
     h1, h2, h3, p, figure { margin: 0; }
     h1, h2, h3 { line-height: 1.12; }
@@ -63,189 +41,210 @@
     img { display: block; max-width: 100%; height: auto; }
     button, input, textarea { font: inherit; }
     button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
-    :focus-visible { outline: 3px solid var(--purple); outline-offset: 5px; }
+    :focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
     ::selection { background: var(--pink); color: var(--navy); }
     .wrap { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
-    .eyebrow { font-size: var(--font-small); line-height: 1.45; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow { font-size: var(--font-small); line-height: 1.4; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
     .skip-link { position: absolute; left: 20px; top: -100px; z-index: 10; padding: 12px 20px; background: var(--navy); color: white; }
     .skip-link:focus { top: 10px; }
-    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; border: 0; border-radius: var(--radius); background: var(--action); color: white; font: inherit; font-weight: 800; text-decoration: none; cursor: pointer; box-shadow: 0 14px 30px rgba(168, 85, 247, .22); transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease; }
-    .button:hover { background: var(--action-hover); transform: translateY(-1px); box-shadow: 0 16px 34px rgba(168, 85, 247, .28); }
-    .button.secondary { border: 2px solid rgba(168, 85, 247, .42); background: rgba(255, 255, 255, .62); color: #7e22ce; box-shadow: none; }
-    .button.secondary:hover { border-color: var(--action); background: rgba(168, 85, 247, .08); color: #6d08d9; box-shadow: none; }
-    .arrow { font-size: 21px; font-weight: 400; line-height: 1; }
-
-    /* Cover proportions follow the supplied 1071 × 535 artwork. */
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; border: 0; border-radius: var(--radius); background: var(--action); color: white; font: inherit; font-weight: 800; text-decoration: none; cursor: pointer; box-shadow: 0 14px 30px rgba(168, 85, 247, .18); transition: transform 180ms ease, background 180ms ease; }
+    .button:hover { background: var(--action-hover); transform: translateY(-1px); }
+    .button.secondary { border: 2px solid rgba(168, 85, 247, .42); background: rgba(255, 255, 255, .68); color: #7e22ce; box-shadow: none; }
+    .button.secondary:hover { border-color: var(--action); background: #f4eafa; }
     .brand { display: inline-block; }
-    .brand img { width: auto; height: clamp(24px, 3.8vw, 32px); }
-    .hero { background: var(--teal); }
-    .hero-cover { position: relative; isolation: isolate; container-type: inline-size; width: 100%; max-width: 1600px; aspect-ratio: 1071 / 535; margin-inline: auto; overflow: hidden; background: white; }
-    .cover-art { position: absolute; inset-block: 0; background-image: url("assets/event-poster.png"); background-repeat: no-repeat; background-size: auto 100%; pointer-events: none; }
-    .cover-art.left { left: 0; width: 5.9%; background-position: left top; background-color: var(--teal); }
-    .cover-art.right { right: 0; width: 38.7%; background-position: right top; background-color: var(--teal); }
-    .cover-brand { position: absolute; left: 49.1%; top: 6.5%; width: 9.3%; }
-    .cover-brand img { width: 100%; height: auto; }
-    .hero h1 { position: absolute; left: 9.5%; top: 10.4%; margin: 0; color: var(--navy); font-family: Arial, Helvetica, sans-serif; font-size: 10cqw; font-weight: 400; line-height: 1.01; letter-spacing: .065em; text-transform: uppercase; }
-    .title-line { display: block; white-space: nowrap; }
-    .title-pin { display: inline-block; width: .57em; height: .72em; margin-inline: -.015em .035em; overflow: visible; transform: translateY(.105em); fill: var(--red); }
-    .cover-date { position: absolute; top: 75%; left: 9.55%; display: flex; align-items: baseline; gap: .6em; color: #28282b; font-family: Arial, Helvetica, sans-serif; font-size: 1.75cqw; font-weight: 400; line-height: 1.5; letter-spacing: .19em; text-transform: uppercase; }
-    .cover-city::after { content: " -"; }
-    /* Multiply removes the original white matte without changing the mascot artwork. */
-    .hero-mascot { position: absolute; right: 41%; bottom: .25%; width: 13.2%; height: auto; transform: scaleX(-1); mix-blend-mode: multiply; }
-    .hero-intro { background: #edf7f8; }
-    .hero-intro-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px 48px; padding-block: 32px; }
-    .hero-intro .eyebrow { margin-bottom: 10px; color: #34747d; }
-    .hero-subtitle { max-width: 700px; font-size: var(--font-body); line-height: 1.5; }
-    .event-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 14px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: var(--font-small); }
-    .event-meta li + li::before { content: "•"; margin-right: 18px; color: var(--teal); }
-    .event-meta a { text-decoration-color: rgba(45, 163, 186, .5); }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-    .deadline { background: #d4e9ed; border-block: 1px solid rgba(45, 163, 186, .12); }
-    .deadline-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; }
-    .deadline p { max-width: 1000px; font: inherit; line-height: 1.5; }
-    .deadline a { flex: 0 0 auto; display: grid; place-items: center; width: 43px; height: 43px; border: 1px solid rgba(16, 20, 57, .3); border-radius: 50%; font-size: 23px; text-decoration: none; transition: background .18s; }
-    .deadline a:hover { background: white; }
-
-    .about { position: relative; isolation: isolate; overflow: hidden; padding-block: var(--section-padding); background: linear-gradient(115deg, #f2effb 0%, #fcf1fb 100%); }
-    .about::after { content: ""; position: absolute; z-index: -1; right: -20px; bottom: -18px; width: clamp(230px, 34vw, 450px); height: 130px; background: url("assets/cover-wave.svg") right center / contain no-repeat; opacity: .8; pointer-events: none; }
-    .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(310px, 420px); gap: clamp(34px, 7vw, 86px); align-items: start; }
-    .about .eyebrow { margin-bottom: 14px; color: #655ac3; }
-    .about h2 { max-width: 760px; margin-bottom: 20px; font-size: var(--font-h2-display); line-height: 1; letter-spacing: 0; font-weight: 800; }
-    .highlight { position: relative; z-index: 0; display: inline; background: linear-gradient(transparent 63%, var(--mint) 63%, var(--mint) 94%, transparent 94%); }
-    .about-copy { padding-top: 33px; font-size: var(--font-body); line-height: 1.5; color: var(--muted); }
-    .about-copy p + p { margin-top: 18px; }
-    .about-copy strong { color: var(--navy); font-weight: 800; }
-    .topic-line { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 29px; font-size: 12px; color: var(--navy); font-weight: 700; }
-    .topic-line i { display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
-
-    .registration { position: relative; isolation: isolate; overflow: hidden; padding-block: var(--section-padding); background: linear-gradient(155deg, var(--wash) 0%, #e1efdd 100%); border-top: 1px solid rgba(45, 163, 186, .2); }
-    .registration::before { content: ""; position: absolute; z-index: -1; left: -40px; top: 35%; width: 220px; height: 360px; background: url("assets/cover-shapes.svg") left center / contain no-repeat; pointer-events: none; }
-    .registration::after { content: ""; position: absolute; z-index: -1; right: -70px; top: 10%; width: 190px; height: 300px; background: url("assets/cover-shapes.svg") center / contain no-repeat; transform: rotate(180deg); opacity: .5; pointer-events: none; }
-    .registration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4.5vw, 48px); align-items: start; }
-    .agenda { min-width: 0; padding: clamp(24px, 4vw, 34px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); box-shadow: var(--shadow-soft); }
-    .agenda .eyebrow { color: #655ac3; margin-bottom: 14px; }
-    .agenda h2 { margin-bottom: 14px; font-size: var(--font-h2); font-weight: 800; }
-    .form-title h2 { margin-bottom: 8px; font-size: var(--font-card-title); line-height: 1.15; font-weight: 800; }
-    .agenda-intro { color: var(--muted); font-size: var(--font-body); }
-    .schedule { margin: 33px 0 0; padding: 0; list-style: none; }
-    .schedule li { position: relative; display: grid; grid-template-columns: 68px 1fr; gap: 25px; padding: 25px 0; border-top: 1px solid #d7d9e7; }
-    .schedule time { padding-top: 2px; font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.025em; }
-    .schedule h3 { font-size: var(--font-body); font-weight: 800; line-height: 1.4; }
-    .schedule p { margin-top: 7px; font-size: var(--font-body); line-height: 1.5; color: var(--muted); }
-    .schedule .workshop-note { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 7px 11px; border-radius: 4px; background: var(--pink); color: var(--navy); font-size: 12px; font-weight: 600; }
-    .laptop { position: relative; display: inline-block; width: 15px; height: 10px; border: 1.5px solid currentColor; border-radius: 2px; }
-    .laptop::after { content: ""; position: absolute; bottom: -4px; left: -3px; width: 18px; border-bottom: 1.5px solid currentColor; }
-    .venue-note { display: flex; align-items: center; gap: 14px; margin-top: 21px; padding: 20px 22px; border-left: 3px solid var(--teal); background: white; font-size: 14px; }
-    .venue-note strong { display: block; }
-    .venue-note span { color: var(--muted); font-size: 13px; }
-    .venue-dot { flex: 0 0 11px; width: 11px; height: 11px; border: 3px solid var(--red); border-radius: 50%; }
-
-    .registration-form { min-width: 0; padding: var(--card-padding); background: white; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
-    .form-title { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-    .form-title .eyebrow { margin-bottom: 8px; color: #655ac3; letter-spacing: .1em; }
-    .form-title > p:last-child { font-size: var(--font-body); line-height: 1.45; color: var(--muted); }
-    .form-note { padding: 12px 14px; border: 1px solid #dedaf8; border-radius: var(--radius); background: #f4f2ff; font-size: var(--font-small); line-height: 1.45; color: #514887; }
-    .registration-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; margin: 16px 0 0; border: 0; padding: 0; }
-    .field { min-width: 0; }
-    .field.full { grid-column: 1 / -1; }
-    .field > label { display: block; margin-bottom: 5px; font-size: var(--font-small); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
-    .req { color: #8b3953; }
-    .field > input, .field > textarea { display: block; width: 100%; min-width: 0; min-height: 40px; border: 1px solid var(--line); border-radius: var(--radius); padding: 0 11px; background: white; color: var(--navy); font-size: var(--font-body); line-height: 1.5; }
-    .field textarea { min-height: 84px; padding: 10px 11px; resize: vertical; }
-    .field input::placeholder, .field textarea::placeholder { color: #777a8b; font-size: var(--font-small); opacity: 1; }
-    .field-help { margin-top: 5px; font-size: var(--font-small); color: var(--muted); }
-    .image-consent { min-width: 0; margin: 0; padding: 16px 0 0; border: 0; border-top: 1px solid var(--line); }
-    .image-consent legend { float: left; width: 100%; margin-bottom: 10px; font-size: var(--font-small); font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
-    .consent-info { clear: both; padding: 10px 12px; border-radius: var(--radius); background: #f4f2ff; font-size: var(--font-small); line-height: 1.5; color: #514887; }
-    .consent-info summary { cursor: pointer; font-weight: 700; }
-    .consent-info p { margin-top: 10px; }
-    .consent-statement { clear: both; margin: 12px 0; font-size: var(--font-small); line-height: 1.5; color: var(--muted); }
-    .consent-options { display: flex; flex-wrap: wrap; gap: 8px 18px; }
-    .consent-option { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; cursor: pointer; font-size: var(--font-small); font-weight: 700; }
-    .consent-option input { width: 18px; height: 18px; margin: 0; accent-color: var(--action); }
-    .form-submit { width: 100%; min-height: 42px; margin-top: 12px; padding-inline: 22px; }
-    .form-foot { margin-top: 12px; color: var(--muted); font-size: var(--font-small); line-height: 1.45; }
+    .brand img { width: 108px; height: auto; }
     .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
-    .location { padding-top: clamp(48px, 7vw, 80px); }
-    .location-heading { margin-bottom: 28px; }
-    .location-heading .eyebrow { margin-bottom: 12px; color: #655ac3; }
-    .location-heading h2 { font-size: var(--font-h2); font-weight: 800; }
-    .location-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4.5vw, 48px); align-items: stretch; }
+    /* Live HTML typography and native SVG geometry: no poster image in the UI. */
+    .hero { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; background: #fbfdfd; }
+    .hero-rail { position: absolute; z-index: -1; inset: 0 auto 0 0; width: 5.9%; height: 100%; }
+    .hero-pattern { position: absolute; z-index: -1; inset: 0 0 0 auto; width: 38.7%; height: 100%; background: var(--teal); }
+    .hero-header { position: relative; height: 80px; }
+    .hero-header .brand { position: absolute; right: calc(38.7% + 28px); top: 24px; }
+    .hero-layout { position: relative; display: flex; align-items: center; width: 49%; min-height: calc(100vh - 80px); min-height: calc(100svh - 80px); margin-left: 9.5%; padding-block: 12px 40px; }
+    .hero-copy { width: 100%; max-width: 520px; }
+    .hero h1 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(70px, 7.5vw, 110px); font-weight: 400; line-height: 1.01; letter-spacing: .065em; text-transform: uppercase; }
+    .title-line { display: block; white-space: nowrap; }
+    .title-pin { display: inline-block; width: .57em; height: .72em; margin-inline: -.015em .035em; overflow: visible; transform: translateY(.105em); fill: var(--red); }
+    .cover-date { display: flex; flex-wrap: wrap; gap: .55em; margin-top: 24px; font-size: clamp(12px, 1.4vw, 18px); font-weight: 500; letter-spacing: .17em; line-height: 1.5; text-transform: uppercase; }
+    .cover-city::after { content: " ·"; }
+    .hero-subtitle { max-width: 490px; margin-top: 22px; font-size: var(--font-body); line-height: 1.45; color: #51586b; }
+    .event-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 14px 0 0; padding: 0; list-style: none; font-size: var(--font-small); color: var(--muted); }
+    .event-meta li + li::before { content: "•"; margin-right: 14px; color: var(--teal); }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; }
+    .hero-mascot { position: absolute; right: 39.8%; bottom: clamp(24px, 4vh, 42px); width: clamp(112px, 10.5vw, 166px); transform: scaleX(-1); mix-blend-mode: multiply; pointer-events: none; }
+    .deadline { background: #dceef1; border-block: 1px solid rgba(45, 163, 186, .12); }
+    .deadline-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 22px; }
+    .deadline p { max-width: 1000px; font: inherit; line-height: 1.5; }
+    .deadline a { flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #93bec6; border-radius: 50%; font-size: 22px; text-decoration: none; }
+    .deadline a:hover { background: white; }
+
+    .about { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(56px, 8vh, 92px); background: #f7f3fc; }
+    .about-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 6vw, 76px); align-items: center; }
+    .about .eyebrow { margin-bottom: 16px; color: #655ac3; }
+    .about h2 { font-size: clamp(36px, 4.5vw, 60px); line-height: 1.04; font-weight: 800; }
+    .highlight { background: linear-gradient(transparent 64%, var(--mint) 64%, var(--mint) 95%, transparent 95%); }
+    .about-copy { color: var(--muted); }
+    .about-copy p + p { margin-top: 18px; }
+    .about-copy strong { color: var(--navy); font-weight: 800; }
+    .topic-line { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 26px; font-size: 12px; font-weight: 700; }
+    .topic-line i { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    .section-art { position: absolute; z-index: -1; pointer-events: none; overflow: visible; }
+    .about-art { width: min(38vw, 460px); height: 150px; right: -30px; bottom: -54px; opacity: .7; }
+
+    /* Each desktop section is one viewport; content can grow for zoom or expanded terms. */
+    .viewport-section { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; min-height: 100vh; min-height: 100svh; padding-block: clamp(20px, 3.2vh, 40px); }
+    .registration { background: #e5f2f1; }
+    .registration-art { width: 250px; height: 390px; left: -115px; bottom: -35px; }
+    .registration-orbit { width: 260px; height: 260px; right: -145px; top: -90px; opacity: .8; }
+    .registration-grid { display: grid; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); gap: clamp(24px, 3vw, 40px); align-items: stretch; }
+    .agenda, .registration-form { min-width: 0; border: 1px solid rgba(16, 20, 57, .1); border-radius: var(--radius); box-shadow: var(--shadow-soft); }
+    .agenda { display: flex; flex-direction: column; padding: clamp(20px, 3vh, 30px); background: rgba(255, 255, 255, .82); }
+    .agenda .eyebrow, .form-title .eyebrow { margin-bottom: 5px; color: #655ac3; font-size: 11px; }
+    .agenda h2, .form-title h2 { font-size: 24px; font-weight: 800; }
+    .agenda-intro { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--muted); }
+    .schedule { flex: 1; display: grid; grid-template-rows: repeat(5, minmax(min-content, 1fr)); margin: 20px 0; padding: 0; list-style: none; }
+    .schedule li { display: grid; grid-template-columns: 58px minmax(0, 1fr); align-content: center; gap: 16px; padding-block: 14px; border-top: 1px solid #dce3e8; }
+    .schedule time { padding-top: 1px; font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .schedule h3 { font-size: 16px; line-height: 1.35; font-weight: 800; }
+    .schedule p { margin-top: 5px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+    .schedule .workshop-note { display: inline-flex; align-items: center; gap: 7px; margin-top: 8px; padding: 5px 8px; border-radius: 4px; background: #f8dff6; color: var(--navy); font-size: 11px; }
+    .laptop { position: relative; flex: 0 0 14px; width: 14px; height: 10px; border: 1.5px solid currentColor; border-radius: 2px; }
+    .laptop::after { content: ""; position: absolute; bottom: -4px; left: -3px; width: 17px; border-bottom: 1.5px solid currentColor; }
+    .venue-note { display: flex; align-items: center; gap: 10px; margin-top: auto; padding: 12px 14px; border-left: 3px solid var(--teal); background: #eaf5f1; font-size: 13px; }
+    .venue-note strong, .venue-note span { display: block; }
+    .venue-note span { margin-top: 3px; color: var(--muted); font-size: 12px; }
+    .venue-dot { flex: 0 0 10px; height: 10px; border: 3px solid var(--red); border-radius: 50%; }
+
+    .registration-form { padding: clamp(16px, 2.4vh, 22px); background: white; }
+    .form-title { margin-bottom: 10px; }
+    .form-title > p:last-child { margin-top: 6px; font-size: 13px; line-height: 1.35; color: var(--muted); }
+    .registration-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; min-width: 0; margin: 0; border: 0; padding: 0; }
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    .field > label { display: block; margin-bottom: 3px; font-size: 12px; font-weight: 700; line-height: 1.25; }
+    .req { color: #8b3953; }
+    .field > input, .field > textarea { display: block; width: 100%; min-width: 0; height: 36px; border: 1px solid #d4d9e4; border-radius: var(--radius); padding: 0 10px; background: #fdfdff; color: var(--navy); font-size: 14px; line-height: 1.4; }
+    .field > textarea { height: 44px; min-height: 44px; padding: 7px 10px; resize: vertical; }
+    .field input::placeholder, .field textarea::placeholder { color: #777a8b; font-size: 12px; opacity: 1; }
+    .field-help { margin-top: 3px; font-size: 11px; line-height: 1.25; color: var(--muted); }
+    .image-consent { min-width: 0; margin: 1px 0 0; padding: 7px 0 0; border: 0; border-top: 1px solid var(--line); }
+    .image-consent legend { float: left; width: 100%; margin-bottom: 5px; padding: 0; font-size: 12px; line-height: 1.3; font-weight: 700; }
+    .consent-info { clear: both; padding: 7px 10px; border-radius: 6px; background: #f5f2fc; font-size: 12px; line-height: 1.4; color: #514887; }
+    .consent-info summary { cursor: pointer; font-weight: 700; }
+    .consent-info p { margin-top: 10px; }
+    .consent-options { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 5px; }
+    .consent-option { display: inline-flex; align-items: center; gap: 7px; min-height: 30px; cursor: pointer; font-size: 13px; font-weight: 600; }
+    .consent-option input { width: 17px; height: 17px; margin: 0; accent-color: var(--action); }
+    .form-submit { width: 100%; min-height: 38px; margin-top: 10px; font-size: 14px; }
+    .form-note { margin-top: 6px; font-size: 11px; line-height: 1.35; color: var(--muted); }
+    .form-foot { margin-top: 7px; font-size: 11px; line-height: 1.4; color: var(--muted); }
+
+    .location { background: #f8f5fd; }
+    .location-art { right: -80px; bottom: -70px; width: 490px; height: 180px; }
+    .location-heading { margin-bottom: 26px; }
+    .location-heading .eyebrow { margin-bottom: 8px; color: #655ac3; font-size: 12px; }
+    .location-heading h2 { font-size: clamp(28px, 3vw, 40px); font-weight: 800; }
+    .location-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(24px, 3vw, 40px); align-items: stretch; }
     .location-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: white; box-shadow: var(--shadow-soft); }
-    .location-card-content { padding: var(--card-padding); }
-    .location-card .eyebrow { margin-bottom: 10px; color: #655ac3; }
-    .location-card h3 { margin-bottom: 12px; font-size: var(--font-card-title); font-weight: 800; }
-    .location-card p:not(.eyebrow), .location-card address { font-size: var(--font-body); font-style: normal; line-height: 1.5; color: var(--muted); }
-    .map-frame { display: block; width: 100%; height: 280px; border: 0; background: #e5eeec; }
-    .map-card .button { margin-top: 18px; }
-    .metro-card { position: relative; display: flex; flex-direction: column; padding: var(--card-padding); background: #f4f0fc; }
-    .metro-lines { display: grid; gap: 12px; margin: 24px 0; padding: 0; list-style: none; }
-    .metro-line { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: var(--radius); background: rgba(255, 255, 255, .8); }
-    .metro-badge { display: grid; place-items: center; flex: 0 0 48px; height: 42px; border-radius: 6px; font-size: 21px; font-weight: 800; line-height: 1; }
+    .map-frame { display: block; width: 100%; height: clamp(210px, 34vh, 320px); border: 0; background: #e5eeec; }
+    .location-card-content { padding: 20px 24px; }
+    .location-card .eyebrow { margin-bottom: 6px; color: #655ac3; font-size: 11px; }
+    .location-card h3 { margin-bottom: 10px; font-size: 24px; font-weight: 800; }
+    .location-card p:not(.eyebrow), .location-card address { font-size: 15px; font-style: normal; line-height: 1.5; color: var(--muted); }
+    .map-card .button { margin-top: 14px; min-height: 38px; font-size: 14px; }
+    .metro-card { position: relative; display: flex; flex-direction: column; padding: 28px; background: #eeedf9; }
+    .metro-lines { display: grid; gap: 10px; margin: 24px 0; padding: 0; list-style: none; }
+    .metro-line { display: flex; align-items: center; gap: 14px; padding: 12px; border-radius: var(--radius); background: rgba(255, 255, 255, .8); }
+    .metro-badge { display: grid; place-items: center; flex: 0 0 44px; height: 40px; border-radius: 6px; font-size: 20px; font-weight: 800; line-height: 1; }
     .metro-badge.m2 { color: white; background: #008744; }
     .metro-badge.m3 { color: #101439; background: #f4c928; }
-    .metro-line strong { display: block; font-size: var(--font-body); }
-    .metro-line small { display: block; margin-top: 2px; font-size: var(--font-small); color: var(--muted); }
-    .metro-card .arrival-note { margin-bottom: 18px; }
-    .location-link { align-self: flex-start; font-size: var(--font-small); font-weight: 800; color: #6d28a7; }
-    .metro-motif { height: 56px; margin-top: auto; padding-top: 24px; background: url("assets/cover-wave.svg") right bottom / 180px auto no-repeat; pointer-events: none; }
-    .footer { border-top: 1px solid var(--line); background: #f6effa; }
-    .footer::before { content: ""; display: block; height: 8px; background: linear-gradient(to right, var(--teal) 0% 25%, var(--purple) 25% 50%, var(--pink) 50% 75%, var(--yellow) 75% 100%); }
-    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-block: 32px; }
-    .footer .brand img { width: auto; height: clamp(30px, 5vw, 42px); max-width: min(220px, 72vw); }
-    .footer-copy { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: var(--font-small); line-height: 1.45; color: var(--muted); text-align: center; }
-    .footer-copy a:hover { color: var(--navy); }
+    .metro-line strong { display: block; font-size: 15px; }
+    .metro-line small { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .metro-card .arrival-note { margin-bottom: 22px; }
+    .location-link { position: relative; z-index: 1; align-self: flex-start; margin-top: auto; font-size: 12px; font-weight: 800; color: #6d28a7; }
+    .metro-motif { position: absolute; right: -45px; bottom: -40px; width: 190px; height: 100px; opacity: .6; pointer-events: none; }
+    .footer { border-top: 1px solid var(--line); background: #fafafc; }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-block: 26px; }
+    .footer .brand img { width: 90px; height: auto; }
+    .footer-copy { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: 12px; color: var(--muted); text-align: center; }
 
-    @media (max-width: 1100px) {
-      .hero-intro-inner { gap: 24px; }
-      .schedule li { grid-template-columns: 60px 1fr; gap: 18px; }
+    @media (min-width: 981px) and (max-height: 740px) {
+      .hero-header { height: 64px; }
+      .hero-header .brand { top: 18px; }
+      .hero-layout { min-height: calc(100svh - 64px); padding-block: 6px 24px; }
+      .hero h1 { font-size: clamp(68px, 6.7vw, 94px); }
+      .cover-date, .hero-subtitle, .hero-actions { margin-top: 16px; }
+      .event-meta { margin-top: 10px; }
+      .agenda { padding: 20px; }
+      .schedule { margin-block: 14px; }
+      .schedule li { padding-block: 10px; }
     }
-    @media (max-width: 960px) {
-      .about-grid, .registration-grid { grid-template-columns: 1fr; }
-      .about-copy { padding-top: 0; }
-      .hero-intro-inner { grid-template-columns: 1fr; }
-      .registration::before { top: 46%; }
-    }
-    @media (max-width: 760px) {
-      html { scroll-padding-top: 20px; }
-      .hero-cover { aspect-ratio: 1 / 1.02; }
-      .cover-art.left { width: 4%; }
-      .cover-art.right { width: 24%; }
-      .cover-brand { left: 55%; top: 6.5%; width: 16%; }
-      .hero h1 { left: 8%; top: 22%; font-size: 13.5cqw; line-height: 1.04; letter-spacing: .055em; }
-      .cover-date { left: 8%; top: auto; bottom: 8%; display: flex; flex-direction: column; gap: .3em; font-size: 2.8cqw; letter-spacing: .16em; }
-      .cover-city::after { content: ""; }
-      .hero-mascot { right: 25%; bottom: 2%; width: 22%; }
-      .hero-intro-inner { padding-block: 26px; gap: 22px; }
-      .hero-subtitle { max-width: 100%; }
-      .event-meta { gap: 7px 14px; }
-      .event-meta li + li::before { margin-right: 14px; }
-      .deadline-inner { gap: 18px; padding-block: 22px; }
-      .deadline a { width: 37px; height: 37px; }
-      .about-grid { gap: 24px; }
-      .about h2 { max-width: 100%; }
-      .about::after { width: 210px; height: 75px; bottom: -15px; opacity: .65; }
-      .topic-line { gap: 13px; margin-top: 24px; font-size: 11px; }
-      .schedule { margin-top: 26px; }
-      .schedule li { padding-block: 21px; grid-template-columns: 66px 1fr; }
-      .venue-note { margin-top: 10px; }
-      .location-grid { grid-template-columns: 1fr; gap: 20px; }
-      .map-frame { height: 260px; }
-      .metro-motif { margin-top: 18px; }
+    @media (max-width: 980px) {
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .about-copy { max-width: 700px; }
+      .viewport-section { min-height: auto; padding-block: 48px; }
+      .registration-grid { grid-template-columns: 1fr; gap: 24px; max-width: 720px; }
+      .agenda, .registration-form { padding: 24px; }
+      .schedule { grid-template-rows: none; margin-block: 18px; }
+      .schedule li { padding-block: 18px; }
+      .registration-fields { gap: 12px; }
+      .registration-form { font-size: 14px; }
+      .location-grid { gap: 20px; }
+      .metro-card { padding: 24px; }
+      .hero-mascot { width: 108px; right: 39.5%; bottom: 30px; }
+      .hero h1 { font-size: clamp(58px, 7.5vw, 78px); }
+      .hero-layout { width: 49%; }
+      .hero-subtitle { font-size: 16px; }
+      .hero-actions { gap: 8px; }
+      .hero-actions .button { font-size: 14px; }
     }
     @media (max-width: 680px) {
-      :root { --gutter: 16px; --font-body: .875rem; --font-small: .75rem; --font-h2-display: clamp(2.05rem, 8.4vw, 2.55rem); --section-padding: 62px; }
-      .hero-actions { flex-wrap: nowrap; gap: 8px; }
-      .hero-actions .button { min-height: 36px; padding-inline: 16px; white-space: nowrap; }
+      :root { --gutter: 18px; --font-body: .9375rem; --font-small: .75rem; }
+      .hero { min-height: 0; }
+      .hero-header { height: 72px; }
+      .hero-header .brand { right: calc(24% + 14px); top: 20px; }
+      .hero-header .brand img { width: 76px; }
+      .hero-rail { width: 4%; height: 330px; }
+      .hero-pattern { width: 24%; height: 330px; }
+      .hero-layout { display: block; width: auto; min-height: 0; margin-left: 0; padding: 12px var(--gutter) 30px max(8%, var(--gutter)); }
+      .hero-copy { max-width: none; }
+      .hero h1 { width: 72%; font-size: clamp(42px, 12vw, 72px); line-height: 1.04; letter-spacing: .045em; }
+      .cover-date { max-width: 62%; flex-direction: column; gap: 2px; margin-top: 22px; font-size: 11px; letter-spacing: .13em; }
+      .cover-city::after { content: ""; }
+      .hero-subtitle { margin-top: 36px; font-size: 15px; }
+      .event-meta { font-size: 12px; }
       .event-meta li:last-child { flex-basis: 100%; }
       .event-meta li:last-child::before { content: none; }
-      .about h2 { margin-bottom: 10px; line-height: 1.02; }
+      .hero-actions { margin-top: 22px; }
+      .hero-actions .button { min-height: 36px; padding-inline: 16px; }
+      .hero-mascot { top: 237px; right: 23.5%; bottom: auto; width: 88px; }
+      .deadline-inner { gap: 16px; padding-block: 20px; }
+      .deadline a { width: 34px; height: 34px; }
+      .about { padding-block: 48px 64px; }
+      .about h2 { font-size: clamp(30px, 8.8vw, 42px); }
+      .about-art { width: 250px; bottom: -58px; }
+      .viewport-section { padding-block: 36px; }
+      .agenda, .registration-form { padding: 18px; }
+      .agenda h2, .form-title h2 { font-size: 22px; }
       .registration-fields { grid-template-columns: 1fr; }
-      .metro-badge { flex-basis: 44px; height: 38px; font-size: 20px; }
-    }
-    @media (max-width: 380px) {
-      .schedule li { grid-template-columns: 48px 1fr; gap: 12px; }
+      .field > input, .field > textarea { font-size: 16px; min-height: 40px; }
+      .field > textarea { height: 64px; }
+      .field > label { font-size: 13px; }
+      .field-help { font-size: 11px; }
+      .form-title > p:last-child, .consent-info { font-size: 13px; }
+      .consent-option { min-height: 38px; font-size: 13px; }
+      .form-submit { min-height: 42px; }
+      .form-note, .form-foot { font-size: 12px; }
+      .registration-art { left: -170px; opacity: .7; }
+      .location-heading { margin-bottom: 22px; }
+      .location-heading h2 { font-size: 30px; }
+      .location-grid { grid-template-columns: 1fr; }
+      .map-frame { height: 250px; }
+      .location-card-content, .metro-card { padding: 22px; }
+      .location-card h3 { font-size: 22px; }
+      .metro-motif { width: 170px; }
+      .footer-copy { font-size: 11px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -255,39 +254,50 @@
 </head>
 <body>
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
-  <main id="contenuto">
+  <main id="contenuto" data-layout="native-viewport">
     <section class="hero" aria-labelledby="event-title">
-      <div class="hero-cover">
-        <div class="cover-art left" aria-hidden="true"></div>
-        <div class="cover-art right" aria-hidden="true"></div>
-        <a class="cover-brand" href="../" aria-label="Direct Channel, pagina principale">
+      <svg class="hero-rail" viewBox="0 0 64 535" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path fill="#2da3ba" d="M0 0h64v535H0z"/>
+        <path fill="#f2e900" d="M0 0h64v18c0 36-26 64-60 64H0zM0 416c18-7 40-9 64-8v127H0z"/>
+        <path fill="#acd9be" d="M0 182h64v86c0 33-28 65-64 68z"/>
+      </svg>
+      <svg class="hero-pattern" viewBox="0 0 414 535" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <path fill="#6961d8" d="M0 0h106v29a53 53 0 0 1-106 0zM194 0h89v270h-89zM0 370a165 165 0 0 1 165 165H0z"/>
+        <path fill="#acd9be" d="M0 80a54 54 0 0 1 0 108z"/>
+        <circle cx="80" cy="134" r="13.5" fill="#f2e900"/>
+        <path d="M134-16C143 70 217 123 289 55S395 28 436 43" fill="none" stroke="#fac9fa" stroke-width="36"/>
+        <circle cx="489" cy="255" r="105" fill="#fac9fa"/>
+        <circle cx="463" cy="474" r="110" fill="none" stroke="#fac9fa" stroke-width="35"/>
+        <path fill="#fff" d="m194 177 89-24v46zm0 28 89 22-89 23z"/>
+        <path fill="#f2e900" d="M226 377h84v158h-84z"/>
+        <path fill="#fff" d="m263 377 24 89 23-89zm-37 158 24-80 22 80z"/>
+      </svg>
+      <header class="hero-header">
+        <a class="brand" href="../" aria-label="Direct Channel, pagina principale">
           <img src="assets/direct-channel-logo.png" alt="Direct Channel" width="800" height="376">
         </a>
-        <h1 id="event-title" aria-label="Data Lovers Day 2026">
-          <span class="title-line" aria-hidden="true">Data</span>
-          <span class="title-line" aria-hidden="true">L<svg class="title-pin" viewBox="0 0 60 76" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M30 0C13.43 0 0 13.43 0 30c0 14.8 16.5 32.5 30 46 13.5-13.5 30-31.2 30-46C60 13.43 46.57 0 30 0Zm0 18a12 12 0 1 0 0 24 12 12 0 0 0 0-24Z"/></svg>vers</span>
-          <span class="title-line" aria-hidden="true">Day</span>
-        </h1>
-        <p class="cover-date"><span class="cover-city">Milano</span><time datetime="2026-11-26">26 novembre 2026</time></p>
-        <img class="hero-mascot" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
-      </div>
-      <div class="hero-intro">
-        <div class="hero-intro-inner wrap">
-          <div>
-            <p class="eyebrow">In presenza · Partecipazione gratuita</p>
-            <p class="hero-subtitle">Una giornata dedicata al mondo dei dati e a chi, ogni giorno, li respira.</p>
-            <ul class="event-meta" aria-label="Quando e dove">
-              <li>Giovedì 26 novembre</li>
-              <li>10.30–17.00</li>
-              <li><a href="#come-arrivare">Milano, Copernico Blend Tower</a></li>
-            </ul>
-          </div>
+      </header>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <h1 id="event-title" aria-label="Data Lovers Day 2026">
+            <span class="title-line" aria-hidden="true">Data</span>
+            <span class="title-line" aria-hidden="true">L<svg class="title-pin" viewBox="0 0 60 76" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M30 0C13.43 0 0 13.43 0 30c0 14.8 16.5 32.5 30 46 13.5-13.5 30-31.2 30-46C60 13.43 46.57 0 30 0Zm0 18a12 12 0 1 0 0 24 12 12 0 0 0 0-24Z"/></svg>vers</span>
+            <span class="title-line" aria-hidden="true">Day</span>
+          </h1>
+          <p class="cover-date"><span class="cover-city">Milano</span><time datetime="2026-11-26">26 novembre 2026</time></p>
+          <p class="hero-subtitle">Una giornata dedicata al mondo dei dati e a chi, ogni giorno, li respira.</p>
+          <ul class="event-meta" aria-label="Quando e dove">
+            <li>10.30–17.00</li>
+            <li>In presenza · Partecipazione gratuita</li>
+            <li><a href="#come-arrivare">Milano, Copernico Blend Tower</a></li>
+          </ul>
           <div class="hero-actions">
             <a class="button" href="#iscrizione">Registrati</a>
             <a class="button secondary" href="#di-cosa-parleremo">Scopri di più</a>
           </div>
         </div>
       </div>
+      <img class="hero-mascot" src="assets/mascotte-direct-channel-cutout-crop.webp" alt="" width="900" height="876" fetchpriority="high" aria-hidden="true">
     </section>
 
     <div class="deadline">
@@ -298,6 +308,10 @@
     </div>
 
     <section class="about" id="di-cosa-parleremo" aria-labelledby="about-title">
+      <svg class="section-art about-art" viewBox="0 0 460 150" aria-hidden="true" focusable="false">
+        <path d="M-20 112C40 112 40 26 105 26S170 112 235 112 300 26 365 26 430 112 495 112" fill="none" stroke="#fac9fa" stroke-width="36"/>
+        <circle cx="358" cy="101" r="14" fill="#6961d8"/>
+      </svg>
       <div class="about-grid wrap">
         <div>
           <p class="eyebrow">Di cosa parleremo</p>
@@ -311,7 +325,16 @@
       </div>
     </section>
 
-    <section class="registration" aria-label="Programma e iscrizione">
+    <section class="registration viewport-section" id="iscrizione" aria-label="Programma e iscrizione">
+      <svg class="section-art registration-art" viewBox="0 0 250 390" aria-hidden="true" focusable="false">
+        <path fill="#acd9be" d="M0 0h130v76a65 65 0 0 1-130 0z"/>
+        <path d="M30 410V285c0-62 140-62 140-124V78" fill="none" stroke="#fac9fa" stroke-width="32"/>
+        <path fill="#6961d8" d="M0 258a132 132 0 0 1 132 132H0z"/>
+        <circle cx="160" cy="233" r="14" fill="#f2e900"/>
+      </svg>
+      <svg class="section-art registration-orbit" viewBox="0 0 260 260" aria-hidden="true" focusable="false">
+        <circle cx="130" cy="130" r="110" fill="none" stroke="#fac9fa" stroke-width="36"/>
+      </svg>
       <div class="registration-grid wrap">
         <div class="agenda" id="programma">
           <p class="eyebrow">La giornata, insieme</p>
@@ -342,13 +365,12 @@
           <div class="venue-note"><i class="venue-dot" aria-hidden="true"></i><p><strong>Milano, Copernico Blend Tower</strong><span>Piazza IV Novembre 7 · <a href="#come-arrivare">Come arrivare</a></span></p></div>
         </div>
 
-        <div class="registration-form" id="iscrizione">
+        <div class="registration-form">
           <div class="form-title">
             <p class="eyebrow">Registrazione</p>
             <h2 id="form-title">Iscriviti all'incontro</h2>
             <p>Inserisci i tuoi dati per confermare la partecipazione gratuita.</p>
           </div>
-          <p class="form-note" id="form-note">L’invio apre Google Forms in una nuova scheda: verifica lì la conferma della tua iscrizione.</p>
 
           <!-- Field IDs and consent choices verified against the event's public Google Form.
                Native POST keeps Google's confirmation or validation errors visible;
@@ -359,11 +381,11 @@
             <input type="hidden" name="entry.1640139106_sentinel" value="">
             <fieldset class="registration-fields">
               <legend class="visually-hidden">Dati di iscrizione</legend>
-              <div class="field full">
+              <div class="field">
                 <label for="nome">Nome e cognome <span class="req">*</span></label>
                 <input id="nome" name="entry.1529339823" type="text" autocomplete="name" placeholder="Nome e cognome" required>
               </div>
-              <div class="field full">
+              <div class="field">
                 <label for="email">Email <span class="req">*</span></label>
                 <input id="email" name="entry.536729908" type="email" autocomplete="email" placeholder="nome@organizzazione.it" required>
               </div>
@@ -375,40 +397,49 @@
                 <label for="ruolo">Ruolo <span class="req">*</span></label>
                 <input id="ruolo" name="entry.748142295" type="text" autocomplete="organization-title" placeholder="Il tuo ruolo" required>
               </div>
-              <div class="field full">
-                <label for="intolleranze">Hai intolleranze alimentari o allergie? <span class="req">*</span></label>
+              <div class="field">
+                <label for="intolleranze">Allergie / intolleranze <span class="req">*</span></label>
                 <input id="intolleranze" name="entry.360631223" type="text" placeholder="Segnala eventuali intolleranze o allergie" aria-describedby="intolleranze-help" required>
                 <p class="field-help" id="intolleranze-help">Se non ne hai, scrivi “Nessuna”.</p>
               </div>
-              <div class="field full">
-                <label for="alimentazione">Segui stili alimentari particolari? <span class="req">*</span></label>
+              <div class="field">
+                <label for="alimentazione">Stile alimentare <span class="req">*</span></label>
                 <input id="alimentazione" name="entry.491456433" type="text" placeholder="Vegetariano, vegano, ecc." aria-describedby="alimentazione-help" required>
                 <p class="field-help" id="alimentazione-help">Se non ne segui, scrivi “Nessuno”.</p>
+              </div>
+              <div class="field full">
+                <label for="domande">Desideri comunicarci qualcosa?</label>
+                <textarea id="domande" name="entry.65890871" rows="2" placeholder="C'è qualcosa che vorresti chiederci?"></textarea>
               </div>
               <fieldset class="image-consent field full" aria-describedby="consent-statement">
                 <legend>Consenso all’uso di immagine <span class="req">*</span></legend>
                 <details class="consent-info">
-                  <summary>Informativa sull’uso di foto e video</summary>
+                  <summary>Leggi l’informativa e le condizioni</summary>
                   <p>Ai sensi del Regolamento UE 2016/679 (GDPR) e in conformità con la normativa vigente sulla protezione dei dati personali (<a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">leggi qui l’informativa</a>), ti informiamo che in occasione dell’evento, Direct Channel S.p.A. realizzerà immagini fotografiche e riprese audio/video che potrebbero ritrarti (i “Contenuti”), al fine di pubblicizzare, promuovere e documentare l’evento. Tali Contenuti, o parte di essi, saranno pubblicati su siti web e canali social appartenenti a Direct Channel S.p.A., nonché attraverso i media partner dell’iniziativa, da Direct Channel S.p.A. e/o da terzi soggetti partner di Direct Channel S.p.A., e saranno utilizzati da Direct Channel S.p.A. per comunicazione below the line.</p>
+                  <p class="consent-statement" id="consent-statement">Prestando il consenso, dichiaro di essere maggiorenne e di accettare l’utilizzo dei Contenuti che mi ritraggono per le finalità sopra indicate, rinunciando a qualsiasi compenso o pretesa nei confronti di Direct Channel S.p.A., delle società del Gruppo Mondadori e/o loro cessionari.</p>
                 </details>
-                <p class="consent-statement" id="consent-statement">Prestando il consenso, dichiaro di essere maggiorenne e di accettare l’utilizzo dei Contenuti che mi ritraggono per le finalità sopra indicate, rinunciando a qualsiasi compenso o pretesa nei confronti di Direct Channel S.p.A., delle società del Gruppo Mondadori e/o loro cessionari.</p>
                 <div class="consent-options">
                   <label class="consent-option"><input type="radio" name="entry.1640139106" value="Acconsento" required> Acconsento</label>
                   <label class="consent-option"><input type="radio" name="entry.1640139106" value="Non acconsento" required> Non acconsento</label>
                 </div>
               </fieldset>
-              <div class="field full">
-                <label for="domande">Desideri comunicarci qualcosa?</label>
-                <textarea id="domande" name="entry.65890871" rows="2" placeholder="C'è qualcosa che vorresti chiederci?"></textarea>
-              </div>
             </fieldset>
             <button class="button form-submit" type="submit" aria-describedby="form-note">Registrati</button>
           </form>
-          <p class="form-foot">* Campi obbligatori. Puoi anche <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/viewform" target="_blank" rel="noopener noreferrer">aprire il modulo Google</a>.<br><a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Informativa privacy Direct Channel</a></p>
+          <p class="form-note" id="form-note">La conferma si apre su Google Forms in una nuova scheda.</p>
+          <p class="form-foot">* Campi obbligatori. <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/viewform" target="_blank" rel="noopener noreferrer">Apri il modulo Google</a></p>
         </div>
       </div>
 
-      <section class="location wrap" id="come-arrivare" aria-labelledby="location-title">
+    </section>
+
+    <section class="location viewport-section" id="come-arrivare" aria-labelledby="location-title">
+      <svg class="section-art location-art" viewBox="0 0 490 180" aria-hidden="true" focusable="false">
+        <path d="M-20 112C45 112 45 30 110 30S175 112 240 112 305 30 370 30 435 112 500 112" fill="none" stroke="#fac9fa" stroke-width="40"/>
+        <circle cx="398" cy="126" r="58" fill="#acd9be"/>
+        <circle cx="240" cy="37" r="12" fill="#6961d8"/>
+      </svg>
+      <div class="location-inner wrap">
         <div class="location-heading">
           <p class="eyebrow">Ci vediamo a Milano</p>
           <h2 id="location-title">Dove siamo e come arrivare.</h2>
@@ -433,10 +464,12 @@
             </ul>
             <p class="arrival-note">Dalla Stazione Centrale prosegui a piedi verso <strong>Piazza IV Novembre 7</strong>: Blend Tower si trova a pochi passi dalla stazione.</p>
             <a class="location-link" href="https://giromilano.atm.it/" target="_blank" rel="noopener noreferrer">Consulta percorsi e orari su ATM <span aria-hidden="true">↗</span></a>
-            <div class="metro-motif" aria-hidden="true"></div>
+            <svg class="metro-motif" viewBox="0 0 190 100" aria-hidden="true" focusable="false">
+              <path d="M-15 80C25 80 25 20 65 20S105 80 145 80 185 20 225 20" fill="none" stroke="#fac9fa" stroke-width="22"/>
+            </svg>
           </article>
         </div>
-      </section>
+      </div>
     </section>
   </main>
 
