@@ -28,6 +28,8 @@
       --navy: #101439; --teal: #2da3ba; --purple: #6961d8; --pink: #fac9fa;
       --yellow: #f2e900; --mint: #acd9be; --red: #e10a27; --paper: #fff;
       --muted: #626579; --line: #dfe1ec; --max-width: 1180px; --gutter: 24px; --radius: 8px;
+      --content-padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+      --content-padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
       --font-body: clamp(1rem, 1.35vw, 1.125rem); --font-small: .8125rem;
       --action: #a855f7; --action-hover: #9333ea;
       --shadow-soft: 0 14px 42px rgba(16, 20, 57, .07);
@@ -43,7 +45,7 @@
     button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
     :focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
     ::selection { background: var(--pink); color: var(--navy); }
-    .wrap { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+    .wrap { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-left: var(--content-padding-left); padding-right: var(--content-padding-right); }
     .eyebrow { font-size: var(--font-small); line-height: 1.4; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
     .skip-link { position: absolute; left: 20px; top: -100px; z-index: 10; padding: 12px 20px; background: var(--navy); color: white; }
     .skip-link:focus { top: 10px; }
@@ -56,14 +58,15 @@
     .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     /* Live HTML typography and native SVG geometry: no poster image in the UI. */
-    .hero { --hero-art-width: 41%; position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; background: #fbfdfd; }
-    .hero-rail { position: absolute; z-index: -1; inset: 0 auto 0 0; width: 6.3%; height: 100%; overflow: hidden; }
+    /* Match the centered .wrap content edge while keeping the cover art full width. */
+    .hero { --hero-art-width: 41%; --hero-content-start: calc(max(0px, (100% - var(--max-width)) / 2) + var(--content-padding-left)); position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; min-height: 100svh; background: #fbfdfd; }
+    .hero-rail { position: absolute; z-index: -1; inset: 0 auto 0 0; width: min(6.3%, calc(var(--hero-content-start) - var(--content-padding-left) / 2)); height: 100%; overflow: hidden; }
     .hero-pattern { position: absolute; z-index: -1; inset: 0 0 0 auto; width: var(--hero-art-width); height: 100%; overflow: hidden; background: var(--teal); }
     .hero-shapes { --art-scale: 1.065; transform-box: view-box; }
     .rail-shapes { transform-box: view-box; }
     .hero-header { position: relative; height: 80px; }
     .hero-header .brand { position: absolute; right: calc(var(--hero-art-width) + 28px); top: 24px; }
-    .hero-layout { position: relative; display: flex; align-items: center; width: calc(88% - var(--hero-art-width)); min-height: calc(100vh - 80px); min-height: calc(100svh - 80px); margin-left: 9.5%; padding-block: 12px 40px; }
+    .hero-layout { position: relative; display: flex; align-items: center; width: calc(97.5% - var(--hero-art-width) - var(--hero-content-start)); min-height: calc(100vh - 80px); min-height: calc(100svh - 80px); margin-left: var(--hero-content-start); padding-block: 12px 40px; }
     .hero-copy { width: 100%; max-width: 640px; }
     .hero h1 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(96px, 10.4vw, 164px); font-weight: 400; line-height: .93; letter-spacing: .035em; text-transform: uppercase; }
     .title-line { display: block; white-space: nowrap; }
@@ -215,7 +218,7 @@
       .about-grid { grid-template-columns: 1fr; gap: 28px; }
       .about-copy { max-width: 700px; }
       .viewport-section { min-height: auto; padding-block: 48px; }
-      .registration-grid { grid-template-columns: 1fr; gap: 24px; max-width: 720px; }
+      .registration-grid { grid-template-columns: 1fr; gap: 24px; }
       .agenda, .registration-form { padding: 24px; }
       .schedule { grid-template-rows: none; margin-block: 18px; }
       .schedule li { padding-block: 18px; }
@@ -236,9 +239,9 @@
       .hero-header { height: 72px; }
       .hero-header .brand { right: calc(24% + 14px); top: 20px; }
       .hero-header .brand img { width: 76px; }
-      .hero-rail { width: 4%; height: 330px; }
+      .hero-rail { height: 330px; }
       .hero-pattern { width: 24%; height: 330px; }
-      .hero-layout { display: block; width: auto; min-height: 0; margin-left: 0; padding: 12px var(--gutter) 30px max(8%, var(--gutter)); }
+      .hero-layout { display: block; width: auto; min-height: 0; margin-left: 0; padding: 12px var(--content-padding-right) 30px var(--content-padding-left); }
       .hero-copy { max-width: none; }
       .hero-heading { min-height: 246px; }
       .hero h1 { width: 74%; font-size: clamp(48px, 15vw, 88px); line-height: .95; letter-spacing: .025em; }
