@@ -139,6 +139,9 @@
     .field > textarea { height: 44px; min-height: 44px; padding: 7px 10px; resize: vertical; }
     .field input::placeholder, .field textarea::placeholder { color: #777a8b; font-size: 12px; opacity: 1; }
     .field-help { margin-top: 3px; font-size: 11px; line-height: 1.25; color: var(--muted); }
+    .event-privacy { margin: 1px 0 0; padding: 9px 10px; border: 1px solid #d9d2ee; border-radius: 6px; background: #f5f2fc; color: #514887; font-size: 12px; line-height: 1.4; }
+    .event-privacy strong { color: var(--navy); }
+    .event-privacy a { font-weight: 800; }
     .image-consent { min-width: 0; margin: 1px 0 0; padding: 7px 0 0; border: 0; border-top: 1px solid var(--line); }
     .image-consent legend { float: left; width: 100%; margin-bottom: 5px; padding: 0; font-size: 12px; line-height: 1.3; font-weight: 700; }
     .consent-info { clear: both; padding: 7px 10px; border-radius: 6px; background: #f5f2fc; font-size: 12px; line-height: 1.4; color: #514887; }
@@ -432,7 +435,7 @@
           <!-- Field IDs and consent choices verified against the event's public Google Form.
                Native POST keeps Google's confirmation or validation errors visible;
                no hidden iframe or inferred success message is used. -->
-          <form id="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/formResponse" method="post" target="_blank" rel="noopener noreferrer" aria-labelledby="form-title" aria-describedby="form-note">
+            <form id="registration-form" action="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/formResponse" method="post" target="_blank" rel="noopener noreferrer" aria-labelledby="form-title" aria-describedby="form-privacy-notice form-note">
             <input type="hidden" name="fvv" value="1">
             <input type="hidden" name="pageHistory" value="0">
             <input type="hidden" name="entry.1640139106_sentinel" value="">
@@ -468,6 +471,9 @@
                 <label for="domande">Desideri comunicarci qualcosa?</label>
                 <textarea id="domande" name="entry.65890871" rows="2" placeholder="C'è qualcosa che vorresti chiederci?"></textarea>
               </div>
+              <aside class="event-privacy field full" id="form-privacy-notice" aria-label="Informativa privacy dell’evento">
+                <strong>Informativa privacy dell’evento.</strong> Prima di inviare la registrazione, consulta l’<a href="assets/informativa-evento-2026.pdf" target="_blank" rel="noopener noreferrer">Informativa Evento 2026 (PDF)</a> di Direct Channel S.p.A. sul trattamento dei dati forniti per l’iscrizione.
+              </aside>
               <fieldset class="image-consent field full" aria-describedby="consent-statement">
                 <legend>Consenso all’uso di immagine <span class="req">*</span></legend>
                 <details class="consent-info">
@@ -484,7 +490,7 @@
             <button class="button form-submit" type="submit" aria-describedby="form-note">Registrati</button>
           </form>
           <p class="form-note" id="form-note">La conferma si apre su Google Forms in una nuova scheda.</p>
-          <p class="form-foot">* Campi obbligatori. <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Privacy</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/viewform" target="_blank" rel="noopener noreferrer">Apri il modulo Google</a></p>
+          <p class="form-foot">* Campi obbligatori. <a href="assets/informativa-evento-2026.pdf" target="_blank" rel="noopener noreferrer">Informativa privacy dell’evento (PDF)</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3hNS8PGr66faKp6dcJUNMNUSgM7pdsTgr3Zxf8gwriGCEdA/viewform" target="_blank" rel="noopener noreferrer">Apri il modulo Google</a></p>
         </div>
       </div>
 
