@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Scopri la nuova pagina dei Versamenti Esterni di Mentor: martedì 22 settembre, dalle 11.30 alle 12.30, online con Nicola Sabbatino.">
+  <meta name="theme-color" content="#f7f3ff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="La nuova pagina dei Versamenti Esterni | Direct Channel Academy">
+  <meta property="og:description" content="Un webinar per scoprire la nuova interfaccia e le funzionalità del modulo. Martedì 22 settembre, 11.30–12.30, online.">
+  <meta property="og:url" content="https://dcmrkt.github.io/webinar-test/versamenti-esterni/">
+  <meta property="og:image" content="https://dcmrkt.github.io/webinar-test/assets/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="La nuova pagina dei Versamenti Esterni | Direct Channel Academy">
+  <meta name="twitter:description" content="Martedì 22 settembre, 11.30–12.30, online con Nicola Sabbatino.">
+  <meta name="twitter:image" content="https://dcmrkt.github.io/webinar-test/assets/hero.webp">
+  <link rel="canonical" href="https://dcmrkt.github.io/webinar-test/versamenti-esterni/">
+  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <title>La nuova pagina dei Versamenti Esterni | Direct Channel Academy</title>
+  <style>
+    :root {
+      --ink: #11143f;
+      --muted: #5c6179;
+      --purple: #7c3aed;
+      --purple-dark: #6020ce;
+      --lilac: #eee7ff;
+      --pink: #fac9fa;
+      --mint: #bdebd0;
+      --aqua: #a7e7f2;
+      --yellow: #f4e84a;
+      --orange: #ff8a3d;
+      --red: #e30613;
+      --paper: #fffefc;
+      --line: rgba(17, 20, 63, .13);
+      --shadow: 0 24px 70px rgba(48, 34, 97, .12);
+      --radius: 26px;
+      --max: 1180px;
+      --gutter: clamp(20px, 4vw, 44px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Plus Jakarta Sans", Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.modal-open { overflow: hidden; }
+    h1, h2, h3, p, figure { margin: 0; }
+    h1, h2, h3 { line-height: 1.08; }
+    a { color: inherit; text-underline-offset: 4px; }
+    img { display: block; max-width: 100%; height: auto; }
+    button, input, textarea { font: inherit; }
+    button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    ::selection { background: var(--yellow); color: var(--ink); }
+
+    .wrap {
+      width: min(100%, var(--max));
+      margin-inline: auto;
+      padding-inline: max(var(--gutter), env(safe-area-inset-left));
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: -100px;
+      left: 20px;
+      padding: 10px 16px;
+      border-radius: 0 0 10px 10px;
+      background: var(--ink);
+      color: white;
+    }
+    .skip-link:focus { top: 0; }
+    .eyebrow {
+      color: var(--purple-dark);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      border: 2px solid var(--purple);
+      border-radius: 999px;
+      background: var(--purple);
+      color: white;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 14px 30px rgba(124, 58, 237, .23);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--purple-dark); border-color: var(--purple-dark); }
+    .button.secondary { background: transparent; color: var(--purple-dark); box-shadow: none; }
+    .button.secondary:hover { background: white; }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 100svh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 13%, rgba(250, 201, 250, .66) 0 9%, transparent 9.3%),
+        linear-gradient(135deg, #fbf8ff 0 57%, #dff6ec 57% 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: clamp(420px, 42vw, 660px);
+      aspect-ratio: 1;
+      right: clamp(-260px, -12vw, -90px);
+      bottom: clamp(-300px, -18vw, -160px);
+      border: clamp(42px, 5vw, 76px) solid var(--aqua);
+      border-radius: 48% 52% 45% 55%;
+      transform: rotate(18deg);
+      opacity: .85;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -90px;
+      bottom: 8%;
+      width: 210px;
+      height: 85px;
+      border: 22px solid var(--orange);
+      border-left: 0;
+      border-radius: 0 60px 60px 0;
+      transform: rotate(-10deg);
+    }
+    .hero-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 96px;
+      padding-top: 18px;
+    }
+    .logo { display: inline-block; width: 118px; }
+    .live-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border: 1px solid rgba(17, 20, 63, .12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+    .live-status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 5px rgba(227, 6, 19, .11); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(330px, .9fr);
+      gap: clamp(34px, 6vw, 86px);
+      align-items: center;
+      min-height: calc(100svh - 96px);
+      padding-top: 24px;
+      padding-bottom: clamp(54px, 8vh, 90px);
+    }
+    .hero-copy { position: relative; z-index: 2; max-width: 690px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--yellow);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 780px;
+      font-size: clamp(3.35rem, 7vw, 6.8rem);
+      font-weight: 800;
+      letter-spacing: -.067em;
+      line-height: .93;
+    }
+    .title-accent {
+      position: relative;
+      z-index: 0;
+      display: inline;
+      white-space: nowrap;
+    }
+    .title-accent::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -.03em;
+      right: -.05em;
+      bottom: .04em;
+      height: .3em;
+      border-radius: 999px 45% 999px 55%;
+      background: var(--pink);
+      transform: rotate(-1.2deg);
+    }
+    .hero-subtitle {
+      max-width: 660px;
+      margin-top: 26px;
+      color: #454a68;
+      font-size: clamp(1.08rem, 1.7vw, 1.34rem);
+      line-height: 1.5;
+    }
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .event-meta li {
+      padding: 8px 12px;
+      border: 1px solid rgba(17, 20, 63, .1);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .75);
+      font-size: .88rem;
+      font-weight: 800;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-art { position: relative; min-height: 570px; }
+    .interface-card {
+      position: absolute;
+      inset: 9% 0 7% 0;
+      overflow: hidden;
+      border: 1px solid rgba(17, 20, 63, .13);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, .82);
+      box-shadow: var(--shadow);
+      transform: rotate(3deg);
+      backdrop-filter: blur(16px);
+    }
+    .interface-top { display: flex; align-items: center; justify-content: space-between; padding: 22px; border-bottom: 1px solid var(--line); }
+    .interface-dots { display: flex; gap: 7px; }
+    .interface-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--pink); }
+    .interface-dots i:nth-child(2) { background: var(--yellow); }
+    .interface-dots i:nth-child(3) { background: var(--mint); }
+    .interface-tag { padding: 6px 10px; border-radius: 999px; background: var(--lilac); color: var(--purple-dark); font-size: .68rem; font-weight: 800; text-transform: uppercase; }
+    .interface-body { padding: 28px 26px; }
+    .interface-kicker { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .interface-title { margin-top: 8px; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -.04em; }
+    .amount { margin-top: 24px; font-size: clamp(2.6rem, 5vw, 4.6rem); font-weight: 800; letter-spacing: -.06em; }
+    .trend { display: inline-block; margin-left: 7px; color: #167c4d; font-size: .85rem; letter-spacing: 0; }
+    .chart { display: flex; align-items: end; gap: 9px; height: 145px; margin-top: 24px; padding-top: 12px; border-top: 1px dashed rgba(17, 20, 63, .14); }
+    .chart i { flex: 1; min-width: 12px; border-radius: 9px 9px 2px 2px; background: var(--purple); opacity: .88; }
+    .chart i:nth-child(1) { height: 37%; background: var(--aqua); }
+    .chart i:nth-child(2) { height: 55%; background: var(--mint); }
+    .chart i:nth-child(3) { height: 45%; background: var(--pink); }
+    .chart i:nth-child(4) { height: 72%; }
+    .chart i:nth-child(5) { height: 62%; background: var(--orange); }
+    .chart i:nth-child(6) { height: 88%; }
+    .chart i:nth-child(7) { height: 78%; background: var(--yellow); }
+    .hero-mascot {
+      position: absolute;
+      z-index: 3;
+      right: -84px;
+      bottom: -28px;
+      width: clamp(210px, 21vw, 310px);
+      filter: drop-shadow(0 22px 30px rgba(17, 20, 63, .15));
+      transform: rotate(-4deg);
+    }
+    .spark {
+      position: absolute;
+      z-index: 2;
+      top: 1%;
+      right: 4%;
+      width: 74px;
+      height: 74px;
+      color: var(--orange);
+      animation: turn 12s linear infinite;
+    }
+
+    .community-strip { position: relative; overflow: hidden; background: var(--ink); color: white; }
+    .community-strip::after { content: ""; position: absolute; right: -30px; top: -48px; width: 170px; height: 170px; border: 30px solid var(--yellow); border-radius: 50%; opacity: .9; }
+    .community-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 28px; padding-block: 28px; }
+    .community-inner p { max-width: 920px; font-size: clamp(1rem, 1.65vw, 1.22rem); }
+    .strip-arrow { flex: 0 0 auto; display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(255, 255, 255, .35); border-radius: 50%; font-size: 1.45rem; text-decoration: none; transition: transform 180ms ease, background 180ms ease; }
+    .strip-arrow:hover { transform: translateY(3px); background: rgba(255, 255, 255, .1); }
+
+    .program {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding-block: clamp(76px, 10vw, 130px);
+      background: #faf8ff;
+    }
+    .program::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -170px;
+      top: 22%;
+      width: 360px;
+      height: 170px;
+      border: 36px solid var(--pink);
+      border-left: 0;
+      border-radius: 0 100px 100px 0;
+      transform: rotate(9deg);
+      opacity: .5;
+    }
+    .program-grid { display: grid; grid-template-columns: minmax(0, 1.14fr) minmax(330px, .86fr); gap: clamp(38px, 7vw, 90px); align-items: start; }
+    .program-copy .eyebrow { margin-bottom: 22px; }
+    .program-copy p:not(.eyebrow) { max-width: 710px; color: #424862; font-size: clamp(1.04rem, 1.55vw, 1.18rem); }
+    .program-copy p + p { margin-top: 22px; }
+    .program-copy strong { color: var(--ink); font-weight: 800; }
+    .program-cta { margin-top: 30px; font-weight: 800; color: var(--ink) !important; }
+    .focus-card {
+      position: sticky;
+      top: 24px;
+      padding: clamp(26px, 4vw, 40px);
+      border: 1px solid rgba(17, 20, 63, .1);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+    .focus-card::before { content: ""; position: absolute; inset: -9px 26px auto auto; width: 68px; height: 18px; border-radius: 8px; background: var(--yellow); transform: rotate(3deg); }
+    .focus-card h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -.04em; }
+    .focus-card > p { margin-top: 14px; color: var(--muted); }
+    .focus-list { margin: 22px 0 0; padding: 0; list-style: none; }
+    .focus-list li { position: relative; padding: 18px 0 18px 44px; border-top: 1px solid var(--line); color: #474c65; }
+    .focus-list li::before { content: counter(focus); counter-increment: focus; position: absolute; left: 0; top: 18px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--lilac); color: var(--purple-dark); font-size: .74rem; font-weight: 800; }
+    .focus-list { counter-reset: focus; }
+    .focus-list strong { color: var(--ink); }
+
+    .registration {
+      position: relative;
+      isolation: isolate;
+      padding-block: clamp(76px, 9vw, 120px);
+      background: linear-gradient(180deg, #e8f7f0 0, #f2fbf7 100%);
+    }
+    .registration::before { content: ""; position: absolute; z-index: -1; left: -100px; bottom: 9%; width: 250px; height: 250px; border: 40px solid var(--aqua); border-radius: 43% 57% 58% 42%; opacity: .7; transform: rotate(18deg); }
+    .registration-grid { display: grid; grid-template-columns: minmax(0, .92fr) minmax(390px, 1.08fr); gap: clamp(30px, 5vw, 62px); align-items: start; }
+    .community-card, .registration-form, .resource-card { border: 1px solid var(--line); border-radius: var(--radius); background: white; box-shadow: 0 18px 55px rgba(34, 63, 67, .08); }
+    .community-card { overflow: hidden; }
+    .community-card figure { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: var(--pink); }
+    .community-card figure::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(17, 20, 63, .22)); }
+    .community-card figure img { width: 100%; height: 100%; object-fit: cover; }
+    .community-copy { padding: 28px; }
+    .community-copy .eyebrow { margin-bottom: 10px; }
+    .community-copy h2 { font-size: clamp(1.7rem, 3vw, 2.25rem); font-weight: 800; letter-spacing: -.04em; }
+    .community-copy p:not(.eyebrow) { margin-top: 14px; color: var(--muted); }
+    .resource-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+    .resource-card { min-height: 240px; padding: 24px; text-decoration: none; transition: transform 180ms ease, border-color 180ms ease; }
+    .resource-card:hover { transform: translateY(-4px); border-color: rgba(124, 58, 237, .36); }
+    .resource-card:first-child { background: #fff7fe; }
+    .resource-card:last-child { background: #fffef0; }
+    .resource-card h3 { margin-top: 10px; font-size: 1.22rem; font-weight: 800; }
+    .resource-card p:not(.eyebrow) { margin-top: 12px; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+    .text-link { display: inline-block; margin-top: 18px; color: var(--purple-dark); font-size: .85rem; font-weight: 800; text-decoration: underline; }
+
+    .registration-form { padding: clamp(26px, 4vw, 42px); scroll-margin-top: 22px; }
+    .form-title .eyebrow { margin-bottom: 10px; }
+    .form-title h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -.05em; }
+    .form-title > p:last-child { margin-top: 12px; color: var(--muted); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+    .field { min-width: 0; }
+    .field.full, .newsletter-banner { grid-column: 1 / -1; }
+    .field label { display: block; margin-bottom: 6px; font-size: .82rem; font-weight: 800; }
+    .req { color: var(--red); }
+    .field input, .field textarea {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #d8dbe6;
+      border-radius: 12px;
+      background: #fdfdff;
+      color: var(--ink);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+    .field input { min-height: 46px; padding: 0 13px; }
+    .field textarea { min-height: 94px; padding: 11px 13px; resize: vertical; }
+    .field input:focus, .field textarea:focus { outline: 0; border-color: var(--purple); box-shadow: 0 0 0 4px rgba(124, 58, 237, .1); }
+    .field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: var(--red); }
+    .newsletter-banner { padding: 18px; border-radius: 15px; background: var(--lilac); font-size: .78rem; line-height: 1.55; }
+    .newsletter-banner p + p { margin-top: 8px; }
+    .check-row { display: grid; grid-template-columns: 18px 1fr; gap: 9px; align-items: start; margin-top: 12px; }
+    .check-row input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--purple); }
+    .check-row label { font-weight: 800; cursor: pointer; }
+    .submit-button { width: 100%; margin-top: 20px; border: 0; cursor: pointer; }
+    .submit-button:disabled { cursor: wait; opacity: .72; transform: none; }
+    .status { display: none; margin-top: 14px; padding: 12px 14px; border-radius: 12px; font-size: .86rem; }
+    .status.error { display: block; background: #ffe7e9; color: #85131c; }
+    .form-foot { margin-top: 14px; color: var(--muted); font-size: .73rem; line-height: 1.55; }
+
+    .footer { padding-block: 34px; background: var(--ink); color: white; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .footer-logo { width: 105px; padding: 8px; border-radius: 10px; background: white; }
+    .footer-copy { color: rgba(255, 255, 255, .75); font-size: .76rem; text-align: right; }
+
+    .success-modal { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; padding: 20px; }
+    .success-modal[hidden] { display: none; }
+    .success-backdrop { position: absolute; inset: 0; background: rgba(17, 20, 63, .66); backdrop-filter: blur(5px); }
+    .success-panel { position: relative; width: min(100%, 620px); padding: clamp(30px, 6vw, 54px); border-radius: 28px; background: white; box-shadow: 0 32px 100px rgba(0, 0, 0, .25); }
+    .success-close { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--ink); font-size: 1.35rem; cursor: pointer; }
+    .success-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--mint); color: #11673f; font-size: 1.8rem; font-weight: 800; }
+    .success-panel h2 { margin-top: 22px; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -.05em; }
+    .success-panel p { margin-top: 12px; color: var(--muted); }
+    .calendar-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .calendar-actions .button { min-height: 44px; padding-inline: 17px; font-size: .82rem; }
+
+    @keyframes turn { to { transform: rotate(360deg); } }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; padding-top: 46px; }
+      .hero-copy { max-width: 790px; }
+      .hero-art { width: min(100%, 600px); min-height: 510px; margin-inline: auto; }
+      .program-grid, .registration-grid { grid-template-columns: 1fr; }
+      .focus-card { position: relative; top: auto; }
+      .registration-left { display: grid; grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      :root { --radius: 20px; }
+      body { font-size: 15px; }
+      .hero { min-height: auto; }
+      .hero-header { min-height: 82px; padding-top: 10px; }
+      .logo { width: 100px; }
+      .live-status { padding: 7px 10px; font-size: .64rem; }
+      .hero-grid { min-height: 0; gap: 20px; padding-top: 34px; padding-bottom: 52px; }
+      .badge { margin-bottom: 18px; font-size: .67rem; }
+      .hero h1 { font-size: clamp(3rem, 15vw, 4.6rem); }
+      .title-accent { white-space: normal; }
+      .hero-subtitle { margin-top: 20px; }
+      .event-meta { margin-top: 20px; }
+      .event-meta li { font-size: .75rem; }
+      .hero-actions { display: grid; grid-template-columns: 1fr 1fr; margin-top: 22px; }
+      .button { min-height: 46px; padding: 0 16px; font-size: .88rem; }
+      .hero-art { min-height: 400px; }
+      .interface-card { inset: 4% 3% 4% 0; border-radius: 24px; }
+      .interface-body { padding: 22px 20px; }
+      .chart { height: 105px; }
+      .hero-mascot { right: -50px; bottom: -12px; width: 210px; }
+      .spark { width: 58px; height: 58px; }
+      .community-inner { align-items: flex-start; padding-block: 22px; }
+      .strip-arrow { width: 40px; height: 40px; }
+      .program, .registration { padding-block: 68px; }
+      .program-grid { gap: 30px; }
+      .focus-card { padding: 26px 22px; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .resource-card { min-height: 0; }
+      .registration-form { padding: 26px 20px; }
+      .form-grid { grid-template-columns: 1fr; gap: 14px; }
+      .field.full, .newsletter-banner { grid-column: auto; }
+      .footer-inner { align-items: flex-start; }
+      .footer-copy { max-width: 230px; text-align: right; }
+      .calendar-actions { display: grid; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  <main id="contenuto">
+    <section class="hero" aria-labelledby="event-title">
+      <header class="hero-header wrap">
+        <a class="logo" href="../" aria-label="Direct Channel">
+          <img src="../assets/direct-channel-logo.png" alt="Direct Channel" width="800" height="376">
+        </a>
+        <span class="live-status">22 settembre · online</span>
+      </header>
+
+      <div class="hero-grid wrap">
+        <div class="hero-copy">
+          <p class="badge">Live webinar · iscrizione gratuita</p>
+          <h1 id="event-title">La nuova pagina dei <span class="title-accent">Versamenti Esterni</span></h1>
+          <p class="hero-subtitle">Un webinar per scoprire come è cambiata l’interfaccia e le nuove funzionalità del modulo.</p>
+          <ul class="event-meta" aria-label="Data, orario e modalità">
+            <li><time datetime="2026-09-22">Martedì 22 settembre</time></li>
+            <li><time datetime="2026-09-22T11:30:00+02:00">11.30–12.30</time></li>
+            <li>Online</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="button" href="#iscrizione">Registrati</a>
+            <a class="button secondary" href="#programma">Scopri di più</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="interface-card">
+            <div class="interface-top">
+              <div class="interface-dots"><i></i><i></i><i></i></div>
+              <span class="interface-tag">Nuova interfaccia</span>
+            </div>
+            <div class="interface-body">
+              <p class="interface-kicker">Versamenti esterni</p>
+              <p class="interface-title">Una gestione più chiara</p>
+              <p class="amount">€ 48.260 <span class="trend">↗ +12%</span></p>
+              <div class="chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <svg class="spark" viewBox="0 0 80 80" fill="none">
+            <path d="M40 5v70M5 40h70M15 15l50 50M65 15L15 65" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+          <img class="hero-mascot" src="../assets/mascotte-direct-channel-cutout-crop.png" width="900" height="876" alt="">
+        </div>
+      </div>
+    </section>
+
+    <div class="community-strip">
+      <div class="community-inner wrap">
+        <p><strong>Vieni a vedere i risultati ottenuti dopo il progetto di refactoring con la community fatto ad aprile!</strong></p>
+        <a class="strip-arrow" href="#programma" aria-label="Scopri il programma">↓</a>
+      </div>
+    </div>
+
+    <section class="program" id="programma" aria-labelledby="program-label">
+      <div class="program-grid wrap">
+        <div class="program-copy">
+          <p class="eyebrow" id="program-label">Di cosa parleremo</p>
+          <p><strong>Martedì 22 settembre, dalle 11.30 alle 12.30, Nicola Sabbatino</strong> ci accompagnerà alla scoperta della nuova pagina dei versamenti esterni.</p>
+          <p>Un progetto nato dal confronto con la community: ad aprile abbiamo iniziato a immaginare insieme una nuova interfaccia, raccogliendo esigenze, idee e suggerimenti. <strong>Oggi quel progetto ha preso forma e siamo pronti a mostrarvelo.</strong></p>
+          <p class="program-cta">Iscriviti per scoprire il risultato e come muoverti con agilità nell’interfaccia.</p>
+        </div>
+
+        <aside class="focus-card" aria-labelledby="focus-title">
+          <h2 id="focus-title">Focus dell’incontro</h2>
+          <p>Durante il webinar vedremo:</p>
+          <ol class="focus-list">
+            <li><strong>Cosa è cambiato:</strong> il percorso di refactoring e le principali modifiche introdotte nella nuova interfaccia.</li>
+            <li><strong>Cosa c’è di nuovo:</strong> le nuove funzioni e ottimizzazioni pensate per rendere la gestione dei Versamenti Esterni più semplice e intuitiva.</li>
+            <li><strong>Come utilizzarlo al meglio:</strong> un tour della nuova interfaccia, con esempi pratici e indicazioni per orientarsi tra le nuove funzionalità.</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="registration" id="registrazione" aria-label="Approfondimenti e iscrizione">
+      <div class="registration-grid wrap">
+        <div class="registration-left">
+          <article class="community-card">
+            <figure>
+              <img src="../assets/backgroundmongolfiere-card.png" alt="Mongolfiere colorate nel cielo, simbolo degli incontri della community Direct Channel" width="800" height="441" loading="lazy">
+            </figure>
+            <div class="community-copy">
+              <p class="eyebrow">Webinar gratuito</p>
+              <h2>La community si incontra qui</h2>
+              <p>Un’ora per vedere da vicino il risultato del lavoro condiviso, fare domande e portare subito nel quotidiano le novità di Mentor.</p>
+            </div>
+          </article>
+
+          <div class="resource-grid" aria-label="Altri contenuti Direct Channel">
+            <a class="resource-card" href="https://supporto.directchannel.it/portal/it/kb" target="_blank" rel="noopener noreferrer">
+              <p class="eyebrow">Archivio webinar</p>
+              <h3>Lasciati ispirare</h3>
+              <p>Continua a imparare da casi concreti ed esperienze condivise.</p>
+              <span class="text-link">Vai all’archivio</span>
+            </a>
+            <a class="resource-card" href="https://supporto.directchannel.it/portal/it/community/direct-channel-community" target="_blank" rel="noopener noreferrer">
+              <p class="eyebrow">Community</p>
+              <h3>Allarga il confronto</h3>
+              <p>Scambia idee, domande ed esperienze con chi usa Mentor ogni giorno.</p>
+              <span class="text-link">Entra nella community</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="registration-form" id="iscrizione">
+          <div class="form-title">
+            <p class="eyebrow">Registrazione</p>
+            <h2>Iscriviti all’incontro</h2>
+            <p>Inserisci i tuoi dati per confermare la partecipazione gratuita.</p>
+          </div>
+
+          <form id="contactForm" novalidate data-google-form="https://forms.gle/HMB9dpUezU1sbRWR8">
+            <div class="form-grid">
+              <div class="field">
+                <label for="nome">Nome <span class="req">*</span></label>
+                <input id="nome" name="nome" type="text" autocomplete="given-name" placeholder="Mario" required>
+              </div>
+              <div class="field">
+                <label for="cognome">Cognome <span class="req">*</span></label>
+                <input id="cognome" name="cognome" type="text" autocomplete="family-name" placeholder="Rossi" required>
+              </div>
+              <input id="nomeCompleto" name="entry.2092238618" type="hidden">
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input id="email" name="entry.1556369182" type="email" autocomplete="email" placeholder="nome@organizzazione.it" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required>
+              </div>
+              <div class="field">
+                <label for="organizzazione">Organizzazione <span class="req">*</span></label>
+                <input id="organizzazione" name="entry.479301265" type="text" autocomplete="organization" placeholder="Nome organizzazione" required>
+              </div>
+              <div class="field full">
+                <label for="ruolo">Ruolo <span class="req">*</span></label>
+                <input id="ruolo" name="entry.2104822976" type="text" autocomplete="organization-title" placeholder="Es. Fundraising manager" required>
+              </div>
+              <div class="field full">
+                <label for="domanda">Domande</label>
+                <textarea id="domanda" name="entry.1933339847" placeholder="Scrivi qui eventuali domande o temi che vorresti approfondire"></textarea>
+              </div>
+              <div class="newsletter-banner">
+                <p><strong>Vorresti ricevere aggiornamenti su nuovi webinar, prodotti ed eventi?</strong> Iscriviti alla nostra newsletter per non perderti le prossime iniziative Direct Channel.</p>
+                <p>I dati saranno trattati nel rispetto del Regolamento (UE) 2016/679 (GDPR). Consulta la nostra <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">privacy policy</a>. Potrai disiscriverti in qualsiasi momento.</p>
+                <div class="check-row">
+                  <input id="newsletter" name="entry.1618047083" type="checkbox" value="Sì, voglio iscrivermi alla newsletter">
+                  <label for="newsletter">Sì, voglio iscrivermi alla newsletter</label>
+                </div>
+              </div>
+            </div>
+            <button class="button submit-button" id="submitBtn" type="submit">Registrati</button>
+          </form>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+          <p class="form-foot">Campi con * obbligatori. I dati sono trattati da Direct Channel S.p.A. nel rispetto del GDPR. <a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Informativa privacy</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner wrap">
+      <a class="footer-logo" href="../" aria-label="Direct Channel"><img src="../assets/direct-channel-logo.png" alt="Direct Channel" width="800" height="376" loading="lazy"></a>
+      <p class="footer-copy">Gruppo Mondadori · <a href="mailto:info.fundraising@directchannel.it">info.fundraising@directchannel.it</a><br><a href="https://www.abbonamenti.it/immagini/pdf/privacydc.pdf" target="_blank" rel="noopener noreferrer">Privacy policy</a> · <a href="https://www.iubenda.com/privacy-policy/8187956/cookie-policy" target="_blank" rel="noopener noreferrer">Cookie policy</a></p>
+    </div>
+  </footer>
+
+  <div class="success-modal" id="successModal" hidden aria-hidden="true">
+    <div class="success-backdrop" data-close-success></div>
+    <div class="success-panel" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+      <button class="success-close" type="button" data-close-success aria-label="Chiudi">×</button>
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <p class="eyebrow">Direct Channel Academy</p>
+      <h2 id="successTitle">Registrazione completata</h2>
+      <p>Ti invieremo il link di accesso prima del webinar.</p>
+      <div class="calendar-actions">
+        <a class="button" id="googleCalendar" href="#" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+        <a class="button secondary" id="outlookCalendar" href="#" target="_blank" rel="noopener noreferrer">Outlook</a>
+      </div>
+    </div>
+  </div>
+  <iframe name="googleFormTarget" id="googleFormTarget" title="Invio modulo" hidden></iframe>
+
+  <script>
+    (() => {
+      const form = document.getElementById('contactForm');
+      const submit = document.getElementById('submitBtn');
+      const status = document.getElementById('status');
+      const modal = document.getElementById('successModal');
+      const fullName = document.getElementById('nomeCompleto');
+      const firstName = document.getElementById('nome');
+      const lastName = document.getElementById('cognome');
+      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScnZzUBggdsrw6YX-d3hVJux0kBLurAnPPM7akmrZ0J4PkAbg/formResponse';
+
+      const eventTitle = 'La nuova pagina dei Versamenti Esterni';
+      const eventDetails = 'Webinar Direct Channel Academy con Nicola Sabbatino. Un tour della nuova interfaccia e delle funzionalità del modulo Versamenti Esterni.';
+      const eventLocation = 'Online';
+      const googleParams = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: eventTitle,
+        dates: '20260922T093000Z/20260922T103000Z',
+        details: eventDetails,
+        location: eventLocation
+      });
+      document.getElementById('googleCalendar').href = 'https://calendar.google.com/calendar/render?' + googleParams.toString();
+
+      const outlookParams = new URLSearchParams({
+        path: '/calendar/action/compose',
+        rru: 'addevent',
+        subject: eventTitle,
+        startdt: '2026-09-22T09:30:00Z',
+        enddt: '2026-09-22T10:30:00Z',
+        body: eventDetails,
+        location: eventLocation
+      });
+      document.getElementById('outlookCalendar').href = 'https://outlook.live.com/calendar/0/action/compose?' + outlookParams.toString();
+
+      function openSuccess() {
+        modal.hidden = false;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        modal.querySelector('.success-close').focus();
+      }
+
+      function closeSuccess() {
+        modal.hidden = true;
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        submit.focus();
+      }
+
+      modal.querySelectorAll('[data-close-success]').forEach((element) => element.addEventListener('click', closeSuccess));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.hidden) closeSuccess();
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        status.className = 'status';
+        status.textContent = '';
+        form.querySelectorAll('[aria-invalid="true"]').forEach((field) => field.removeAttribute('aria-invalid'));
+
+        if (!form.checkValidity()) {
+          const invalid = form.querySelector(':invalid');
+          if (invalid) {
+            invalid.setAttribute('aria-invalid', 'true');
+            invalid.focus();
+          }
+          status.textContent = 'Controlla i campi obbligatori e inserisci un indirizzo email valido.';
+          status.className = 'status error';
+          form.reportValidity();
+          return;
+        }
+
+        fullName.value = (firstName.value.trim() + ' ' + lastName.value.trim()).trim();
+        form.action = googleFormUrl;
+        form.method = 'POST';
+        form.target = 'googleFormTarget';
+        submit.disabled = true;
+        submit.textContent = 'Invio in corso…';
+        form.submit();
+
+        window.setTimeout(() => {
+          form.reset();
+          submit.disabled = false;
+          submit.textContent = 'Registrati';
+          openSuccess();
+        }, 850);
+      });
+    })();
+  </script>
+</body>
+</html>
