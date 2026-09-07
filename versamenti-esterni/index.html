@@ -193,28 +193,20 @@
     }
     .hero h1 {
       max-width: 620px;
-      font-size: clamp(3rem, 5.2vw, 4.8rem);
+      font-size: clamp(3rem, 5.2vw, 4rem);
       font-weight: 800;
-      letter-spacing: -.058em;
+      letter-spacing: -0.05em;
       line-height: .97;
     }
     .title-accent {
       position: relative;
       z-index: 0;
-      display: block;
+      display: inline;
       white-space: normal;
-    }
-    .title-accent::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      left: -.03em;
-      right: -.05em;
-      bottom: .04em;
-      height: .3em;
-      border-radius: 999px 45% 999px 55%;
-      background: var(--pink);
-      transform: rotate(-1.2deg);
+      padding-inline: .01em;
+      background: linear-gradient(transparent 70%, var(--pink) 70%, var(--pink) 95%, transparent 95%);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
     }
     .hero-subtitle {
       max-width: 660px;
@@ -241,53 +233,37 @@
     }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     .hero-art { position: relative; min-height: 570px; }
-    .interface-card {
+    .hero-art::before,
+    .hero-art::after {
+      content: "";
       position: absolute;
-      inset: 9% 0 7% 0;
-      overflow: hidden;
-      border: 1px solid rgba(17, 20, 63, .13);
-      border-radius: 34px;
-      background: rgba(255, 255, 255, .82);
-      box-shadow: var(--shadow);
-      transform: rotate(3deg);
-      backdrop-filter: blur(16px);
+      pointer-events: none;
     }
-    .interface-top { display: flex; align-items: center; justify-content: space-between; padding: 22px; border-bottom: 1px solid var(--line); }
-    .interface-dots { display: flex; gap: 7px; }
-    .interface-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--pink); }
-    .interface-dots i:nth-child(2) { background: var(--yellow); }
-    .interface-dots i:nth-child(3) { background: var(--mint); }
-    .interface-tag { padding: 6px 10px; border-radius: 999px; background: var(--lilac); color: var(--purple-dark); font-size: .68rem; font-weight: 800; text-transform: uppercase; }
-    .interface-body { padding: 28px 26px; }
-    .interface-kicker { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-    .interface-title { margin-top: 8px; font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -.04em; }
-    .chart { display: flex; align-items: end; gap: 9px; height: 188px; margin-top: 34px; padding-top: 18px; border-top: 1px dashed rgba(17, 20, 63, .14); }
-    .chart i { flex: 1; min-width: 12px; border-radius: 9px 9px 2px 2px; background: var(--purple); opacity: .88; }
-    .chart i:nth-child(1) { height: 37%; background: var(--aqua); }
-    .chart i:nth-child(2) { height: 55%; background: var(--mint); }
-    .chart i:nth-child(3) { height: 45%; background: var(--pink); }
-    .chart i:nth-child(4) { height: 72%; }
-    .chart i:nth-child(5) { height: 62%; background: var(--orange); }
-    .chart i:nth-child(6) { height: 88%; }
-    .chart i:nth-child(7) { height: 78%; background: var(--yellow); }
+    .hero-art::before {
+      top: 8%;
+      right: 2%;
+      width: clamp(170px, 18vw, 260px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(247, 184, 244, .58);
+    }
+    .hero-art::after {
+      right: 31%;
+      bottom: 11%;
+      width: clamp(110px, 12vw, 175px);
+      height: clamp(34px, 4vw, 54px);
+      border-radius: 999px;
+      background: var(--aqua);
+      transform: rotate(-12deg);
+    }
     .hero-mascot {
       position: absolute;
       z-index: 3;
-      right: -84px;
-      bottom: -28px;
-      width: clamp(210px, 21vw, 310px);
+      right: clamp(10px, 4vw, 58px);
+      bottom: 8px;
+      width: clamp(270px, 27vw, 390px);
       filter: drop-shadow(0 22px 30px rgba(17, 20, 63, .15));
-      transform: rotate(-4deg);
-    }
-    .spark {
-      position: absolute;
-      z-index: 2;
-      top: 1%;
-      right: 4%;
-      width: 74px;
-      height: 74px;
-      color: var(--orange);
-      animation: turn 12s linear infinite;
+      transform: rotate(-2deg);
     }
 
     .community-strip { position: relative; overflow: hidden; background: #dff5f8; color: var(--ink); }
@@ -338,9 +314,8 @@
     .focus-card h2 { font-size: clamp(1.48rem, 2.25vw, 1.82rem); font-weight: 800; letter-spacing: -.035em; }
     .focus-card > p { margin-top: 9px; color: var(--muted); font-size: .86rem; }
     .focus-list { margin: 14px 0 0; padding: 0; list-style: none; }
-    .focus-list li { position: relative; padding: 10px 0 10px 37px; border-top: 1px solid var(--line); color: #474c65; font-size: .8rem; line-height: 1.5; }
-    .focus-list li::before { content: counter(focus); counter-increment: focus; position: absolute; left: 0; top: 10px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--lilac); color: var(--purple-dark); font-size: .66rem; font-weight: 800; }
-    .focus-list { counter-reset: focus; }
+    .focus-list li { position: relative; padding: 10px 0 10px 22px; border-top: 1px solid var(--line); color: #474c65; font-size: .8rem; line-height: 1.5; }
+    .focus-list li::before { content: ""; position: absolute; left: 2px; top: 18px; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
     .focus-list strong { color: var(--ink); }
 
     .registration {
@@ -420,7 +395,6 @@
     .calendar-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
     .calendar-actions .button { min-height: 44px; padding-inline: 17px; font-size: .82rem; }
 
-    @keyframes turn { to { transform: rotate(360deg); } }
     @media (max-width: 960px) {
       .hero-grid { grid-template-columns: 1fr; padding-top: 46px; }
       .hero-copy { max-width: 790px; }
@@ -446,11 +420,7 @@
       .hero-actions { display: grid; grid-template-columns: 1fr 1fr; margin-top: 22px; }
       .button { min-height: 46px; padding: 0 16px; font-size: .88rem; }
       .hero-art { min-height: 400px; }
-      .interface-card { inset: 4% 3% 4% 0; border-radius: 24px; }
-      .interface-body { padding: 22px 20px; }
-      .chart { height: 105px; }
-      .hero-mascot { right: -50px; bottom: -12px; width: 210px; }
-      .spark { width: 58px; height: 58px; }
+      .hero-mascot { right: 7%; bottom: 0; width: min(76vw, 330px); }
       .community-inner { align-items: flex-start; padding-block: 22px; }
       .strip-arrow { width: 40px; height: 40px; }
       .program, .registration { padding-block: 68px; }
@@ -499,20 +469,6 @@
         </div>
 
         <div class="hero-art" aria-hidden="true">
-          <div class="interface-card">
-            <div class="interface-top">
-              <div class="interface-dots"><i></i><i></i><i></i></div>
-              <span class="interface-tag">Nuova interfaccia</span>
-            </div>
-            <div class="interface-body">
-              <p class="interface-kicker">Versamenti esterni</p>
-              <p class="interface-title">Una gestione più chiara</p>
-              <div class="chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            </div>
-          </div>
-          <svg class="spark" viewBox="0 0 80 80" fill="none">
-            <path d="M40 5v70M5 40h70M15 15l50 50M65 15L15 65" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-          </svg>
           <img class="hero-mascot" src="../assets/mascotte-direct-channel-cutout-crop.png" width="900" height="876" alt="">
         </div>
       </div>
@@ -537,11 +493,11 @@
         <aside class="focus-card" aria-labelledby="focus-title">
           <h2 id="focus-title">Focus dell’incontro</h2>
           <p>Durante il webinar vedremo:</p>
-          <ol class="focus-list">
+          <ul class="focus-list">
             <li><strong>Cosa è cambiato:</strong> il percorso di refactoring e le principali modifiche introdotte nella nuova interfaccia.</li>
             <li><strong>Cosa c’è di nuovo:</strong> le nuove funzioni e ottimizzazioni pensate per rendere la gestione dei Versamenti Esterni più semplice e intuitiva.</li>
             <li><strong>Come utilizzarlo al meglio:</strong> un tour della nuova interfaccia, con esempi pratici e indicazioni per orientarsi tra le nuove funzionalità.</li>
-          </ol>
+          </ul>
         </aside>
       </div>
     </section>
@@ -583,7 +539,7 @@
             <p>Inserisci i tuoi dati per confermare la partecipazione gratuita.</p>
           </div>
 
-          <form id="contactForm" novalidate data-google-form="https://forms.gle/HMB9dpUezU1sbRWR8">
+          <form id="contactForm" novalidate data-google-form="https://forms.gle/L6a2Cx8zbzCUumLW7">
             <div class="form-grid">
               <div class="field">
                 <label for="nome">Nome <span class="req">*</span></label>
@@ -660,7 +616,7 @@
       const fullName = document.getElementById('nomeCompleto');
       const firstName = document.getElementById('nome');
       const lastName = document.getElementById('cognome');
-      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScnZzUBggdsrw6YX-d3hVJux0kBLurAnPPM7akmrZ0J4PkAbg/formResponse';
+      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdpF_5GWMTmEj-fB0Fh2X9f6utPBNYdUtWR3R32mNYz8agwdQ/formResponse';
 
       const eventTitle = 'La nuova pagina dei Versamenti Esterni';
       const eventDetails = 'Webinar Direct Channel Academy con Nicola Sabbatino. Un tour della nuova interfaccia e delle funzionalità del modulo Versamenti Esterni.';
