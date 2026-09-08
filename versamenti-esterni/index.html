@@ -232,7 +232,13 @@
       font-weight: 800;
     }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .hero-art { position: relative; min-height: 570px; }
+    .hero-art {
+      --circle-shift: 0px;
+      --shape-shift: 0px;
+      --orbit-shift: 0px;
+      position: relative;
+      min-height: 570px;
+    }
     .hero-art::before,
     .hero-art::after {
       content: "";
@@ -244,17 +250,60 @@
       right: 2%;
       width: clamp(170px, 18vw, 260px);
       aspect-ratio: 1;
-      border-radius: 50%;
-      background: rgba(247, 184, 244, .58);
+      border: 1px solid rgba(124, 58, 237, .12);
+      border-radius: 46% 54% 62% 38% / 57% 42% 58% 43%;
+      background:
+        radial-gradient(circle at 68% 28%, rgba(255, 255, 255, .72) 0 7%, transparent 8%),
+        conic-gradient(from 28deg, #f8c7f6, var(--pink) 38%, rgba(124, 58, 237, .24) 38% 48%, #ffdafa 48% 76%, #f3aeea 76%);
+      box-shadow: inset 18px -18px 38px rgba(124, 58, 237, .08), 0 24px 55px rgba(124, 58, 237, .08);
+      transform: translate3d(0, var(--circle-shift), 0) rotate(-7deg);
+      will-change: transform;
     }
     .hero-art::after {
-      right: 31%;
-      bottom: 11%;
-      width: clamp(110px, 12vw, 175px);
-      height: clamp(34px, 4vw, 54px);
-      border-radius: 999px;
-      background: var(--aqua);
-      transform: rotate(-12deg);
+      right: 28%;
+      bottom: 9%;
+      width: clamp(120px, 13vw, 190px);
+      height: clamp(62px, 7vw, 96px);
+      border: clamp(13px, 1.4vw, 20px) solid var(--aqua);
+      border-left-color: transparent;
+      border-radius: 58% 42% 55% 45% / 62% 48% 52% 38%;
+      filter: drop-shadow(0 14px 20px rgba(79, 201, 218, .13));
+      transform: translate3d(0, var(--shape-shift), 0) rotate(-17deg);
+      will-change: transform;
+    }
+    .hero-orbit {
+      position: absolute;
+      z-index: 2;
+      top: 12%;
+      right: 0;
+      width: clamp(190px, 20vw, 290px);
+      aspect-ratio: 1;
+      border: 2px solid rgba(124, 58, 237, .2);
+      border-right-color: transparent;
+      border-radius: 50%;
+      transform: translate3d(0, var(--orbit-shift), 0) rotate(22deg);
+      will-change: transform;
+    }
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+    .hero-orbit::before {
+      top: 8%;
+      right: 14%;
+      width: 14px;
+      height: 14px;
+      background: var(--orange);
+      box-shadow: -34px 12px 0 -3px var(--yellow);
+    }
+    .hero-orbit::after {
+      right: 5%;
+      bottom: 18%;
+      width: 9px;
+      height: 9px;
+      background: var(--purple);
     }
     .hero-mascot {
       position: absolute;
@@ -469,6 +518,7 @@
         </div>
 
         <div class="hero-art" aria-hidden="true">
+          <span class="hero-orbit"></span>
           <img class="hero-mascot" src="../assets/mascotte-direct-channel-cutout-crop.png" width="900" height="876" alt="">
         </div>
       </div>
@@ -616,7 +666,27 @@
       const fullName = document.getElementById('nomeCompleto');
       const firstName = document.getElementById('nome');
       const lastName = document.getElementById('cognome');
+      const heroArt = document.querySelector('.hero-art');
       const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdpF_5GWMTmEj-fB0Fh2X9f6utPBNYdUtWR3R32mNYz8agwdQ/formResponse';
+
+      let parallaxFrame = 0;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const updateHeroParallax = () => {
+        parallaxFrame = 0;
+        if (!heroArt || reduceMotion.matches) return;
+        const rect = heroArt.getBoundingClientRect();
+        const progress = Math.max(-1, Math.min(1, (window.innerHeight * .5 - rect.top - rect.height * .5) / window.innerHeight));
+        heroArt.style.setProperty('--circle-shift', `${progress * -18}px`);
+        heroArt.style.setProperty('--shape-shift', `${progress * 13}px`);
+        heroArt.style.setProperty('--orbit-shift', `${progress * -9}px`);
+      };
+      const requestHeroParallax = () => {
+        if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateHeroParallax);
+      };
+      window.addEventListener('scroll', requestHeroParallax, { passive: true });
+      window.addEventListener('resize', requestHeroParallax);
+      reduceMotion.addEventListener?.('change', requestHeroParallax);
+      updateHeroParallax();
 
       const eventTitle = 'La nuova pagina dei Versamenti Esterni';
       const eventDetails = 'Webinar Direct Channel Academy con Nicola Sabbatino. Un tour della nuova interfaccia e delle funzionalità del modulo Versamenti Esterni.';
