@@ -114,9 +114,7 @@
       isolation: isolate;
       min-height: 100svh;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 80% 13%, rgba(250, 201, 250, .66) 0 9%, transparent 9.3%),
-        linear-gradient(135deg, #fbf8ff 0 57%, #dff6ec 57% 100%);
+      background: linear-gradient(135deg, #fbf8ff 0 57%, #dff6ec 57% 100%);
     }
     .hero::before {
       content: "";
@@ -255,13 +253,13 @@
       will-change: transform;
     }
     .hero-art::after {
-      left: 2%;
-      bottom: 13%;
-      width: clamp(110px, 12vw, 170px);
-      height: clamp(36px, 4vw, 54px);
-      border-radius: 999px;
-      background: rgba(79, 201, 218, .68);
-      transform: translate3d(0, var(--shape-shift), 0) rotate(-10deg);
+      left: 3%;
+      bottom: 12%;
+      width: clamp(120px, 13vw, 180px);
+      height: clamp(70px, 7vw, 104px);
+      border-radius: 58% 42% 52% 48% / 44% 56% 44% 56%;
+      background: rgba(250, 225, 50, .68);
+      transform: translate3d(0, var(--shape-shift), 0) rotate(-8deg);
       will-change: transform;
     }
     .hero-mascot {
@@ -271,7 +269,8 @@
       bottom: 15%;
       width: clamp(520px, 44vw, 640px);
       max-width: none;
-      mix-blend-mode: multiply;
+      opacity: 1;
+      mix-blend-mode: normal;
     }
 
     .community-strip { position: relative; overflow: hidden; background: #dff5f8; color: var(--ink); }
